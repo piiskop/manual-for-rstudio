@@ -1,0 +1,23 @@
+book_filename: "physics-humidity"
+new_session: false
+# before_chapter_script: _common.R
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "goals.Rmd",
+  "tools.Rmd",
+  "rules.Rmd",
+  "theory.Rmd",
+  "practice.Rmd",
+  "data-analysis.Rmd",
+  "conclusions.Rmd",
+  "99-references.Rmd"
+]
+download: [
+    ["thesis.pdf", "PDF"],
+    ["thesis.epub", "EPUB"],
+    ["thesis.docx", "Word"]
+  ]

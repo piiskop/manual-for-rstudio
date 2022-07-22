@@ -1,0 +1,5 @@
+# Eesmärgid
+
+1. Õhuniiskuse peamiste karakteristikute ja vahenditega nende määramiseks tutvutud.
+
+2. Õhu relatiivne ja absoluutne niiskus ning kastepunkt erinevate meetoditega katseliselt määratud.

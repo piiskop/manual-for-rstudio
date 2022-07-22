@@ -1,0 +1,121 @@
+--- 
+title: "Õhuniiskuse karakteristikute määramine"
+subtitle: "Viies laboratoorne töö soojusõpetuses"
+author: "peacecop kalmer:"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: article
+papersize: a4
+fontsize: 12pt
+mainfont: Times New Roman
+classoption: onecolumn, twoside
+sep: ", "
+geometry:  left=3cm, right=2cm, top=2cm, bottom=3cm
+linestretch: 1.5
+lof: yes
+lot: yes
+bibliography: [book.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::bs4_book,
+  set in the _output.yml file.
+biblio-style: apalike
+link-citations: yes
+# csl: chicago-fullnote-bibliography.csl
+graphics: yes
+lang: et
+
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+# example R options set globally
+options(bookdown.render.file_scope = FALSE)
+
+# example chunk options set globally
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  echo = TRUE,
+  out.width = "\\textwidth",
+  out.height = "\\textheight",
+  out.extra = "keepaspectratio=true",
+  fig.margin = TRUE,
+  attr.source = '.numberLines'
+)
+
+if (!require("librarian")) {
+  install.packages("librarian", dependencies = TRUE)
+}
+
+library(librarian)
+
+include_svg = function(path) {
+
+  if (knitr::is_latex_output() && ("pdf" != xfun::file_ext(path))) {
+    output = xfun::with_ext(path, 'pdf')
+    # you can compare the timestamp of pdf against svg to avoid conversion if necessary
+    
+    if ("svg" == xfun::file_ext(path)) {
+      system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
+
+      # librarian::shelf(
+      #   "magick"
+      # )
+      # 
+      # img <- image_read(path)
+      # image_write(img, path = output, format = "pdf")
+      # system2("dwebp", c(shQuote(c(path)), "-o", shQuote(c(output, path))))
+    # system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
+    } else {
+      system(paste('gm convert ', path, ' ', output), intern = FALSE, ignore.stdout = FALSE, ignore.stderr = FALSE, wait = TRUE)
+    }
+    
+  } else {
+    output = path
+  }
+  
+  knitr::include_graphics(output)
+}
+
+if (!require("librarian")) {
+  install.packages("librarian", dependencies = TRUE)
+}
+
+library(librarian)
+
+print_table <- function(data_frame, caption, digits = 2, additional_header = "") {
+
+  if (!is.null(knitr::opts_knit$get('rmarkdown.pandoc.to')) && (knitr::opts_knit$get('rmarkdown.pandoc.to') == "docx")) {
+    librarian::shelf("flextable")
+    table <- (flextable(data_frame))
+  } else {
+    librarian::shelf("kableExtra")
+
+    table <- kable(data_frame, booktabs = TRUE, escape = FALSE, caption = caption, digits = digits, longtable = TRUE)
+    
+    if (is.data.frame(additional_header) || is.vector(additional_header)) {
+      table <- add_header_above(kable_input = table, header = additional_header, escape = FALSE)
+    }
+    
+    
+    table <- (kable_styling(
+      table,
+      bootstrap_options = c("striped", "bordered", "condensed", "responsive", "hover"),
+      latex_options = c("striped", "repeat_header"),
+      repeat_header_text = paste(caption, "$\\textit{(Jätkub...)}$"),
+      repeat_header_method = "replace",
+      repeat_header_continued = "Tabel järgneb järgmisel leheküljel..."
+    ))
+    
+  } 
+
+  return(table)
+}
+
+```
+
+```{=tex}
+\sisetup{inter-unit-product = \ensuremath { { } \times { } } }
+```

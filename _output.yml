@@ -1,0 +1,21 @@
+bookdown::bs4_book:
+  css: style.css
+  theme:
+    primary: "#096B72"
+  repo: https://github.com/rstudio/bookdown-demo
+  split_by: section
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  keep_tex: yes
+  template: default.latex
+  graphics: yes
+  extra_dependencies:
+    cancel: null
+    mhchem : version=4
+    siunitx: null
+  pandoc_args: [
+    --highlight-style=tango
+  ]
+bookdown::epub_book: default
