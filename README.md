@@ -1,1 +1,1 @@
-Tallinna Ülikooli mehaanika praktikumi peacecop kalmeri: raport õhuniiskuse karakterisikute määramise kohta
+the manual for RStudio Server from a user's perspective

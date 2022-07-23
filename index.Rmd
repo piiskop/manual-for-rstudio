@@ -1,10 +1,10 @@
 --- 
+site: bookdown::bookdown_site
 title: "Õhuniiskuse karakteristikute määramine"
 subtitle: "Viies laboratoorne töö soojusõpetuses"
 author: "peacecop kalmer:"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: article
+documentclass: book
 papersize: a4
 fontsize: 12pt
 mainfont: Times New Roman
@@ -26,6 +26,7 @@ link-citations: yes
 # csl: chicago-fullnote-bibliography.csl
 graphics: yes
 lang: et
+
 
 ---
 
@@ -119,3 +120,47 @@ print_table <- function(data_frame, caption, digits = 2, additional_header = "")
 ```{=tex}
 \sisetup{inter-unit-product = \ensuremath { { } \times { } } }
 ```
+
+# Introduction
+
+Once upon a time, a student asked me to help him in R. i had no experience with R, however i gave it a chance. i installed RStudio Server. Months passed after my first use until i needed it for my stuff. i was studying statistics in a university and our teacher wanted us to create our solutions using a spreadsheet program. i saw that using R, i could learn more useful stuff and moved on RStudio Server. i learnt to create output using *bookdown* which is a library that can be used for creating websites or e-books while including calculations and graphs. As *bookdown* has a steap learning curve, i want to elaborate it here. Template strings are marked with angle brackets.
+
+The project has the following mandatory files:
+
+1. *_bookdown.yml*,
+
+2. *_output.yml*,
+
+3. *.git*,
+
+4. *.gitignore*,
+
+5. *references.Rmd*
+
+6. *book.bib*,
+
+7. *default.latex*,
+
+8. *<name-of-project>.Rproj*,
+
+9. *preamble.tex*,
+
+10. *README.md*, and
+
+11. *style.css*.
+
+i explain the purpose and content of each file.
+
+
+
+
+
+
+
+
+For me, regarding cross-references, the following things are important:
+It must be possible to cross-reference between files.
+R code in one file must be accessible in another file.
+Citations in table captions using kableStyling must be possible.
+
+Currently, bookdown supports all of them if the output

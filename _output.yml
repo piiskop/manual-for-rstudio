@@ -13,6 +13,7 @@ bookdown::pdf_book:
   graphics: yes
   extra_dependencies:
     cancel: null
+    coffee4: null
     mhchem : version=4
     siunitx: null
   pandoc_args: [
