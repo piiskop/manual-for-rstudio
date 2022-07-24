@@ -1,32 +1,27 @@
 --- 
 site: bookdown::bookdown_site
-title: "Õhuniiskuse karakteristikute määramine"
-subtitle: "Viies laboratoorne töö soojusõpetuses"
+
 author: "peacecop kalmer:"
+colorlinks: TRUE
 date: "`r Sys.Date()`"
+description: "This is the manual for creating content using RStudio Server."
+lang: en
+title: "Manual for creating content using RStudio Server"
+
 documentclass: book
 papersize: a4
+geometry: top=2cm, right=2cm, bottom=3cm, left=3cm
+classoption: onecolumn, twoside
+linestretch: 1.5
+
 fontsize: 12pt
 mainfont: Times New Roman
-classoption: onecolumn, twoside
-sep: ", "
-geometry:  left=3cm, right=2cm, top=2cm, bottom=3cm
-linestretch: 1.5
+
+bibliography: [book.bib]
+link-citations: yes
+
 lof: yes
 lot: yes
-bibliography: [book.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::bs4_book,
-  set in the _output.yml file.
-biblio-style: apalike
-link-citations: yes
-# csl: chicago-fullnote-bibliography.csl
-graphics: yes
-lang: et
-
 
 ---
 
@@ -125,42 +120,4 @@ print_table <- function(data_frame, caption, digits = 2, additional_header = "")
 
 Once upon a time, a student asked me to help him in R. i had no experience with R, however i gave it a chance. i installed RStudio Server. Months passed after my first use until i needed it for my stuff. i was studying statistics in a university and our teacher wanted us to create our solutions using a spreadsheet program. i saw that using R, i could learn more useful stuff and moved on RStudio Server. i learnt to create output using *bookdown* which is a library that can be used for creating websites or e-books while including calculations and graphs. As *bookdown* has a steap learning curve, i want to elaborate it here. Template strings are marked with angle brackets.
 
-The project has the following mandatory files:
-
-1. *_bookdown.yml*,
-
-2. *_output.yml*,
-
-3. *.git*,
-
-4. *.gitignore*,
-
-5. *references.Rmd*
-
-6. *book.bib*,
-
-7. *default.latex*,
-
-8. *<name-of-project>.Rproj*,
-
-9. *preamble.tex*,
-
-10. *README.md*, and
-
-11. *style.css*.
-
-i explain the purpose and content of each file.
-
-
-
-
-
-
-
-
-For me, regarding cross-references, the following things are important:
-It must be possible to cross-reference between files.
-R code in one file must be accessible in another file.
-Citations in table captions using kableStyling must be possible.
-
-Currently, bookdown supports all of them if the output
+This manual can be downloaded as a [Portable Document Format (PDF) file](manual-for-rstudio.pdf){target="_blank"} and printed.

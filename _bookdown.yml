@@ -2,12 +2,10 @@ book_filename: "manual-for-rstudio"
 new_session: false
 # before_chapter_script: _common.R
 delete_merged_file: true
-language:
-  ui:
-    chapter_name: "Chapter "
 rmd_files: [
   "index.Rmd",
-  "setup.Rmd",
+  "rmd/setup.Rmd",
+  "rmd/configuration.Rmd",
   # "tools.Rmd",
   # "rules.Rmd",
   # "theory.Rmd",
@@ -16,8 +14,3 @@ rmd_files: [
   # "conclusions.Rmd",
   "references.Rmd"
 ]
-download: [
-    ["thesis.pdf", "PDF"],
-    ["thesis.epub", "EPUB"],
-    ["thesis.docx", "Word"]
-  ]

@@ -45,10 +45,17 @@ Once the project has some content i want it to share both as source code and hum
 
 For making the writing viewable as a website, i need to create a subdomain for it, connect the subdomain to the project's output folder in *nginx*'s settings.
 
-Inside RStudio Server, i want to make some changes right at the beginning before the first building as it's a new project. One of them is to change the name of the output file in *_bookdown.yml*:
+Inside RStudio Server, i want to make some changes right at the beginning before the first building as it's a new project. One of them is to change the name of the output file in *\_bookdown.yml*:
 
+[]{#book-filename}
 ```
-book_filename: "<name-of-project>"
+book_filename: "<name-of-project>" 
 ```
 
 Samuti tasub koheselt muuta faili *README.md* sisu projektile vastavaks.
+
+i need to update the repository Uniform Resource Locator (URL) in *\_output.yml* for `bookdown::bs4_book`:
+
+```
+repo: https://github.com/<username-in-github>/<name-of-project>
+```
