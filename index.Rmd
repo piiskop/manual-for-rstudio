@@ -16,6 +16,7 @@ linestretch: 1.5
 
 fontsize: 12pt
 mainfont: Times New Roman
+CJKmainfont: Droid Sans Fallback
 
 bibliography: [book.bib]
 link-citations: yes
@@ -26,20 +27,24 @@ lot: yes
 ---
 
 ```{r setup, echo=FALSE, message=FALSE}
-# example R options set globally
-options(bookdown.render.file_scope = FALSE)
-
 # example chunk options set globally
 knitr::opts_chunk$set(
-  comment = "#>",
   collapse = TRUE,
-  echo = TRUE,
-  out.width = "\\textwidth",
-  out.height = "\\textheight",
-  out.extra = "keepaspectratio=true",
-  fig.margin = TRUE,
-  attr.source = '.numberLines'
+  echo = TRUE
 )
+
+local({
+  hook_source <- knitr::knit_hooks$get('source')
+  knitr::knit_hooks$set(source = function(x, options) {
+    x <- xfun::split_lines(x)
+    n <- nchar(x, 'width')
+    i <- seq_along(x)  # line numbers
+    n <- n + nchar(i)
+    s <- knitr:::v_spaces(max(n) - n)
+    x <- paste(x, s, '  # ', i, sep = '', collapse = '\n')
+    hook_source(x, options)
+  })
+})
 
 if (!require("librarian")) {
   install.packages("librarian", dependencies = TRUE)
@@ -47,23 +52,16 @@ if (!require("librarian")) {
 
 library(librarian)
 
-include_svg = function(path) {
+#' This function displays external graphics by making the appropriate conversion aforehead.
+#' 
+#' @param path the path to the image file
+include_external_graphics = function(path) {
 
   if (knitr::is_latex_output() && ("pdf" != xfun::file_ext(path))) {
     output = xfun::with_ext(path, 'pdf')
-    # you can compare the timestamp of pdf against svg to avoid conversion if necessary
     
     if ("svg" == xfun::file_ext(path)) {
       system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
-
-      # librarian::shelf(
-      #   "magick"
-      # )
-      # 
-      # img <- image_read(path)
-      # image_write(img, path = output, format = "pdf")
-      # system2("dwebp", c(shQuote(c(path)), "-o", shQuote(c(output, path))))
-    # system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
     } else {
       system(paste('gm convert ', path, ' ', output), intern = FALSE, ignore.stdout = FALSE, ignore.stderr = FALSE, wait = TRUE)
     }
@@ -75,12 +73,14 @@ include_svg = function(path) {
   knitr::include_graphics(output)
 }
 
-if (!require("librarian")) {
-  install.packages("librarian", dependencies = TRUE)
-}
-
-library(librarian)
-
+#' This function creates and displays a table.
+#' 
+#' @param data_frame the data frame
+#' @param caption the caption
+#' @param digits the number of significant digits
+#' @param additional_header the additional header
+#' 
+#' @returns the table
 print_table <- function(data_frame, caption, digits = 2, additional_header = "") {
 
   if (!is.null(knitr::opts_knit$get('rmarkdown.pandoc.to')) && (knitr::opts_knit$get('rmarkdown.pandoc.to') == "docx")) {
@@ -119,5 +119,3 @@ print_table <- function(data_frame, caption, digits = 2, additional_header = "")
 # Introduction
 
 Once upon a time, a student asked me to help him in R. i had no experience with R, however i gave it a chance. i installed RStudio Server. Months passed after my first use until i needed it for my stuff. i was studying statistics in a university and our teacher wanted us to create our solutions using a spreadsheet program. i saw that using R, i could learn more useful stuff and moved on RStudio Server. i learnt to create output using *bookdown* which is a library that can be used for creating websites or e-books while including calculations and graphs. As *bookdown* has a steap learning curve, i want to elaborate it here. Template strings are marked with angle brackets.
-
-This manual can be downloaded as a [Portable Document Format (PDF) file](manual-for-rstudio.pdf){target="_blank"} and printed.

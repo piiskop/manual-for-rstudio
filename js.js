@@ -15,6 +15,15 @@ function setTargets() {
   document.getElementById("book-edit").target = "GitHub";
   document.getElementById("book-repo").target = "GitHub";
   document.getElementById("book-source").target = "GitHub";
+  
+  let div = document.getElementById("main-nav").getElementsByTagName("nav")[0].getElementsByClassName("book-extra")[0];
+  let a = document.createElement("a");
+  a.setAttribute("id", "book-print");
+  a.setAttribute("href", "manual-for-rstudio.pdf");
+  a.innerHTML = "View printable book ";
+  let p = document.createElement("p");
+  p.appendChild(a);
+  div.appendChild(p);
 }
 
 window.onload = function () {

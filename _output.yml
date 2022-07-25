@@ -7,9 +7,7 @@ bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   keep_tex: yes
+  latex_engine: xelatex
   template: default.latex
-  extra_dependencies:
-    cancel: null
-    coffee4: null
-    mhchem : version=4
-    siunitx: null
+bookdown::gitbook:
+  hightlight: default

@@ -119,21 +119,19 @@ As the default \LaTeX template file is *default.tex*, i don't want to change tha
   keep_tex: yes
 ```
 
-As PDF-file is generated according to \TeX file, it's sometimes useful to see what \TeX file consists of.
+As PDF-file is generated according to \TeX file, it's sometimes useful^[asdföljka] to see what \TeX file consists of.
+
+```
+  latex_engine: xelatex
+```
+
+Actually, it's the format, not engine, one out of three available in *bookdown*. It allegedly has the best language and font support and is recent [@the_2012_latex]. The other current format is *lualatex* which doesn't work with chinese characters and while beign extendable and therefore, slow.
 
 ```
   template: default.latex
 ```
 
 In order to make everything work, it's useful to use the default template downloaded from *pandoc*'s repository [@macfarlane_2022_pandoc]. Modifications can be done in [*preamble.tex*](#preamble) or as `extra_dependencies`. i never edit *default.latex*.
-
-```
-  extra_dependencies:
-    <name-of-package>: <option-for-package>
-    ...
-```
-
-As i don't change *default.latex*, if i need to include a package that isn't included there, i can do it in `extra_dependencies` where i can list the packages by name following by a colon following by package options. If i set no options then i set `null` as the option.
 
 ## *.git*
 
@@ -147,17 +145,21 @@ This file contains the list of files *git* should ignore.
 
 This file contains the human-friendly metainformation about the project.
 
-## [*book.bib*](#book_bib)
+## *book.bib*[]{#book_bib}
 
 This is the bibliography file.
 
-## *default.latex*
+## *default.latex*[]{#default_latex}
 
 This is the default \LaTeX template downloaded from @macfarlane_2022_pandoc.
 
 ## *index.Rmd*
 
+### Introduction
+
 This file must contain the site generator information in the metadata section and can contain other metadata there. In addition, it serves as the holder of common functions and commands and contains an introduction as if the number of Rmd files and first-level headings don't match, a warning will be given.
+
+### Metadata
 
 The optional metadata can be the following:
 
@@ -237,11 +239,62 @@ lot: yes
 
 i want the list of tables to be displayed not the logo of the Polish airlines company that we can see on the background as Kim Wilde was delivering a concert in Sopot in 1988 [@kim].
 
+### *knitr*
+
+*knitr* on R'i teek, mis teeb Rmd failist md faili [@with]. i've made the following setting for that:
+
+```{r eval=FALSE}
+  collapse = TRUE
+
+```
+
+i want the result of running the source code to be printed into the same box instead of a separate box after the source code box [@options].
+
+```{r eval = FALSE}
+  echo = TRUE
+
+```
+
+i want the source code to be displayed.
+
+Further one in the same block of *knitr* options, there's hooking that creates line numbers for source code blocks as comments at the end of each line as described in @riederer_122. This hook is necessary as `attr.source = '.numberLines'` doesn't work for *bs4_book* and i don't like the layout of *gitbook* where that particular thing works.
+
+Next, `librarian` is being loaded because i don't want to check manually if a particular package exists.
+
+Finally, there are the definitions of two helper functions: for including graphics and creating tables.
+
+### Content
+
+Finally, there can be entered the introductionary content.
+
+## *js.html*
+
+This file just includes the necessary ECMAScript script and can be used to include other ECMAScript scripts in the header of the webpage.
+
+## *js.js*
+
+This file contains ECMAScript script that must be included in the header of the webpage.
+
+## *preamble.tex*
+
+This file contains \LaTeX inclusions for PDF output that doesn't exist in [*default.latex*](#default_latex).
+
+## *references.Rmd*
+
+This file is meant for containing the list of references.
+
+## *style.css*
+
+This file contains the styling for the web version that's not included by default.
 
 
 
 
 
+```{r}
+# asödfkljaösdjf
+print("asdfa")
+```
 
 
 For me, regarding cross-references, the following things are important:
@@ -250,3 +303,23 @@ R code in one file must be accessible in another file.
 Citations in table captions using kableStyling must be possible.
 
 Currently, bookdown supports all of them if the output
+
+workflow: r -> bookdown -> pandoc -> ...
+
+tabel \@ref(tab:tableofnoting)
+
+```{r label = "tableofnoting", attr.source='.numberLines'}
+a <- c(2, 3, 4)
+b <- data.frame(a)
+cas <- function(asdf, amber, heard, still, does, need, to, fail, indication, has, decided, pay, please, plea, ask, look, document, seventeen, october, sixteen) {
+  return("sa")
+}
+print_table(a, caption = "flökj")
+```
+
+
+joonis \@ref(fig:dia)
+
+```{r label = "dia", fig.cap = "asdf."}
+include_external_graphics("rmd/workflow.png")
+```
