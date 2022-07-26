@@ -1,0 +1,130 @@
+# R markdown
+
+## Headings
+
+Every chapter should have a first-level heading marked by `#`. A second-level heading has two of `#`, a third-level heading three of them and so on until six. Here's how to write a first-level heading followed by a second-level heading:
+
+````markdown
+# <first-level heading>
+
+## <second-level heading>
+
+````
+
+## Paragraphs
+
+Paragraphs are separated by two line-breaks:
+
+````{verbatim}
+<one paragraph>
+
+<next paragraph>
+
+````
+
+## Italics
+
+Text can be turned to italics using asterisks around it:
+
+````markdown
+*<text in italics>*
+
+````
+
+*\<text in italics\>*
+
+## Code
+
+### As a block
+
+Code blocks can be marked by three ticks following by braces containing metadata. The first metadata is the language. i've used so far `r` and `bash`:
+
+````{verbatim}
+```{bash eval = FALSE}
+ssh-keygen
+
+```
+
+````
+
+i keep an empty line at the end of the code block content because if i want to use a keyboard shortcut for commenting out it only works if the last line is empty.
+
+There are some options that can be used for code blocks or chunks in addition to them mentioned in the general [configuration](#knitr) part:
+
+`eval`
+: Shall the code be executed or not or what lines of the code should be executed?
+
+### Inline
+
+The inline code must be between ticks:
+
+````{verbatim}
+<text before inline code>`<inline code>`
+
+````
+
+\<text before inline code\>`<inline code>`
+
+## Quoting
+
+For quoting, i use `>` at the beginning of each line of the quote.
+
+````{verbatim}
+> <the quoted text>
+
+````
+
+> \<the quoted text\>
+
+## Escaping
+
+If a character must be escaped then a backslash can be used right in front of it:
+
+````markdown
+*\**
+
+````
+
+*\**
+
+## References
+
+A target for a common reference:
+
+````markdown
+[]{#<label-for-target>}
+
+````
+
+A link for a common target:
+
+````markdown
+[<link text>](#<label-for-target>)
+
+````
+
+## Figures
+
+For figures, i created a wrapper function `include_external_graphics()` for `knitr`'s `include_graphics()` because natively, `include_graphics()` doesn't support all the necessary file types: 
+
+````{verbatim}
+```{r label = "<label of figure>", fig.cap = "<caption of figure>"}
+include_external_graphics("<path-to-image-file>")
+
+```
+
+````
+
+For this code chunk, i use the label and the following options:
+
+fig.cap
+: the caption of the figure. This must be present in order to reference it.
+
+Referencing a figure takes place using `\@ref(fig:<label of figure>)`.
+
+As an example, i refer to the figure \@ref(fig:workflow-example).
+
+```{r label = "workflow-example", fig.cap = "The workflow from the written markdown to the ready output using *bookdown*."}
+include_external_graphics("rmd/workflow.png")
+
+```

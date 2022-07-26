@@ -1,16 +1,11 @@
 book_filename: "manual-for-rstudio"
 new_session: false
-# before_chapter_script: _common.R
 delete_merged_file: true
 rmd_files: [
   "index.Rmd",
   "rmd/setup.Rmd",
   "rmd/configuration.Rmd",
-  # "tools.Rmd",
-  # "rules.Rmd",
-  # "theory.Rmd",
-  # "practice.Rmd",
-  # "data-analysis.Rmd",
-  # "conclusions.Rmd",
+  "rmd/rmd.Rmd",
+  "rmd/latex.Rmd",
   "references.Rmd"
 ]

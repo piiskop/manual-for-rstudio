@@ -239,7 +239,7 @@ lot: yes
 
 i want the list of tables to be displayed not the logo of the Polish airlines company that we can see on the background as Kim Wilde was delivering a concert in Sopot in 1988 [@kim].
 
-### *knitr*
+### *knitr*[]{#knitr}
 
 *knitr* on R'i teek, mis teeb Rmd failist md faili [@with]. i've made the following setting for that:
 
@@ -286,40 +286,3 @@ This file is meant for containing the list of references.
 ## *style.css*
 
 This file contains the styling for the web version that's not included by default.
-
-
-
-
-
-```{r}
-# asödfkljaösdjf
-print("asdfa")
-```
-
-
-For me, regarding cross-references, the following things are important:
-It must be possible to cross-reference between files.
-R code in one file must be accessible in another file.
-Citations in table captions using kableStyling must be possible.
-
-Currently, bookdown supports all of them if the output
-
-workflow: r -> bookdown -> pandoc -> ...
-
-tabel \@ref(tab:tableofnoting)
-
-```{r label = "tableofnoting", attr.source='.numberLines'}
-a <- c(2, 3, 4)
-b <- data.frame(a)
-cas <- function(asdf, amber, heard, still, does, need, to, fail, indication, has, decided, pay, please, plea, ask, look, document, seventeen, october, sixteen) {
-  return("sa")
-}
-print_table(a, caption = "flökj")
-```
-
-
-joonis \@ref(fig:dia)
-
-```{r label = "dia", fig.cap = "asdf."}
-include_external_graphics("rmd/workflow.png")
-```

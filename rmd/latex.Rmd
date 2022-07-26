@@ -1,0 +1,11 @@
+# LaTeX
+
+## List of tables and figures
+
+Normally, the caption for list of tables and list of figures is shown no matter tables or figures exist. i found a solution for only displaying a list if there's an item available for that. That code is in *preamble.tex* under the corresponding caption as a comment. Using the package *xassoccnt* triggers the warning:
+
+> Warning: Package xassoccnt Warning: Warning: Package "calc" is loaded -- this is not\
+> Warning: (xassoccnt)                recommended for xassoccnt\
+> Warning: (xassoccnt)                
+
+*calc* is being called directly from *default.latex* and as i don't want to modify the contents of *default.latex*, i have to live with the warning.
