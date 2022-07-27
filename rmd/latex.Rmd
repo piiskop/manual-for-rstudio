@@ -1,11 +1,136 @@
 # LaTeX
+  
+## List of tables and figures  
+  
+Normally, the caption for list of tables and list of figures is shown no matter tables or figures exist. i found a solution for only displaying a list if there's an item available for that `r render_with_emojis("((ref:table))")`. That code is in *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* under the corresponding caption as a comment. Using the package *xassoccnt* triggers the warning:  
+  
+> Warning: Package xassoccnt Warning: Warning: Package "calc" is loaded -- this is not\  
+> Warning: (xassoccnt)                recommended for xassoccnt\  
+> Warning: (xassoccnt)                  
+  
+*calc* is being called directly from *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`* and as i don't want to modify the contents of *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`*, i have to live with the warning.  
+  
+## The non-math `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` string  
+  
+````{verbatim label = "non-math-string"}  
+`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`  
+  
+````  
+  
+`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`  
+  
+## Spacing  
+  
+(ref:a2022-l-p-181) @a2022_l, p. 181
+  
+Using a macro without braces at the end removes the possible spacing from after it in PDF `r render_with_emojis("((ref:a2022-l-p-181))")`:  
+  
+  
+````{verbatim label = "latex-macro-spacing"}  
+`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` <text after space>  
+    
+`r render_nonmath_LaTeX_string_universal("\\LaTeX")` <text after space>  
+  
+````  
+  
+`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` \<text after space>  
+    
+`r render_nonmath_LaTeX_string_universal("\\LaTeX")` \<text after space>  
+  
+## Columns  
+  
+If i want the following text to be in two columns i write:  
+  
+````{verbatim label = "twocolumn", language = "tex"}  
+\twocolumn  
+  
+````  
+  
+```{=latex}  
+\twocolumn  
+```  
+  
+i'm just writing some text that will be placed in two columns because it's easier to read if the text is in two columns.  
+  
+If i want the following text to be in one column, i write:  
+  
+````{verbatim label = "onecolumn", language = "tex"}  
+\onecolumn  
+  
+````  
+  
+  
+```{=latex}  
+\onecolumn  
+```  
+  
+i'm just writing some text that will be placed in one column because it can contain a figure or equation that doesn't fit in a narrower column.  
+  
+## Preventing hyphenation  
+  
+After the following command, no hyphenation takes place:  
+  
+````{verbatim label = "hyphenpenalty", language = "latex"}  
+```{=latex}  
+\hyphenpenalty=10000  
+  
+```  
+  
+````  
+  
+## Chinese characters  
+  
+In order to display Chinese characters an appropriate [main](#mainfont)  and mono font must be set in *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX")`*. `r render_with_emojis("(ref:the-2016-which)")` lists suitable fonts, for example:  
+  
+```{verbatim label = "setCJKmonofont"}  
+\setCJKmonofont{Noto Sans Mono CJK SC}  
+  
+```  
+  
+That font wasn't available in my system, so i installed it:  
+  
+```{bash eval = FALSE}  
+sudo apt install fonts-noto-cjk  
+  
+```  
+  
+After that, i was looking for Chinese fonts:  
+  
+```{bash eval = FALSE}  
+fc-list :lang=zh  
+  
+```  
+  
+That resulted with:  
+  
+> /usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc: Noto Serif CJK SC:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc: Noto Serif CJK TC:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc: Noto Serif CJK JP:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc: Noto Serif CJK KR:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans CJK JP:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans CJK HK:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans CJK KR:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans CJK SC:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans CJK TC:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc: Noto Serif CJK SC:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc: Noto Serif CJK TC:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc: Noto Serif CJK JP:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc: Noto Serif CJK KR:style=Regular  
+/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf: Droid Sans Fallback:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans Mono CJK TC:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans Mono CJK SC:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans Mono CJK KR:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans Mono CJK HK:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans Mono CJK JP:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: `r render_font(text = "Noto Sans Mono CJK SC", to_italic = FALSE)`:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans Mono CJK TC:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans Mono CJK HK:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans Mono CJK KR:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc: Noto Sans Mono CJK JP:style=Regular  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK JP:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK KR:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK HK:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK TC:style=Bold  
+/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK SC:style=Bold  
 
-## List of tables and figures
-
-Normally, the caption for list of tables and list of figures is shown no matter tables or figures exist. i found a solution for only displaying a list if there's an item available for that. That code is in *preamble.tex* under the corresponding caption as a comment. Using the package *xassoccnt* triggers the warning:
-
-> Warning: Package xassoccnt Warning: Warning: Package "calc" is loaded -- this is not\
-> Warning: (xassoccnt)                recommended for xassoccnt\
-> Warning: (xassoccnt)                
-
-*calc* is being called directly from *default.latex* and as i don't want to modify the contents of *default.latex*, i have to live with the warning.
+where i chose `r render_font(text = "Noto Sans Mono CJK SC")` from the way as pointed out in `r render_with_emojis("(jdhao-2018-how)")`.

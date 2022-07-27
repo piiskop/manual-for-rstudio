@@ -8,7 +8,4 @@ bookdown::pdf_book:
     in_header: preamble.tex
   keep_tex: yes
   latex_engine: xelatex
-  pandoc_args: --listings
   template: default.latex
-bookdown::gitbook:
-  hightlight: default
