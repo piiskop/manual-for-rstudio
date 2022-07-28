@@ -7,5 +7,6 @@ rmd_files: [
   "rmd/configuration.Rmd",
   "rmd/rmd.Rmd",
   "rmd/latex.Rmd",
+  "rmd/r.Rmd",
   "references.Rmd"
 ]

@@ -17,17 +17,23 @@
 
 (ref:a2022-l) @a2022_l
 
+(ref:add-header-above) @add_header_above
+
 (ref:inserting) @inserting
 
 (ref:jdhao-2018-how) @jdhao_2018_how
 
 (ref:kim) @kim
 
+(ref:lathiya-2022-sapply) @lathiya_2022_sapply
+
 (ref:macfarlane-2022-pandoc) @macfarlane_2022_pandoc
 
 (ref:markdown) @markdown
 
 (ref:options) @options
+
+(ref:r) @r
 
 (ref:table) @table
 
@@ -38,3 +44,5 @@
 (ref:with) @with
 
 (ref:xetex) @xetex
+
+(ref:zach-2021-how) @zach_2021_how

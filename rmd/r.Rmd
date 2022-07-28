@@ -1,0 +1,226 @@
+# R
+
+## Assignment
+
+For assigning a value to a variable, i use `<-` unless the variable is a parameter or an argument - then i use `=`:
+
+```{r label = "assignment"}
+variable <- "value"
+
+name_of_function <- function(parameter = "value") {
+  
+}
+
+```
+
+## Debugging
+
+For just printing out a value:
+
+```{r label = "print"}
+print(2)
+
+```
+
+For figuring out the datatype `r render_with_emojis(text = "((ref:zach-2021-how))")`:
+
+```{r label = "datatype"}
+class(2)
+
+```
+
+For printing out both the datatype and value of an object:
+
+```{r label = "str"}
+str(2)
+
+```
+
+
+## Array
+
+An array can be created using the function `c`:
+
+```{r label = "array"}
+array <- c("value_1", "value_2")
+print(array)
+
+```
+
+Referencing a position inside the array takes place using brackets whereas the first position has the index `1`:
+
+```{r label = "array-referencing"}
+value_at_position_2 <- array[2]
+print(value_at_position_2)
+
+array[2] <- "value_3"
+print(array)
+
+```
+
+Arrays with the same lenght can be connected into `data.frame`:
+
+```{r label = "data.frame"}
+array_2 <- c("value_3", "value_4")
+data_frame <- data.frame(array, array_2)
+print(data_frame)
+
+```
+
+A `data.frame` can have column names:
+
+```{r label = "colnames"}
+colnames(data_frame) <- c(
+  "array",
+  "array 2"
+)
+
+print(data_frame)
+
+```
+
+
+## Significant digits
+
+For printing only significant digits, there's the function `signif` which takes two parameters: the initial number `x` and the number of significant digits `digits`:
+
+```{r label = "signif"}
+number <- 123.456
+
+number_with_significant_digits <- signif(x = number, digits = 4)
+print(number_with_significant_digits)
+
+```
+
+## Functions
+
+Functions can be made using the keyword `function`:
+
+```{r label = "function"}
+add <- function(first, second, digits = 2) {
+  return(signif(first + second, digits = digits))
+}
+
+add(first = 123, second = 456) # using the default value 2 for digits
+
+sum <- add(first = 123, second = 456, digits = 1)
+
+```
+
+## Comments
+
+Comments can be done with `#`:
+
+```{r label = "comment"}
+print(sum) # printing out the value of sum
+
+```
+
+## Strings
+
+Strings can be written using either apostrophes or quotation marks.
+
+For substituting something inside a string, `gsub` can be used `r render_with_emojis("((ref:r))")`:
+
+```{r label = "gsub"}
+gsub("_", "\\_", array, fixed = TRUE)
+
+```
+
+Here, in order to preserve a backslash, it has to be escaped as otherwise, it escapes the underscore. If i'd turn off `fixed`, the function would work like with regular expressions.
+
+## Table
+
+A table that isn't just in R code but designed and all can be created using `kable` and `kableExtra`. i also build a wrapper function `print_table` for that purpose so that i don't have to rewrite some general things from table to table. i have to pay attention that there can't be any underscores inside the table unless they are part of an eqation. My sample table is table \@ref(tab:table).
+
+```{r label = "table"}
+print_table(
+  table = sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE)),
+  caption = "Caption."
+)
+
+```
+
+If i want to apply a function to all the values inside a data frame, i use `sapply` `r render_with_emojis(text = "((ref:lathiya-2022-sapply))")`:
+
+```{r label = "sapply"}
+sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE))
+
+```
+
+
+Tables \@ref(tab:table-with-digits-default) and \@ref(tab:table-with-digits-nondefault) are for comparing the number of digits after comma. The table \@ref(tab:table-with-digits-default) has the default number of digits and the table \@ref(tab:table-with-digits-nondefault) has another number of digits in every number after comma.
+
+```{r label = "table-with-digits-default"}
+before <- c(358.805, 358.851)
+after <- c(358.83, 358.918)
+water_report <- data.frame(before, after)
+
+colnames(water_report) <- c(
+  "$\\mathrm{\\frac{\\text{Used water before}}{\\mathrm{m^3}}}$",
+  "$\\mathrm{\\frac{\\text{Used water after}}{\\mathrm{m^3}}}$"
+)
+
+print_table(
+  table = water_report,
+  caption = "Water report with numbers with up to two digits after comma."
+)
+
+```
+
+Inside the table, backslashes must be escaped.
+
+```{r label = "table-with-digits-nondefault"}
+print_table(
+  table = water_report,
+  caption = "Water report with numbers with up to four digits after comma.",
+  digits = 4
+)
+
+```
+
+It's also possible for the table to have an additional header whose columns span over multiple columns in the first header `r render_with_emojis(text = "((ref:add-header-above))")`:
+
+```{r label = "table-with-additional-header"}
+print_table(
+  table = water_report,
+  caption = "Water report with additional header.",
+  additional_header = c("Spanned header" = 2)
+)
+
+```
+
+It's possible to change the look of a row:
+
+```{r label = "table-with-row-specification"}
+print_table(
+  table = water_report,
+  caption = "Water report with coloured row."
+) %>%
+  row_spec(2, color = "teal")
+
+```
+
+Here, `%>%` means piping.
+
+And it's possible to change the look of a column:
+
+```{r label = "table-with-column-specification"}
+print_table(
+  table = water_report,
+  caption = "Water report with wider column."
+) %>%
+  column_spec(1, width = "16em")
+
+```
+
+And what if the table is too wide:
+
+```{r label = "table-with-landscape"}
+print_table(
+  table = water_report,
+  caption = "Water report as landscape."
+) %>%
+  landscape()
+
+```

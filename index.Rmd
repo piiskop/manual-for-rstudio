@@ -75,26 +75,25 @@ include_external_graphics = function(path) {
 
 #' This function creates and displays a table.
 #' 
-#' @param data_frame the data frame
+#' @param table the data frame or matrix
 #' @param caption the caption
 #' @param digits the number of significant digits
 #' @param additional_header the additional header
 #' 
 #' @returns the table
-print_table <- function(data_frame, caption, digits = 2, additional_header = "") {
+print_table <- function(table, caption, digits = 2, additional_header = NULL) {
 
   if (!is.null(knitr::opts_knit$get('rmarkdown.pandoc.to')) && (knitr::opts_knit$get('rmarkdown.pandoc.to') == "docx")) {
     librarian::shelf("flextable")
-    table <- (flextable(data_frame))
+    table <- (flextable(table))
   } else {
     librarian::shelf("kableExtra")
 
-    table <- kable(data_frame, booktabs = TRUE, escape = FALSE, caption = caption, digits = digits, longtable = TRUE)
-    
-    if (is.data.frame(additional_header) || is.vector(additional_header)) {
+    table <- kable(table, booktabs = TRUE, escape = FALSE, caption = caption, digits = digits, longtable = TRUE)
+
+    if (!is.null(additional_header)) {
       table <- add_header_above(kable_input = table, header = additional_header, escape = FALSE)
     }
-    
     
     table <- (kable_styling(
       table,

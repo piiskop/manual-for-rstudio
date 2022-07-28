@@ -219,3 +219,21 @@ include_external_graphics("rmd/workflow.png")
 ```
 
 Here, the function `paste` comes handy. `paste` glues strings together that can be fed into that function. The last parameter is `sep` which can be used to set the separator between the strings. Currently, i told the function to use an empty string as a separator.
+
+## Equations
+
+Equations can be inserted in math mode, id est between double bug signs if in a block or single bug signes if inline:
+
+```{verbatim label = "equation-block"}
+$$\frac{t_\text{d}}{\unit{\degreeCelsius}}$$
+
+```
+
+$$\frac{t_\text{d}}{\unit{\degreeCelsius}}$$
+
+```{verbatim label = "equation-inline", language = "markdown"}
+The same equation inline: $\frac{t_\text{d}}{\unit{\degreeCelsius}}$.
+
+```
+
+The same equation inline: $\frac{t_\text{d}}{\unit{\degreeCelsius}}$.
