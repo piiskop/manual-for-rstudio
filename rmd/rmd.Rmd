@@ -193,6 +193,17 @@ For this code chunk, i use the label and the following options:
 fig.cap
 : the caption of the figure. This must be present in order to reference it.
 
+Other options are possible:
+
+fig.align
+: i set it to have the value `center` if i want the image to reside in center
+
+fig.fullheight
+: i set it to `TRUE` if the image would be printed out smaller otherwise
+
+out.height
+: sometimes, especially images with full size tend to be still a bit too large, so i set this parameter to have a value like `96%`
+
 Referencing a figure takes place using `\@ref(fig:<label of figure>)`.
 
 As an example, i refer to the figure \@ref(fig:workflow-example-reference-to-figure).
@@ -225,15 +236,15 @@ Here, the function `paste` comes handy. `paste` glues strings together that can 
 Equations can be inserted in math mode, id est between double bug signs if in a block or single bug signes if inline:
 
 ```{verbatim label = "equation-block"}
-$$\frac{t_\text{d}}{\unit{\degreeCelsius}}$$
+$$\frac{t_\text{d}}{}$$
 
 ```
 
-$$\frac{t_\text{d}}{\unit{\degreeCelsius}}$$
+$$\frac{t_\text{d}}{}$$
 
 ```{verbatim label = "equation-inline", language = "markdown"}
-The same equation inline: $\frac{t_\text{d}}{\unit{\degreeCelsius}}$.
+The same equation inline: $\frac{t_\text{d}}{}$.
 
 ```
 
-The same equation inline: $\frac{t_\text{d}}{\unit{\degreeCelsius}}$.
+The same equation inline: $\frac{t_\text{d}}{}$.

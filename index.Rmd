@@ -79,9 +79,11 @@ include_external_graphics = function(path) {
 #' @param caption the caption
 #' @param digits the number of significant digits
 #' @param additional_header the additional header
+#' @param footnotes the array of footnotes
+#' @param do_i_transpose Do i transpose?
 #' 
 #' @returns the table
-print_table <- function(table, caption, digits = 2, additional_header = NULL) {
+print_table <- function(table, caption, digits = 2, additional_header = NULL, footnotes = NULL, do_i_transpose = FALSE) {
 
   if (!is.null(knitr::opts_knit$get('rmarkdown.pandoc.to')) && (knitr::opts_knit$get('rmarkdown.pandoc.to') == "docx")) {
     librarian::shelf("flextable")
@@ -89,6 +91,13 @@ print_table <- function(table, caption, digits = 2, additional_header = NULL) {
   } else {
     librarian::shelf("kableExtra")
 
+    if (do_i_transpose) {
+      transposed_table <- t(table)
+      rownames(transposed_table) <- colnames(table)
+      colnames(transposed_table) <- rownames(table)
+      table <- transposed_table
+    }
+    
     table <- kable(table, booktabs = TRUE, escape = FALSE, caption = caption, digits = digits, longtable = TRUE)
 
     if (!is.null(additional_header)) {
@@ -101,8 +110,12 @@ print_table <- function(table, caption, digits = 2, additional_header = NULL) {
       latex_options = c("striped", "repeat_header"),
       repeat_header_text = paste(caption, "$\\textit{(Jätkub...)}$"),
       repeat_header_method = "replace",
-      repeat_header_continued = "Tabel järgneb järgmisel leheküljel..."
+      repeat_header_continued = FALSE# "Tabel järgneb järgmisel leheküljel..."
     ))
+    
+    if (!is.null(footnotes)) {
+      table <- footnote(kable_input = table, number = footnotes, escape = FALSE, threeparttable = TRUE)
+    }
     
   } 
 
@@ -167,10 +180,6 @@ render_with_emojis <- function(text) {
 
 ```
 
-```{=tex}
-\sisetup{inter-unit-product = \ensuremath { { } \times { } } }
-```
-
 # Introduction
 
 Once upon a time, a student asked me to help him in R. i had no experience with R, however i gave it a chance. i installed RStudio Server. Months passed after my first use until i needed it for my stuff. i was studying statistics in a university and our teacher wanted us to create our solutions using a spreadsheet program. i saw that using R, i could learn more useful stuff and moved on RStudio Server. i learnt to create output using *bookdown* which is a library that can be used for creating websites or e-books while including calculations and graphs. As *bookdown* has a steap learning curve, i want to elaborate it here. Template strings are marked with angle brackets.
@@ -186,8 +195,6 @@ For me, regarding cross-references, the following things are important:
 Currently, *bookdown* supports all of them.
 
 we can see the workflow of from the written markdown to the ready output on the figure \@ref(fig:workflow).
-
-
 
 ```{r label = "workflow", fig.cap = paste("The workflow from the written markdown to the ready output using *bookdown*", render_with_emojis(text = "((ref:riederer-122))"), ".", sep = "")}
 include_external_graphics("rmd/workflow.png")

@@ -19,6 +19,12 @@
 
 (ref:add-header-above) @add_header_above
 
+(ref:arrange) @arrange
+
+(ref:desc) @desc
+
+(ref:footnote) @footnote
+
 (ref:inserting) @inserting
 
 (ref:jdhao-2018-how) @jdhao_2018_how
