@@ -19,7 +19,13 @@
 
 (ref:add-header-above) @add_header_above
 
+(ref:adorn-totals) @adorn_totals
+
 (ref:arrange) @arrange
+
+(ref:cell-spec) @cell_spec
+
+(ref:create) @create
 
 (ref:desc) @desc
 

@@ -201,8 +201,15 @@ fig.align
 fig.fullheight
 : i set it to `TRUE` if the image would be printed out smaller otherwise
 
+out.width
+: the width. Sometimes, the image is too wide for the page. Here, i set the width to be .92 of the height of the text part on the page as that image is rotated at a right angle: `.92\\textheight`
+
 out.height
 : sometimes, especially images with full size tend to be still a bit too large, so i set this parameter to have a value like `96%`
+
+out.extra:
+: for instance to turn the image with `angle` that has a value in degrees
+
 
 Referencing a figure takes place using `\@ref(fig:<label of figure>)`.
 

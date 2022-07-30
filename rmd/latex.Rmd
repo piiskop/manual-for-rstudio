@@ -258,7 +258,8 @@ It's reasonable to align all the tables:
 & C_{10} && := -4.8640239 \times 10^{-2},\\
 & C_{11} && := 4.1764768 \times 10^{-5},\\
 & C_{12} && := -1.4452093 \times 10^{-8}
-(\#eq:saturation-pressure-over-liquid-h2o)
+\label{eq:saturation-pressure-over-liquid-h2o}
+<!-- (\#eq:saturation-pressure-over-liquid-h2o) -->
 \end{align}
 
 ```
@@ -271,7 +272,9 @@ It's reasonable to align all the tables:
 & C_9 && := 1.3914993,\\
 & C_{10} && := -4.8640239 \times 10^{-2},\\
 & C_{11} && := 4.1764768 \times 10^{-5},\\
-& C_{12} && := -1.4452093 \times 10^{-8} (\#eq:saturation-pressure-over-liquid-h2o)
+& C_{12} && := -1.4452093 \times 10^{-8} % (\#eq:saturation-pressure-over-liquid-h2o)
+\label{eq:saturation-pressure-over-liquid-h2o}
+% (\#eq:saturation-pressure-over-liquid-h2o)
 \end{align}
 
 ```
@@ -305,11 +308,38 @@ $$\partial{H}$$
 ### Chemical symbols
 
 ```{verbatim label = "ce"}
-\ce{N_2}
+`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}
 
 ```
 
 $$`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}$$
+
+### Cancelling
+
+```{verbatim label = "cancel", language = "latex"}
+\begin{align}
+`r if (knitr::is_html_output()) { "\\require{cancel}" }`\frac{\frac{\mathrm{\frac{L^2 \cdot \cancel{M}}{T^2}}}{\mathrm{\cancel{N}} \cdot \Theta}}{\mathrm{\frac{\cancel{M}}{\cancel{N}}}} = \frac{\mathrm{L^2}}{\mathrm{T^2} \cdot \Theta},
+(\#eq:dimensional-analysis-for-specific-gas-constant)
+\end{align}
+
+```
+
+```{=tex}
+\begin{align}
+`r if (knitr::is_html_output()) { "\\require{cancel}" }`\frac{\frac{\mathrm{\frac{L^2 \cdot \cancel{M}}{T^2}}}{\mathrm{\cancel{N}} \cdot \Theta}}{\mathrm{\frac{\cancel{M}}{\cancel{N}}}} = \frac{\mathrm{L^2}}{\mathrm{T^2} \cdot \Theta},
+(\#eq:dimensional-analysis-for-specific-gas-constant)
+\end{align}
+
+```
+
+### Underbrace
+
+```{verbatim label = "underbrace", language = "latex"}
+\underbrace{c_p \cdot (T_\text{out} - T_\text{d})}_{\text{mõistlik soojuskadu õhus}}
+
+```
+
+$$\underbrace{c_p \cdot (T_\text{out} - T_\text{d})}_{\text{mõistlik soojuskadu õhus}}$$
 
 ## Text
 
