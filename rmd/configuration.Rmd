@@ -314,9 +314,9 @@ This file just includes the necessary ECMAScript script and can be used to inclu
 
 ## *js.js*
 
-This file contains ECMAScript script that must be included in the header of the webpage.
+This file contains ECMAScript script that must be included in the header of the webpage. The link for the Portable-Document-Format-(PDF)file must be changed here.
 
-## *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*
+## *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* []{#preamble_file}
 
 This file contains \LaTeX inclusions for PDF output that doesn't exist in [*default.latex*](#default_latex).
 

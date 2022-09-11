@@ -351,3 +351,84 @@ $\color{red}{\text{Augusti psühhomeetriga}}$
 ```
 
 $\color{red}{\text{Augusti psühhomeetriga}}$
+
+## Chemistry
+
+### Electron configuration
+
+For automatically displaying electron configuration, one can [use the package](#preamble_file) *elements* `r render_with_emojis("((ref:Niederberger-undated-ba))")`.
+
+Electron configuration for carbon which is the sixth element in the periodic system of chemical elements:
+
+```{verbatim label = "elconf", language = "latex"}
+\elconf{6}
+
+```
+
+```{=latex}
+\elconf{6}
+```
+
+### Orbital energy level diagram
+
+For generating orbital energy level diagrams, one can [use the package](#preamble_file) *modiagram* `r render_with_emojis("((ref:Niederberger-undated-fx))")`. It only works up to the second energy level.
+
+This is how to display an orbital energy levels diagram for carbon:
+
+```{verbatim label = "modiagram", language = "latex"}
+
+\begin{modiagram}[style = square, labels]
+    \atom{left}{1s, 2s, 2p = {; up, up}}
+    \EnergyAxis[title]
+\end{modiagram}
+
+```
+
+```{=latex}
+
+\begin{modiagram}[style = square, labels]
+    \atom{left}{1s, 2s, 2p = {; up, up}}
+    \EnergyAxis[title]
+\end{modiagram}
+
+```
+
+It's still possible to hack in the third levels' s- and p-levels but not further levels as seen for sulfur:
+
+```{verbatim label = "modiagram-s", language = "latex"}
+
+\begin{modiagram}[style = square, labels]
+    \atom{left}{1s, 2s, 2p}
+    \AO{s}[label = {3s}]{6; pair}
+    \AO{p}[label[x] = $3\mathrm{p}_x$, label[y] = $3\mathrm{p}_y$,label[z]= $3\mathrm{p}_z$]{8; pair, up, up}
+    \EnergyAxis[title]
+\end{modiagram}
+
+```
+
+```{=latex}
+
+\begin{modiagram}[style = square, labels]
+    \atom{left}{1s, 2s, 2p}
+    \AO{s}[label = {3s}]{6; pair}
+    \AO{p}[label[x] = $3\mathrm{p}_x$, label[y] = $3\mathrm{p}_y$,label[z]= $3\mathrm{p}_z$]{8; pair, up, up}
+    \EnergyAxis[title]
+\end{modiagram}
+
+```
+
+### Lewis dot diagram
+
+For generating Lewis dot diagrams, one can [use the package](#preamble_file) *chemfig* `r render_with_emojis("((ref:Tellechea-undated-bq))")`.
+
+This is how to display the Lewis dot diagram for sulfur using angles:
+
+```{verbatim label = "charge", language = "latex"}
+\Charge{0 = \:, 90 = \:, 180 = \., 270 = \.}{S}
+
+```
+
+```{=latex}
+\Charge{0 = \:, 90 = \:, 180 = \., 270 = \.}{S}
+
+```
