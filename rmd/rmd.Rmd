@@ -167,7 +167,7 @@ As there's a problem to display emojis and they appear seldom then i only use th
 
 The identifier of the inner reference isn't allowed to contain underscores. Between every inner reference, at least one empty line must be.
 
-For inline referencing, wherever i want to have a reference to that reference record i call `render_with_emoji` and feed it with a value for `text` as the identifier of the internal reference in parenthesis if the reference is direct and in double parenthesis if indirect:
+For inline referencing, wherever i want to have a reference to that reference record i call `render_with_emojis` and feed it with a value for `text` as the identifier of the internal reference in parenthesis if the reference is direct and in double parenthesis if indirect:
 
 ````{verbatim label = "external-reference"}
 i use MyBib `r render_with_emojis("((ref:<identifier-of-inner-reference-in-snake-case>))")`.
@@ -189,6 +189,9 @@ include_external_graphics("<path-to-image-file>")
 ````
 
 For this code chunk, i use the label and the following options:
+
+label
+: the label that can be referenced must not include underscores but can include dashes
 
 fig.cap
 : the caption of the figure. This must be present in order to reference it.

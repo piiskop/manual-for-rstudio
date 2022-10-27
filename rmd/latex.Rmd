@@ -95,7 +95,7 @@ sudo apt install fonts-noto-cjk
 ```  
   
 After that, i was looking for Chinese fonts:  
-  
+
 ```{bash eval = FALSE}  
 fc-list :lang=zh  
   
@@ -258,8 +258,7 @@ It's reasonable to align all the tables:
 & C_{10} && := -4.8640239 \times 10^{-2},\\
 & C_{11} && := 4.1764768 \times 10^{-5},\\
 & C_{12} && := -1.4452093 \times 10^{-8}
-\label{eq:saturation-pressure-over-liquid-h2o}
-<!-- (\#eq:saturation-pressure-over-liquid-h2o) -->
+(\#eq:saturation-pressure-over-liquid-h2o)
 \end{align}
 
 ```
@@ -272,9 +271,8 @@ It's reasonable to align all the tables:
 & C_9 && := 1.3914993,\\
 & C_{10} && := -4.8640239 \times 10^{-2},\\
 & C_{11} && := 4.1764768 \times 10^{-5},\\
-& C_{12} && := -1.4452093 \times 10^{-8} % (\#eq:saturation-pressure-over-liquid-h2o)
-\label{eq:saturation-pressure-over-liquid-h2o}
-% (\#eq:saturation-pressure-over-liquid-h2o)
+& C_{12} && := -1.4452093 \times 10^{-8}
+(\#eq:saturation-pressure-over-liquid-h2o)
 \end{align}
 
 ```
@@ -288,7 +286,7 @@ Referencing an equation is also visible in the equation \@ref(eq:saturation-pres
 
 ```
 
-The label must be placed to the end of the row, not to a separate row which would still work for PDF but not for HTML output. Additional labels must be placed in the end of the corresponding row just before the double slashes before the line break.
+Additional labels must be placed in the end of the corresponding row just before the double slashes before the line break.
 
 Empty lines aren't allowed.
 
