@@ -8,8 +8,21 @@ Normally, the caption for list of tables and list of figures is shown no matter 
 > Warning: (xassoccnt)                recommended for xassoccnt\  
 > Warning: (xassoccnt)                  
   
-*calc* is being called directly from *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`* and as i don't want to modify the contents of *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`*, i have to live with the warning.  
-  
+*calc* is being called directly from *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`* and as i don't want to modify the contents of *default.`r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`*, i have to live with the warning.
+
+## Reference to a page
+
+If a referenced equation, figure, table or other item is on a different page, i also reference the page number:
+
+```{verbatim label = "pageref"}
+`r render_pageref(reference = "fig:workflow")`
+
+```
+
+... on the page `r render_pageref(reference = "fig:workflow")`.
+
+This only works for the print output as there are no pages on a webpage.
+
 ## The non-math `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` string  
   
 ````{verbatim label = "non-math-string"}  
@@ -135,20 +148,6 @@ That resulted with:
 
 where i chose `r render_font(text = "Noto Sans Mono CJK SC")` from the way as pointed out in `r render_with_emojis("(jdhao-2018-how)")`.
 
-## Referencing
-
-If a referenced equation, figure, table or other item is on a different page, i also reference the page number:
-
-```{verbatim label = "pageref"}
-\pageref{fig:workflow}
-
-```
-
-```{=latex}
-\pageref{fig:workflow}
-
-```
-
 ## Equations
 
 ### Introduction
@@ -188,12 +187,23 @@ $$10^3$$
 
 ### Vector
 
+For one-letter-vectors:
+
 ```{verbatim label = "vec"}
 \vec{F}
 
 ```
 
 $$\vec{F}$$
+
+For multiple-letter-vectors:
+
+```{verbatim label = "overrightarrow"}
+\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}
+
+```
+
+$$\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}$$
 
 ### Multiplication
 
@@ -328,6 +338,24 @@ $$`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}$$
 
 $$\underbrace{c_p \cdot (T_\text{out} - T_\text{d})}_{\text{mõistlik soojuskadu õhus}}$$
 
+### Integral
+
+```{verbatim label = "int", language = "latex"}
+\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s)
+
+```
+
+$$\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s)$$
+
+### Percent
+
+```{verbatim label = "percent", language = "latex"}
+\%
+
+```
+
+$$\%$$
+
 ## Text
 
 Colouring text:
@@ -417,5 +445,50 @@ This is how to display the Lewis dot diagram for sulfur using angles:
 
 ```{=latex}
 \Charge{0 = \:, 90 = \:, 180 = \., 270 = \.}{S}
+
+```
+
+## Physics
+
+Current diagrams are only shown in the print form. For a current diagram, i need to add the following line into *preamble.tex*:
+
+```{verbatim label = "including-circuitikz", language = "latex"}
+\usepackage{circuitikz}
+
+```
+
+````{verbatim label = "circuitikz", language = "latex"}
+
+```{=latex}
+\begin{figure}
+\begin{circuitikz}[european]
+	\draw
+	(0, 0)	to[dcvsource, l = $E$, v_ = $r$] (0, 2)
+			to[ammeter] (2, 2)
+			to[vR, l = $R$, *-*] (2, 0) -- (0, 0);
+	\draw
+		(2, 2)	to[voltmeter] (4, 2) -- (4, 0) -- (2, 0)
+	;
+\end{circuitikz}
+  \caption{Skeem, mille järgi toimetasime.} \label{fig:schema} 
+\end{figure}
+
+```
+
+````
+
+```{=latex}
+\begin{figure}
+\begin{circuitikz}[european]
+	\draw
+	(0, 0)	to[dcvsource, l = $E$, v_ = $r$] (0, 2)
+			to[ammeter] (2, 2)
+			to[vR, l = $R$, *-*] (2, 0) -- (0, 0);
+	\draw
+		(2, 2)	to[voltmeter] (4, 2) -- (4, 0) -- (2, 0)
+	;
+\end{circuitikz}
+  \caption{Skeem, mille järgi toimetasime.} \label{fig:schema} 
+\end{figure}
 
 ```

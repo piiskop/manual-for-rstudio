@@ -56,6 +56,22 @@ str(numeric_number)
 
 ```
 
+### Converting to time
+
+```{r label = "as-date"}
+string_of_time = "2020.7.08 16:43:59"
+str(string_of_time)
+
+librarian::shelf(c(
+  "lubridate"
+))
+
+string_of_time_as_time <- parse_date_time(string_of_time, c("%Y.%m.%d %H:%M", "%m.%d.%Y %H:%M", "%Y.%m.%d %H:%M:%S"))
+str(string_of_time_as_time)
+
+```
+
+`r render_with_emojis("((ref:lubridate))")`.
 
 ### Stopping execution
 
@@ -89,7 +105,7 @@ print(array)
 
 ```
 
-### Multidimensional array
+### Multidimensional
 
 Arrays with the same length can be connected into `data.frame`:
 
@@ -133,7 +149,30 @@ print(data_frame)
 
 ```
 
-### Changing the look of a cell
+### Importing data
+
+Data can be imported from a text file into a data frame:
+
+```{r label = "read-table", eval = FALSE}
+CO2_in_air <- read.table("co2_brw_surface-insitu_1_ccgg_DailyData.txt", header = TRUE, sep = "", dec = ".")
+
+```
+
+Data can also be imported from a comma-separated-values-(CSV-)file into a data frame:
+
+```{r label = "import-washing-cycles"}
+washing_cycles <- read.table("washing-cycles.csv", header = TRUE, sep = ",", dec = ".")
+
+```
+
+### Printing first rows
+
+```{r label = "head"}
+print(head(washing_cycles))
+
+```
+
+### Editing the look of a cell
 
 ```{r label = "cell-spec"}
 librarian::shelf("kableExtra")
@@ -143,7 +182,7 @@ coloured_cell <- cell_spec(data_frame[, 2], color = "red")
 
 `r coloured_cell` `r render_with_emojis("((ref:cell-spec))")`
 
-### Changing the content
+### Editing the content
 
 ```{r label = "mutate"}
 librarian::shelf("dplyr")
@@ -172,171 +211,93 @@ for (index in 1:length(data_frame)) {
 
 ```
 
+### Referencing by column name
+
+```{r label = "bug"}
+print(data_frame$`array 2`)
+
+```
+
+`r render_with_emojis("((ref:r-language))")`.
+
 ### Subsetting
+
+As `washing_cycles` also contains records with missing data i want them removed:
 
 ```{r label = "subset"}
 
-t <- c(
-  60,
-  40,
-  40,
-  30,
-  40,
-  60,
-  40,
-  40,
-  60,
-  30,
-  30,
-  60,
-  40,
-  60,
-  40,
-  30,
-  40,
-  30,
-  40,
-  30,
-  30,
-  40,
-  40,
-  30,
-  40,
-  90,
-  40,
-  30,
-  40,
-  30
-)
+washing_cycles_with_full_records <- subset(washing_cycles, !is.na(`Veenäit.enne`) & "" != `Veenäit.pärast` & !is.na(`Veekulu..l.`) & !is.na(`kWh`))
 
-omega <- c(
-  1000,
-  800,
-  400,
-  800,
-  800,
-  1000,
-  1300,
-  800,
-  1000,
-  800,
-  800,
-  1300,
-  800,
-  1000,
-  400,
-  800,
-  800,
-  800,
-  400,
-  800,
-  800,
-  400,
-  800,
-  800,
-  400,
-  400,
-  400,
-  800,
-  400,
-  800
-)
+print(head(washing_cycles_with_full_records))
 
-washing_cycles <- data.frame(t, omega)
+```
 
-hot_cycles <- subset(washing_cycles, t > 40)
+`r render_with_emojis("((ref:subset))")`.
+
+This was how to remove incomplete records by manually setting the columns that contain empty records. There is a move convenient method to do that without specifying columns:
+
+```{r label = "complete"}
+washing_cycles_with_full_records <- washing_cycles[complete.cases(washing_cycles), ]
+
+```
+
+`r render_with_emojis("((ref:r-language))")`.
+
+i only want to see the data in the column `Kava`:
+
+```{r label = "subset-column"}
+program_in_washing_cycles <- subset(washing_cycles_with_full_records, select = `Kava`)
+
+print(head(program_in_washing_cycles))
+
+```
+
+i only want to see cycles from the rows 2 to 4 in the second column:
+
+```{r label = "subset-limited-cycles"}
+print(washing_cycles_with_full_records[2:4, 2])
+
+```
+
+i only want to see hot cycles:
+
+```{r label = "subset-hot-cycles"}
+hot_cycles <- subset(washing_cycles_with_full_records, `Temperatuur` > 40)
 print(hot_cycles)
 
-print(washing_cycles[2:4, 2]) # printing out values in the rows 2 to 4 in the second column
+```
 
-which(t == 40)
+i only want to see the indices of the cycles at the temperature of $313.15 \times \mathrm{K}$:
+
+```{r label = "subset-cycles-at-40"}
+which(washing_cycles_with_full_records[3] == 40)
 
 ```
 
 ### Sorting
 
+Displaying the indices of the descending sorted values of a vector:
+
 ```{r label = "sorting"}
 librarian::shelf("dplyr")
-desc(omega) # sorts the values in descending order
-
-arrange(washing_cycles, omega) # sorts the values in ascending order
+desc(subset(head(washing_cycles_with_full_records), select = `Kava`))
 
 ```
 
-`r render_with_emojis("((ref:desc))")`, `r render_with_emojis("((ref:arrange))")`.
+`r render_with_emojis("((ref:dplyr), p. 7, 21)")`.
+
+Sorting values in ascending order according to the program:
+
+```{r label = "arrange"}
+head(arrange(washing_cycles_with_full_records, `Kava`))
+
+```
 
 ### Totals
 
 ```{r label = "adorn-totals"}
-t_0 <- c(
-  "5/23/2022 15:33:00",
-  "5/23/2022 18:00:00",
-  "5/25/2022 17:44:00",
-  "5/29/2022 17:05:00",
-  "6/1/2022 17:36:00",
-  "6/4/2022 17:56:00",
-  "6/5/2022 17:28:00",
-  "6/10/2022 13:52:00",
-  "6/10/2022 15:30:00",
-  "6/10/2022 17:31:00",
-  "6/23/2022 17:31:00",
-  "6/24/2022 14:11:00",
-  "6/24/2022 16:12:00",
-  "6/24/2022 17:49:00",
-  "6/25/2022 14:25:00",
-  "6/25/2022 16:15:00",
-  "6/29/2022 16:51:00",
-  "7/5/2022 0:15:00",
-  "7/5/2022 1:53:00",
-  "7/6/2022 17:26:00",
-  "7/6/2022 22:30:00",
-  "7/7/2022 3:18:00",
-  "7/12/2022 18:00:00",
-  "7/13/2022 18:18:00",
-  "7/14/2022 16:22:00",
-  "7/17/2022 15:33:00",
-  "7/18/2022 20:14:00",
-  "7/21/2022 18:06:00",
-  "7/26/2022 0:41:00",
-  "7/26/2022 14:59:00"
-)
-
-V_H2O <- c(
-  NA,
-  NA,
-  NA,
-  NA,
-  6.3,
-  NA,
-  NA,
-  6.8,
-  NA,
-  6.7,
-  6.8,
-  2.6,
-  6.5,
-  2.5,
-  6.7,
-  NA,
-  NA,
-  NA,
-  6.7,
-  6.6,
-  NA,
-  5.3,
-  NA,
-  1.5,
-  NA,
-  2.9,
-  NA,
-  NA,
-  NA,
-  NA
-)
-
-washing_cycles <- data.frame(t_0, V_H2O)
 librarian::shelf("janitor")
-adorn_totals(dat = washing_cycles, where = "row", fill = "", na.rm = TRUE, name = "Kokku", c(2))
+adorn_totals(dat = head(subset(x = washing_cycles_with_full_records, select = c(`Algus`, `Veekulu..l.`))), where = "row", fill = "", na.rm = TRUE, name = "Kokku", c(`Veekulu..l.`))
 
 ```
 
@@ -438,11 +399,17 @@ sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE))
 Tables \@ref(tab:table-with-digits-default) and \@ref(tab:table-with-digits-nondefault) are for comparing the number of digits after comma. The table \@ref(tab:table-with-digits-default) has the default number of digits and the table \@ref(tab:table-with-digits-nondefault) has another number of digits in every number after comma.
 
 ```{r label = "table-with-digits-default"}
-before <- c(358.805, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851)
-after <- c(358.83, 358.918, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851, 358.851)
-water_report <- data.frame(before, after)
+water_report <- head(subset(x = washing_cycles_with_full_records, select = c(`Algus`, `Veenäit.enne`, `Veenäit.pärast`)))
+
+librarian::shelf(c(
+  'dplyr'
+))
+
+water_report <- water_report %>%
+  mutate(`Veenäit.pärast` = as.numeric(`Veenäit.pärast`))
 
 colnames(water_report) <- c(
+  "Start",
   "$\\mathrm{\\frac{\\text{Used water before}}{\\mathrm{m^3}}}$",
   "$\\mathrm{\\frac{\\text{Used water after}}{\\mathrm{m^3}}}$"
 )
@@ -453,6 +420,8 @@ print_table(
 )
 
 ```
+
+`r render_with_emojis("((ref:dplyr), p. 38 to 42)")`.
 
 Inside the table, backslashes must be escaped.
 
@@ -471,7 +440,7 @@ It's also possible for the table to have an additional header whose columns span
 print_table(
   table = water_report,
   caption = "Water report with additional header.",
-  additional_header = c("Spanned header" = 2)
+  additional_header = c("Spanned header" = 4)
 )
 
 ```
@@ -575,19 +544,13 @@ log(exp(1))
 
 ```
 
-## Importing data
-
-```{r label = "read-table", eval = FALSE}
-CO2_in_air <- read.table("co2_brw_surface-insitu_1_ccgg_DailyData.txt", header = TRUE, sep = "", dec = ".")
-
-```
 
 ## Plotting
 
-An example of plotting data is putting data points to the plot - visible on the figure \@ref(fig:ggplot). The packages:
+An example of plotting data is putting data points to the plot - visible on the figure \@ref(fig:ggplot) on the page `r render_pageref(reference = "fig:ggplot")`. The packages:
 
 `ggplot2`
-: for plotting
+: for plotting `r render_with_emojis("((ref:ggplot2))")`
 
 `latex2exp`
 : for using `r render_nonmath_LaTeX_string_universal("\\LaTeX")` strings in labels
@@ -609,6 +572,18 @@ The parameters:
 `geom_point`
 : the function for plotting data points
 
+`shape`
+: the shape of points
+
+`size`
+: the size of points
+
+`color`
+: the border color
+
+`fill`
+: the fill color
+
 `labs`
 : the function for creating labels for axis
 
@@ -616,12 +591,47 @@ The parameters:
 : the function for converting `r render_nonmath_LaTeX_string_universal("\\LaTeX")` strings in labels
 
 ```{r label = "ggplot", fig.cap="Washing cycles."}
+
 librarian::shelf(c(
   "ggplot2",
   "latex2exp"
 ))
 
-ggplot(data = washing_cycles, aes(x = t, y = omega)) + geom_point() +
-  labs(x = TeX("$\\frac{t}{\\degree C}$"), y = TeX("$\\frac{\\omega}{\\frac{\\tau}{min}}$"))
+ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `Pöördeid.min`)) + geom_point(shape = 23, color = "#008000", fill = "#ff6600", size = 3) +
+  labs(x = TeX("$\\frac{\\textit{t}}{\\degree C}$"), y = TeX("$\\frac{\\textit{f}}{min}$"))
 
 ```
+
+Multiple graphs can be displayed on a same figure as seen on the figure \@ref(fig:ggplot-multiple-graphs) on the page `r render_pageref(reference = "fig:ggplot-multiple-graphs")`.
+
+```{r label = "ggplot-multiple-graphs", fig.cap=paste("Water and electricity consumption between", min_time, "and", max_time, ".")}
+librarian::shelf(c(
+  "lubridate"
+))
+
+washing_cycles_with_full_records <- washing_cycles_with_full_records %>%
+  mutate(`Algus` = parse_date_time(x = washing_cycles_with_full_records$Algus, orders = c(
+  "%Y-%m-%d %H",
+  "%Y.%m.%d %H:%M",
+  "%Y.%m.%d %H:%M:%S",
+  "%m.%d.%Y %H:%M",
+  "%m.%d.%Y %H:%M:%S"
+)))
+
+min_time = min(washing_cycles_with_full_records$Algus)
+max_time = max(washing_cycles_with_full_records$Algus)
+
+librarian::shelf(c(
+  "ggplot2",
+  "latex2exp"
+))
+
+ggplot(data = washing_cycles_with_full_records, aes(x = `Algus`, y = `Veekulu..l.`)) +
+  geom_point(shape = 23, color = "#008000", fill = "#008000", size = 3) +
+  labs(x = "Algus", y = TeX("$\\frac{\\textit{V}}{m^3}$")) +
+  geom_point(aes(x = `Algus`, y = `kWh`), color = "#ff6600", fill = "#ff6600", shape = 24, size = 3)  +
+  scale_y_continuous(sec.axis = sec_axis(~., name = TeX("\\frac{\\textit{W}}{kWh}"))) +
+  theme(axis.title.y = element_text(colour = "#008000"), axis.text.y = element_text(colour = "#008000"), axis.ticks.y = element_line(colour = "#008000"), axis.title.y.right = element_text(colour = "#ff6600"), axis.ticks.y.right = element_line(colour = "#ff6600"), axis.text.y.right = element_text(colour = "#ff6600"))
+
+```
+

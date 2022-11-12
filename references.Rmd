@@ -19,15 +19,15 @@
 
 (ref:adorn-totals) @adorn_totals
 
-(ref:arrange) @arrange
-
 (ref:cell-spec) @cell_spec
 
 (ref:create) @create
 
-(ref:desc) @desc
+(ref:dplyr) @dplyr
 
 (ref:footnote) @footnote
+
+(ref:ggplot2) @ggplot2
 
 (ref:inserting) @inserting
 
@@ -36,6 +36,8 @@
 (ref:kim) @kim
 
 (ref:lathiya-2022-sapply) @lathiya_2022_sapply
+
+(ref:lubridate) @lubridate
 
 (ref:macfarlane-2022-pandoc) @macfarlane_2022_pandoc
 
@@ -47,6 +49,8 @@
 
 (ref:r) @r
 
+(ref:r-language) @r_language
+
 (ref:riederer-122) @riederer_122
 
 (ref:riederer-21) @riederer_21
@@ -54,6 +58,8 @@
 (ref:riederer-56) @riederer_56
 
 (ref:riederer-611) @riederer_611
+
+(ref:subset) @subset
 
 (ref:table) @table
 

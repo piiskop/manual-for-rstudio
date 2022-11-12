@@ -178,6 +178,39 @@ render_with_emojis <- function(text) {
   return(paste("\\fontspec{Symbola}", text, "\\fontspec{DejaVu Serif}{}", sep = ""))
 }
 
+#' This function renders a reference to a page as it cannot be used in the web output.
+#' 
+#' @param reference the reference identifier
+#' 
+#' @returns the rendered page reference
+render_pageref <- function(reference) {
+  
+  if (knitr::is_html_output()) {
+    rendered_pageref <- ""
+  } else {
+    rendered_pageref <- paste(" $\\pageref{", reference, "}$", sep = "")
+  }
+
+  return(rendered_pageref)
+}
+
+#' This function colors text.
+#' 
+#' @param color the color code in hexadecimals
+#' @param text the text to be colored
+#' 
+#' @returns the colored text
+render_color <- function(color, text) {
+  
+  if (knitr::is_html_output()) {
+    rendered_color <- paste("$\\color{#", color, "}{", text, "}$", sep = "")
+  } else {
+    rendered_color <- paste("$\\textcolor[HTML]{", color, "}{", text, "}$", sep = "")
+  }
+
+  return(rendered_color)
+}
+
 ```
 
 # Introduction

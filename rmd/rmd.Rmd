@@ -40,6 +40,15 @@ Text can be turned to italics using asterisks around it:
 
 *\<text in italics\>*
 
+## Color
+
+```{verbatim label = "render-color", language = "r"}
+render_color(color = "008000", text = "10 \\cdot V")
+
+```
+
+This text is `r render_color(color = "008000", text = "colored")`.
+
 ## Code
 
 ### As a block
@@ -118,6 +127,18 @@ It's also possible to do a multi-line quote by adding two spaces at the end of e
 
 > \<first line of the quote>  
 \<second line of the quote>
+
+A quote with the author:
+
+```{verbatim label = "quote-with-author"}
+> All on konstantne. Siis ma... Midagi läheb sealt läbi, aga siis peab mõtlema, mis, mis kurat sealt läbi läheb.
+
+`r tufte::quote_footer('--- Tõnu Laas')`
+```
+
+> All on konstantne. Siis ma... Midagi läheb sealt läbi, aga siis peab mõtlema, mis, mis kurat sealt läbi läheb.
+
+`r tufte::quote_footer('--- Tõnu Laas')`
 
 ## Escaping
 

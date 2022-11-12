@@ -46,18 +46,21 @@ Inside the file *\_bookdown.yml*, the following settings are:
 
 ```
 book_filename: "<name-of-project>"
+
 ```
 
 This was set already in the  [setup phase](#book-filename). Once i give RStudio Server the command *Build Book* it creates the output Portable Document Format (PDF) file with the given name for `book_filename` by adding the file extension *.pdf* inside the subfolder *\_book*.
 
 ```
 new_session: false
+
 ```
 
 For multi-chaptered or -sectioned outputs, every chapter or section is meant to be in a separate R markdown (Rmd) file. In order to be reference parts from one Rmd file to another Rmd file, the value for `new_session` must be `false`. Otherwise, a new session will be created for every file and referencing between the files isn't possible.
 
 ```
 delete_merged_file: true
+
 ```
 
 During building, all the included Rmd files will be merged into one Rmd file that will be used for generating `r render_nonmath_LaTeX_string_universal("\\TeX{}")` file. That merged Rmd file is usually unnecessary, so i let RStudio Server delete it automatically.
@@ -68,6 +71,7 @@ rmd_files: [
   <<rmd/...,>>
   "references.Rmd"
 ]
+
 ```
 
 `rmd_files` contains the list of involved Rmd files. There must be involved *index.Rmd* as only that file can have `site` which is necessary for generating anything at all. *references.Rmd* contains references and usually, i have references, so i include the file. If `rmd_files` isn't present then all the files whose name doesn't start by *\_* will be included sorted according to their names. With `rmd_files`, i can also set the order of files.
@@ -111,24 +115,28 @@ The following settings are for `bookdown::pdf_book`:
 ```
   includes:
     in_header: preamble.tex
+
 ```
 
 As the default `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` template file is *default.tex*, i don't want to change that and instead, offer additions and modifications through `includes`. In the file whose name is given - *preamble.tex*, the additions and modifications can be made.
 
 ```
   keep_tex: yes
+
 ```
 
 As PDF-file is generated according to `r render_nonmath_LaTeX_string_universal("\\TeX{}")` file, it's sometimes useful to see what `r render_nonmath_LaTeX_string_universal("\\TeX{}")` file consists of.
 
 ```
   latex_engine: xelatex
+
 ```
 
 Actually, it's the format, not engine, one out of three available in *bookdown*. It allegedly has the best language and font support and is recent `r render_with_emojis("((ref:the-2012-latex))")`. The other current format is *lualatex* which doesn't work with chinese characters and while beign extendable and therefore, slow.
 
 ```
   template: default.latex
+
 ```
 
 In order to make everything work, it's useful to use the default template downloaded from *pandoc*'s repository `r render_with_emojis("((ref:macfarlane-2022-pandoc))")`. Modifications can be done in [*preamble.tex*](#preamble) or as `extra_dependencies`. i never edit *default.latex*.
@@ -161,10 +169,12 @@ The optional metadata can be the following:
 
 ```
 author: "<the name of the author>"
+
 ```
 
 ```
 colorlinks: TRUE
+
 ```
 
 i want that the user sees what part of the text is a link.
@@ -172,10 +182,12 @@ i want that the user sees what part of the text is a link.
 ```
 date: "`r Sys.Date()`" # the current date or any other date if set otherwise
 description: "<description of the project>"
+
 ```
 
 ```
 lang: <two-letter lowercase language code>
+
 ```
 
 Language is important for hyphenation.
@@ -183,38 +195,45 @@ Language is important for hyphenation.
 ```
 title: "<the title of the project>"
 subtitle: "<the subtitle of the project>"
+
 ```
 
 ```
 documentclass: <the document class>
+
 ```
 
 There are five document classes. i use mainly `article` if i want to create a short lab report which doesn't have chapters but sections that flow after each other from page to page. Here, i use `book` because it's a book that has chapters whereas each chapter begins on a new page.
 
 ```
 papersize: <paper format>
+
 ```
 
 This can be set for instance to `a4`.
 
 ```
 geometry: top=<top>cm, right=<right>cm, bottom=<bottom>cm, left=<left>cm
+
 ```
 
 `geometry` takes the values for margins from the given directions in centimeters.
 
 ```
 classoption: <options for the document class separated by commas>
+
 ```
 
 These are the options for the document class. i want my text to be mainly in one column, therefore `onecolumn` and printed on both sides - therefore `twoside`.
 
 ```
 linestretch: <line height: how many lines>
+
 ```
 
 ```
 fontsize: <size of the font in points>pt
+
 ```
 
 []{#mainfont}
@@ -226,6 +245,7 @@ mainfont: DejaVu Serif
 
 ```
 CJKmainfont: Droid Sans Fallback
+
 ```
 
 `CJKmainfont` has to be set in order to show Chinese characters. i found the suitable font using:
@@ -240,25 +260,28 @@ fc_list :lang=zh
 
 ```
 bibliography: [references.bib]
+
 ```
 
 This is the reference to the [bibliography file](#book_bib).
 
-
 ```
 link-citations: yes
+
 ```
 
 i want the references inside the text to be linked to the appropriate reference list items.
 
 ```
 lof: yes
+
 ```
 
 i want the list of figures to be displayed.
 
 ```
 lot: yes
+
 ```
 
 i want the list of tables to be displayed not the logo of the Polish airlines company that we can see on the background as Kim Wilde was delivering a concert in Sopot in 1988 `r render_with_emojis("((ref:kim))")`.
