@@ -193,10 +193,15 @@ lang: <two-letter lowercase language code>
 Language is important for hyphenation.
 
 ```
-title: "<the title of the project>"
+title: |
+    <the title
+    of the project>
+
 subtitle: "<the subtitle of the project>"
 
 ```
+
+`r render_with_emojis(text = "((ref:r-linebreak-in-title))")`.
 
 ```
 documentclass: <the document class>

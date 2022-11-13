@@ -6,7 +6,9 @@ colorlinks: TRUE
 date: "`r Sys.Date()`"
 description: "This is the manual for creating content using RStudio Server."
 lang: en
-title: "Manual for creating content using RStudio Server"
+title: |
+    Manual for creating content using  
+    RStudio Server
 
 documentclass: book
 papersize: a4

@@ -51,6 +51,8 @@
 
 (ref:r-language) @r_language
 
+(ref:r-linebreak-in-title) @r_linebreak_in_title
+
 (ref:riederer-122) @riederer_122
 
 (ref:riederer-21) @riederer_21

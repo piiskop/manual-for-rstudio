@@ -341,31 +341,49 @@ $$\underbrace{c_p \cdot (T_\text{out} - T_\text{d})}_{\text{mõistlik soojuskadu
 ### Integral
 
 ```{verbatim label = "int", language = "latex"}
-\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s)
+\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s).
 
 ```
 
-$$\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s)$$
+$$\int{\overrightarrow{\frac{E \cdot Q}{\mathrm{d}(s)}}} \cdot \mathrm{d}(s).$$
 
 ### Percent
 
 ```{verbatim label = "percent", language = "latex"}
-\%
+\%.
 
 ```
 
-$$\%$$
+$$\%.$$
+
+### Comparison
+
+```{verbatim label = "ll", language = "latex"}
+p \ll .05.
+
+```
+
+$p \ll .05.$
+
+### Greek letters
+
+```{verbatim label = "eta", language = "latex"}
+\\epsilon, \\eta.
+
+```
+
+$$\epsilon, \eta.$$
 
 ## Text
 
 Colouring text:
 
 ```{verbatim label = "textcolor", language = "latex"}
-$\color{red}{\text{Augusti psühhomeetriga}}$
+$\color{red}{\text{Augusti psühhomeetriga}}.$
 
 ```
 
-$\color{red}{\text{Augusti psühhomeetriga}}$
+$\color{red}{\text{Augusti psühhomeetriga}}.$
 
 ## Chemistry
 

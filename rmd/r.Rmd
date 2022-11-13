@@ -347,6 +347,39 @@ sum <- add(first = 123, second = 456, digits = 1)
 
 ```
 
+## Derivation
+
+```{r label = "derivative"}
+initial_function <- "x^3 + x^2"
+functionToUse <- parse(text = initial_function)
+
+librarian::shelf(c(
+  "Ryacas"
+))
+
+derivative = D(functionToUse, "x")
+string_of_derivative <- deparse(derivative)
+
+```
+
+The derivative of $`r initial_function`$ is $`r string_of_derivative`$.
+
+```{r label = "critical-places"}
+equality <- paste(string_of_derivative, "== 0")
+print(equality)
+print(paste("Solve(", equality, ", x)", sep = ""))
+print(y_rmvars(paste("Solve(", equality, ", x)", sep = "")))
+critical_places <- yac_str(y_rmvars(paste("Solve(", equality, ", x)", sep = "")))
+print(critical_places)
+critical_places_as_r <- as_r(critical_places)
+print(critical_places_as_r)
+critical_solution_1 <- (critical_places_as_r[1])
+critical_solution_2 <- critical_places_as_r[2]
+
+```
+
+The critical solutions of $`r initial_function`$ are `r critical_solution_1` and `r critical_solution_2`.
+
 ## Comments
 
 Comments can be done with `#`:
@@ -547,6 +580,8 @@ log(exp(1))
 
 ## Plotting
 
+### One graph
+
 An example of plotting data is putting data points to the plot - visible on the figure \@ref(fig:ggplot) on the page `r render_pageref(reference = "fig:ggplot")`. The packages:
 
 `ggplot2`
@@ -602,6 +637,8 @@ ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `PÃ¶Ã
 
 ```
 
+### Multiple graphs
+
 Multiple graphs can be displayed on a same figure as seen on the figure \@ref(fig:ggplot-multiple-graphs) on the page `r render_pageref(reference = "fig:ggplot-multiple-graphs")`.
 
 ```{r label = "ggplot-multiple-graphs", fig.cap=paste("Water and electricity consumption between", min_time, "and", max_time, ".")}
@@ -626,12 +663,53 @@ librarian::shelf(c(
   "latex2exp"
 ))
 
-ggplot(data = washing_cycles_with_full_records, aes(x = `Algus`, y = `Veekulu..l.`)) +
+ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Algus`, y = `Veekulu..l.`)) +
   geom_point(shape = 23, color = "#008000", fill = "#008000", size = 3) +
   labs(x = "Algus", y = TeX("$\\frac{\\textit{V}}{m^3}$")) +
-  geom_point(aes(x = `Algus`, y = `kWh`), color = "#ff6600", fill = "#ff6600", shape = 24, size = 3)  +
+  geom_point(mapping = aes(x = `Algus`, y = `kWh`), color = "#ff6600", fill = "#ff6600", shape = 24, size = 3)  +
   scale_y_continuous(sec.axis = sec_axis(~., name = TeX("\\frac{\\textit{W}}{kWh}"))) +
   theme(axis.title.y = element_text(colour = "#008000"), axis.text.y = element_text(colour = "#008000"), axis.ticks.y = element_line(colour = "#008000"), axis.title.y.right = element_text(colour = "#ff6600"), axis.ticks.y.right = element_line(colour = "#ff6600"), axis.text.y.right = element_text(colour = "#ff6600"))
 
 ```
 
+### Regression and correlation
+
+The figure \@ref(fig:stat-regline-cor) on the page `r render_pageref(reference = "fig:stat-regline-cor")` represents the correlation between the water and electricity consumption between `r min_time` and `r max_time`. The plot displays the correlation coefficient. There are also the data about the regression. Both labels have been positioned vertically.
+
+```{r label = "stat-regline-cor", fig.cap=paste("Correlation between the water and electricity consumption between", min_time, "and", max_time, ".")}
+
+librarian::shelf(c(
+  "ggplot2",
+  "ggpubr", # for stat_regline_equation
+  "latex2exp"
+))
+
+ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Veekulu..l.`, y = `kWh`)) +
+  geom_point(shape = 23, color = "#ff6600", fill = "#ff6600", size = 3) +
+  labs(x = TeX("$\\frac{\\textit{V}}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
+  stat_regline_equation(mapping = aes(x = `Veekulu..l.`, y = `kWh`, label = paste(..eq.label.., ..rr.label.., ..adj.rr.label.., sep = "~~~~")), color = "#ff6600", label.y = 3) +
+  stat_cor(aes(x = `Veekulu..l.`, y = `kWh`), color = "#ff6600", label.y = 2.5)
+
+```
+
+### Error bars
+
+The figure \@ref(fig:ggplot-errorbar) on the page `r render_pageref(reference = "fig:ggplot-errorbar")` represents the water and electricity consumption between `r min_time` and `r max_time` with errorbars.
+
+```{r label = "ggplot-errorbar", fig.cap=paste("Water and electricity consumption between", min_time, "and", max_time, " with errobars.")}
+
+librarian::shelf(c(
+  "ggplot2",
+  "latex2exp"
+))
+
+margin_of_V <- 2 * .001 / 2
+margin_of_W <- .1 / 2
+
+ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Veekulu..l.`, y = `kWh`)) +
+  geom_point(shape = 23, color = "#ff6600", fill = "#ff6600", size = 1) +
+  labs(x = TeX("$\\frac{\\textit{V}}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
+  geom_errorbarh(aes(xmin = `Veekulu..l.` - margin_of_V, xmax = `Veekulu..l.` + margin_of_V, y = `kWh`)) +
+  geom_errorbar(aes(x = `Veekulu..l.`, ymin = `kWh` - margin_of_W, ymax = `kWh` + margin_of_W))
+
+```
