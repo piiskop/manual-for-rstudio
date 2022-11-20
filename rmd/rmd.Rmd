@@ -128,6 +128,21 @@ It's also possible to do a multi-line quote by adding two spaces at the end of e
 > \<first line of the quote>  
 \<second line of the quote>
 
+Another way of multiline quoting is to inclue `>` in front of each row:
+
+```{verbatim label = "multi-line-quote-with-angular-brackets", language = "markdown"}
+> <first line of the quote>  
+<second line of the quote>
+>
+> <fourth line of the quote>
+
+```
+
+> \<first line of the quote>  
+\<second line of the quote>
+>
+> \<fourth line of the quote>
+
 A quote with the author:
 
 ```{verbatim label = "quote-with-author"}

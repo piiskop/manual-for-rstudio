@@ -79,6 +79,14 @@ book_filename: "<name-of-project>"
 
 ```
 
+The same filename must be entered into *js.js*:
+
+```{verbatim label = "js"}
+  createLink(div, "book-print", "<name-of-project>.pdf", "View printable book");
+
+
+```
+
 i might want to delete all the files inside *rmd* subfolder and their references in `rmd_files`:
 
 ```
