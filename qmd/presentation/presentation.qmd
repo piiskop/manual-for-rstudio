@@ -1,6 +1,5 @@
 ---
 author:
-  - name: Jan Erik Reppo
   - name: 'peacecop kalmer:'
 bibliography: presentation.bib
 title: "Presentations"
