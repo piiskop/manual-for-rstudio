@@ -2,11 +2,25 @@
 author:
   - name: 'peacecop kalmer:'
 bibliography: presentation.bib
-title: "Presentations"
-output-file: ../../_book/presentation.html
+title: |
+    | Individual experiences with
+    | chlorine dioxide solution
+    | (CDS)
+output-file: presentation.html
 format:
   revealjs:
-    self-contained: true
+    # chalkboard: true
+    incremental: true
+    multiplex:
+      url: 'http://manual-for-rstudio.tennis24.ee:1948/'
+      secret: "16759825730498538629"
+      socketId: "f3edf0ff0d09982e"
+    # revealjs-plugins:
+    #   - seminar
+    # attributes:
+    #   quarto-reveal:
+    #     data-seminar-remote: true
+    #     data-seminar-controls: true
 
 ---
 
@@ -28,6 +42,51 @@ format:
 
 ```
 
+## Preparing for remote controlling
+
+1. Cloning *multiplex* [@a2023_multiplex].
+
+2.  In the *multiplex*'s folder:
+
+    ```
+    npm install reveal-multiplex
+    
+    ```
+    
+3.  Creating the service:
+
+    ```
+    sudo emacs /etc/systemd/system/multiplex.service
+    
+    ```
+    
+4.  Starting the server:
+
+    ```
+    sudo systemctl start multiplex.service
+    
+    ```
+
+5. Directing traffic to port 1948 into the server machine.
+
+## Remote controlling
+
+1.  Configuring:
+
+    ```
+    format:
+  revealjs:
+    multiplex:
+      url: 'http://manual-for-rstudio.tennis24.ee:1948/'
+      secret: "16759825730498538629"
+      socketId: "f3edf0ff0d09982e"
+      
+    ```
+
+2. Opening the main presentation HyperText Markup Language file for the audience.
+
+3. Opening the file with the ending "-speaker.html" for remote controlling.
+
 ## Metadata: author
 
 ```
@@ -41,7 +100,9 @@ format:
 ## Metadata: title
 
 ```
-    title: "<The title of the presentation>"
+title: |
+    | <first line of the title>
+    | <second line of the title>
 
 ```
 
@@ -57,11 +118,33 @@ format:
 ```
     format:
       revealjs:
+        incremental: true
         self-contained: true
 
 ```
 
+`incremental: true` displays list items one by one [@quarto]
+
 `self-contained: false` results with missing files or undated content
+
+## Table
+
+```
+| Product | Price |
+|---------|-----:|
+| SET: NaClO2 Mouth Rinse and HCl Hair Rinse      | 25.00   |
+| DMSO (DIMETHYLSULFOXIDE)     | 24.00  |
+
+: The reagents for making CDS with their prices were bought on 2021/05/04.
+
+```
+
+| Product | Price |
+|---------|-----:|
+| SET: NaClO2 Mouth Rinse and HCl Hair Rinse      | 25.00   |
+| DMSO (DIMETHYLSULFOXIDE)     | 24.00  |
+
+: The reagents for making CDS with their prices were bought on 2021/05/04.
 
 ## Figures
 
@@ -107,11 +190,25 @@ In the metadata:
 A reference:
 
 ```
-@silent
+@quarto
 
 ```
 
-@silent
+@quarto
+
+```
+[@quarto]
+
+```
+
+[@quarto]
+
+```
+[@quarto(p. 41)]
+
+```
+
+[@quarto(p. 41)]
 
 ## List of references at the end
 
@@ -134,17 +231,25 @@ A reference:
 ## List
 
 ```
--   no instructions
+-   no instructions:
+
+    - no formulas,
+  
+    - no theorems,
 
 -   no explanations
 
 ```
 
--   no instructions
+-   no instructions:
+
+    - no formulas,
+  
+    - no theorems,
 
 -   no explanations
 
-[Manual for RStudio Server](index.html)
+[Manual for RStudio Server](/)
 
 ## External references
 

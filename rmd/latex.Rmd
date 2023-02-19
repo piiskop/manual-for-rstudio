@@ -302,15 +302,6 @@ For units, there's the package *siunitx* that only works for PDF output. As it d
 
 $$\partial{H}$$
 
-### Chemical symbols
-
-```{verbatim label = "ce"}
-`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}
-
-```
-
-$$`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}$$
-
 ### Cancelling
 
 ```{verbatim label = "cancel", language = "latex"}
@@ -363,7 +354,7 @@ p \ll .05.
 
 ```
 
-$p \ll .05.$
+$$p \ll .05.$$
 
 ### Greek letters
 
@@ -376,16 +367,43 @@ $$\epsilon, \eta.$$
 
 ## Text
 
-Colouring text:
+### Colour
 
 ```{verbatim label = "textcolor", language = "latex"}
-$\color{red}{\text{Augusti psühhomeetriga}}.$
+$$\color{red}{\text{Augusti psühhomeetriga}}.$$
 
 ```
 
-$\color{red}{\text{Augusti psühhomeetriga}}.$
+$$\color{red}{\text{Augusti psühhomeetriga}}.$$
+
+### Size
+
+```{verbatim label = "huge", language = "latex"}
+$$\huge{\text{Augusti psühhomeetriga}}$$
+
+```
+
+$$\huge{\text{Augusti psühhomeetriga}}$$
 
 ## Chemistry
+
+### Chemical symbols
+
+```{verbatim label = "ce"}
+`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}
+
+```
+
+$$`r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}$$
+
+```{verbatim label = "ce_with_arrow"}
+$$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}$$
+
+```
+
+$$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}$$
 
 ### Electron configuration
 

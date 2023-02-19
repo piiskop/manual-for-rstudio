@@ -67,7 +67,12 @@ From now on, it's possible to edit the newly created project and push its change
 
 Once the project has some content i want it to share both as source code and human-friendly writing.
 
-For making the writing viewable as a website, i need to create a subdomain for it, connect the subdomain to the project's output folder in *nginx*'s settings.
+For making the writing viewable as a website, i need to create a subdomain for it, connect the subdomain to the project's output folder in *nginx*'s settings:
+
+```{bash eval = FALSE}
+sudo ~/rstudio-projects/create-project.sh <subdomain>
+
+```
 
 ## Preliminary configuration settings for the project
 
