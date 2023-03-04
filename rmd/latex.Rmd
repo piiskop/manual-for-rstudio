@@ -1,8 +1,33 @@
 # LaTeX
-  
+
+## Page Orientation
+
+````{verbatim label = "landscape"}
+```{=tex}
+\begin{landscape}
+```
+
+Here is anything that needs to be displayed in landscape mode.
+
+```{=tex}
+\end{landscape}
+```
+
+````
+
+```{=tex}
+\begin{landscape}
+```
+
+Here is anything that needs to be displayed in the landscape mode.
+
+```{=tex}
+\end{landscape}
+```
+
 ## List of tables and figures  
   
-Normally, the caption for list of tables and list of figures is shown no matter tables or figures exist. i found a solution for only displaying a list if there's an item available for that `r render_with_emojis("((ref:table))")`. That code is in *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* under the corresponding caption as a comment. Using the package *xassoccnt* triggers the warning:  
+Normally, the caption for a list of tables and a list of figures is shown no matter whether tables or figures exist. i found a solution for only displaying a list if there's an item available for that `r render_with_emojis("((ref:table))")`. That code is in *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* under the corresponding caption as a comment. Using the package *xassoccnt* triggers the warning:  
   
 > Warning: Package xassoccnt Warning: Warning: Package "calc" is loaded -- this is not\  
 > Warning: (xassoccnt)                recommended for xassoccnt\  
@@ -291,7 +316,116 @@ Empty lines aren't allowed.
 
 ### Units
 
-For units, there's the package *siunitx* that only works for PDF output. As it does some automation i liked to use it. However, there's no working implementation for *MathJax* that translates between `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` and HyperText Markup Language (HTML) because i write all the units manually.
+For units, there's the package *siunitx* that only works for PDF output. As it does some automation i like to use it. It keeps the spacing between the scalar and its unit smaller than around it. However, there's no working implementation for *MathJax* that translates between `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` and HyperText Markup Language (HTML).
+
+```{verbatim label = "qty"}
+$\qty{5}{\percent}$ $\ce{K2Cr2O7}$
+
+```
+
+$\qty{5}{\percent}$ $\ce{K2Cr2O7}$.
+
+```{verbatim label = "num"}
+$\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
+
+```
+
+$\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
+
+```{verbatim label = "ml"}
+\qty{1}{\ml}
+
+```
+
+$$\qty{1}{\ml}.$$
+
+```{verbatim label = "min"}
+Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
+
+```
+
+Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
+
+```{verbatim label = "per"}
+$$\unit{\mole\per\cubic\meter}.$$
+
+```
+
+$$\unit{\mole\per\cubic\meter}.$$
+
+```{verbatim label = "mol"}
+$$\unit{\kg\per\mol}$$.
+```
+
+$$\unit{\kg\per\mol}$$.
+
+```{verbatim label = "nm"}
+Juhendis on esitatud, et selle aine
+molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on
+$\num{34300}$.
+
+```
+
+Juhendis on esitatud, et selle aine
+molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on
+$\num{34300}$.
+
+```{verbatim label = "l"}
+õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.
+
+```
+
+õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.
+
+```{verbatim label = "g"}
+Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).
+```
+
+Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).
+
+```{verbatim label = "pm"}
+$\qty{56,08 \pm 0,07}{\degreeCelsius}$.
+
+```
+
+$\qty{56,08 \pm 0,07}{\degreeCelsius}$.
+
+```{verbatim label = "qtyrange"}
+Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.
+
+```
+
+Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.
+
+For including R's values for `qty`, they need to be converted into characters:
+
+Valguse kiirus vaakumis:
+
+```{r label = "speed-of-light"}
+speed_of_light_in_vacuum <- 299792458
+
+```
+
+````{verbatim label = "R-for-qty"}
+```{=tex}
+\begin{align}
+c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
+(\#eq:speed-of-light-in-vacuum)
+\end{align}
+
+```
+
+````
+
+```{=tex}
+\begin{align}
+c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
+(\#eq:speed-of-light-in-vacuum)
+\end{align}
+
+```
+
+`r render_with_emojis(text = "((ref:bureau-1974-the), p. 127)")`.
 
 ### Calculus
 
@@ -359,11 +493,11 @@ $$p \ll .05.$$
 ### Greek letters
 
 ```{verbatim label = "eta", language = "latex"}
-\\epsilon, \\eta.
+\\Delta, \\epsilon, \\eta, \\nu.
 
 ```
 
-$$\epsilon, \eta.$$
+$$\Delta, \epsilon, \eta, \nu.$$
 
 ## Text
 
@@ -404,6 +538,19 @@ $$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\c
 
 $$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\\
 \color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}$$
+
+```{verbatim label = "ce_with_superscript_subscript"}
+Aldehüüd on redutseerija ja redutseerib komplekseeritud vask(II)iooni
+vask(I)oksiidiks:
+
+$$\ce{2Cu^2+}_\text{complexed}\ce{+2OH- + 2e- -> Cu2O + H2O}.$$
+
+```
+
+Aldehüüd on redutseerija ja redutseerib komplekseeritud vask(II)iooni
+vask(I)oksiidiks:
+
+$$\ce{2Cu^2+}_\text{complexed}\ce{+2OH- + 2e- -> Cu2O + H2O}.$$
 
 ### Electron configuration
 
@@ -483,6 +630,110 @@ This is how to display the Lewis dot diagram for sulfur using angles:
 \Charge{0 = \:, 90 = \:, 180 = \., 270 = \.}{S}
 
 ```
+
+### Molecular schemas
+
+*chemfig* is useful for drawing molecular schemas as seen in the schema \@ref(eq:copper-glycerate) on the page `r render_pageref(reference = "eq:copper-glycerate")`.
+
+```{verbatim label = "molecular-diagram", language = "latex"}
+\begin{align}
+\chemfig{
+    H-[:30]
+    O-[:-30]
+    -[:30](-[:90]O-[:150]H)
+    -[:-30](=[:-90]O)
+    -[:30]
+    O(-[:90]H)
+    -[:-30,,,,dash pattern=on 1pt off 1pt]
+    Cu-[:30,,,,dash pattern=on 1pt off 1pt]
+    O(-[:90]H)
+    -[:-30](=[:-90]O)
+    -[:30](-[:90]O-[:30]H)
+    -[:-30]
+    -[:30]
+    O-[:-30]
+    H
+} `r render_with_emojis(text = "((ref:pubchem-copper))")`.
+(\#eq:copper-glycerate)
+\end{align}
+
+```
+
+```{=latex}
+\begin{align}
+\chemfig{
+    H-[:30]
+    O-[:-30]
+    -[:30](-[:90]O-[:150]H)
+    -[:-30](=[:-90]O)
+    -[:30]
+    O(-[:90]H)
+    -[:-30,,,,dash pattern=on 1pt off 1pt]
+    Cu-[:30,,,,dash pattern=on 1pt off 1pt]
+    O(-[:90]H)
+    -[:-30](=[:-90]O)
+    -[:30](-[:90]O-[:30]H)
+    -[:-30]
+    -[:30]
+    O-[:-30]
+    H
+} `r render_with_emojis(text = "((ref:pubchem-copper))")`.
+(\#eq:copper-glycerate)
+\end{align}
+
+```
+
+A more complicated molecular diagram is represented as the schema \@ref(eq:Cu-II-glycerate) on the page `r render_pageref(reference = "eq:Cu-II-glycerate")`.
+
+```{verbatim label = "more-complicated-molecular-diagram", language = "latex"}
+\begin{align}
+\chemfig{
+\underbrace{\chemfig{H-[:180]O-[:180]-[:-90](-[:-90]-O(-[:30,,,,dash pattern=on 1pt off 1pt])-[:-90]H)-O-[:-30]Cu-[:-30]O-(-[:90]-[:180]O(-[:-150,,,,dash pattern=on 1pt off 1pt])-[:90]H)-[:-90]-[:180]O-[:180]H}}_\text{vask(II)glütseraat}.
+(\#eq:Cu-II-glycerate)
+\end{align}
+
+```
+
+```{=latex}
+\begin{align}
+\underbrace{\chemfig{H-[:180]O-[:180]-[:-90](-[:-90]-O(-[:30,,,,dash pattern=on 1pt off 1pt])-[:-90]H)-O-[:-30]Cu-[:-30]O-(-[:90]-[:180]O(-[:-150,,,,dash pattern=on 1pt off 1pt])-[:90]H)-[:-90]-[:180]O-[:180]H}}_\text{vask(II)glütseraat}.
+(\#eq:Cu-II-glycerate)
+\end{align}
+
+```
+
+```{verbatim label = "cyclic-structure", language = "latex"}
+Vesi ja hüdroksübenseen (fenool `r render_with_emojis(text = "((ref:haynes-2014-crc), p. 3-446)")`, $\chemfig{*6(-=-=(-OH)-=)}\qquad$ `r render_with_emojis(text = "((ref:haynes-2014-crc), p. 3-447)")`, tsükloalkeen) omavahel ei lahustu, sest hüdrofoobseid süsinikke on võrdlemisi palju.
+
+```
+
+Vesi ja hüdroksübenseen (fenool `r render_with_emojis(text = "((ref:haynes-2014-crc), p. 3-446)")`, $\chemfig{*6(-=-=(-OH)-=)}\qquad$ `r render_with_emojis(text = "((ref:haynes-2014-crc), p. 3-447)")`, tsükloalkeen) omavahel ei lahustu, sest hüdrofoobseid süsinikke on võrdlemisi palju.
+
+```{verbatim label = "more-complicated-cyclic-structure", language = "latex"}
+1,3-benseendiool ($\chemfig{*6(-=(-\ce{OH})-=(-\ce{OH})-=)}$, resortsiin `r render_with_emojis(text = "(ref:haynes-2014-crc), p. 3-480")`).
+
+```
+
+1,3-benseendiool ($\chemfig{*6(-=(-\ce{OH})-=(-\ce{OH})-=)}$, resortsiin `r render_with_emojis(text = "(ref:haynes-2014-crc), p. 3-480")`).
+
+```{verbatim label = "complex-equality", language = "latex"}
+Hüdroksübenseen reageeris raudkloriidiga niimoodi:
+
+$$\ce{3} \chemfig{*6(-=-=(-\ce{OH})-=)} \ce{+ FeCl3 ->}
+\chemfig{
+    *6(-=-(-O-[:30]Fe(-[:90]O(-[:90]*6(-=-=-=)))-[:-30]O-[:-30]*6(-=-=-=))=-=)
+}
+\ce{+ 3HCl}.$$
+
+```
+
+Hüdroksübenseen reageeris raudkloriidiga niimoodi:
+
+$$\ce{3} \chemfig{*6(-=-=(-\ce{OH})-=)} \ce{+ FeCl3 ->}
+\chemfig{
+    *6(-=-(-O-[:30]Fe(-[:90]O(-[:90]*6(-=-=-=)))-[:-30]O-[:-30]*6(-=-=-=))=-=)
+}
+\ce{+ 3HCl}.$$
 
 ## Physics
 

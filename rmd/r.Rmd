@@ -45,7 +45,16 @@ is.null(variable)
 
 ```
 
-### Converting to numeric
+### Stopping execution
+
+```{r label = "stop", eval = FALSE}
+stop("error message")
+
+```
+
+## Numbers
+
+### Converting a string to a number
 
 ```{r label = "as-numeric"}
 number = "3"
@@ -55,6 +64,36 @@ numeric_number <- as.numeric(number)
 str(numeric_number)
 
 ```
+
+### Sequencing
+
+```{r label = "seq"}
+seq(0, 14, 2)
+
+```
+
+### Rounding
+
+#### Normal rounding
+
+```{r label = "round"}
+round(123.456, digits = 1)
+
+```
+
+#### Significant digits
+
+For printing only significant digits, there's the function `signif` which takes two parameters: the initial number `x` and the number of significant digits `digits`:
+
+```{r label = "signif"}
+number <- 123.456
+
+number_with_significant_digits <- signif(x = number, digits = 4)
+print(number_with_significant_digits)
+
+```
+
+## Time
 
 ### Converting to time
 
@@ -73,12 +112,25 @@ str(string_of_time_as_time)
 
 `r render_with_emojis("((ref:lubridate))")`.
 
-### Stopping execution
+### Parts of time
 
-```{r label = "stop", eval = FALSE}
-stop("error message")
+For *ms*, the package *lubridate* is needed. This function extracts the minutes and seconds.
+
+```{r label = "ms"}
+time <- "2:53"
+parsed_time <- ms(time)
+print(parsed_time)
 
 ```
+
+The time in the last minute is $\qty{`r parsed_time`}{\s}$.
+
+```{r label = "ms-as-numeric"}
+s <- as.numeric(parsed_time)
+
+```
+
+The time is $\qty{`r s`}{\s}$.
 
 ## Array
 
@@ -302,35 +354,6 @@ adorn_totals(dat = head(subset(x = washing_cycles_with_full_records, select = c(
 ```
 
 `r render_with_emojis("((ref:adorn-totals))")`.
-
-### Sequencing
-
-```{r label = "seq"}
-seq(0, 14, 2)
-
-```
-
-## Rounding
-
-### Normal rounding
-
-```{r label = "round"}
-round(123.456, digits = 1)
-
-```
-
-
-### Significant digits
-
-For printing only significant digits, there's the function `signif` which takes two parameters: the initial number `x` and the number of significant digits `digits`:
-
-```{r label = "signif"}
-number <- 123.456
-
-number_with_significant_digits <- signif(x = number, digits = 4)
-print(number_with_significant_digits)
-
-```
 
 ## Functions
 
@@ -653,7 +676,8 @@ washing_cycles_with_full_records <- washing_cycles_with_full_records %>%
   "%Y.%m.%d %H:%M:%S",
   "%m.%d.%Y %H:%M",
   "%m.%d.%Y %H:%M:%S"
-)))
+))) %>%
+   mutate(`veekulu_dal` = (as.numeric(washing_cycles_with_full_records$Veenäit.pärast) - washing_cycles_with_full_records$Veenäit.enne) * 100)
 
 min_time = min(washing_cycles_with_full_records$Algus)
 max_time = max(washing_cycles_with_full_records$Algus)
@@ -663,9 +687,9 @@ librarian::shelf(c(
   "latex2exp"
 ))
 
-ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Algus`, y = `Veekulu..l.`)) +
+ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Algus`, y = `veekulu_dal`)) +
   geom_point(shape = 23, color = "#008000", fill = "#008000", size = 3) +
-  labs(x = "Algus", y = TeX("$\\frac{\\textit{V}}{m^3}$")) +
+  labs(x = "Algus", y = TeX("$\\frac{\\textit{V} \\times 10^2}{m^3}$")) +
   geom_point(mapping = aes(x = `Algus`, y = `kWh`), color = "#ff6600", fill = "#ff6600", shape = 24, size = 3)  +
   scale_y_continuous(sec.axis = sec_axis(~., name = TeX("\\frac{\\textit{W}}{kWh}"))) +
   theme(axis.title.y = element_text(colour = "#008000"), axis.text.y = element_text(colour = "#008000"), axis.ticks.y = element_line(colour = "#008000"), axis.title.y.right = element_text(colour = "#ff6600"), axis.ticks.y.right = element_line(colour = "#ff6600"), axis.text.y.right = element_text(colour = "#ff6600"))
@@ -684,11 +708,17 @@ librarian::shelf(c(
   "latex2exp"
 ))
 
+if (!decimal_separator_period) { # for stat_regline_equation and stat_cor
+  options(OutDec = ".")
+}
 ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Veekulu..l.`, y = `kWh`)) +
   geom_point(shape = 23, color = "#ff6600", fill = "#ff6600", size = 3) +
   labs(x = TeX("$\\frac{\\textit{V}}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
   stat_regline_equation(mapping = aes(x = `Veekulu..l.`, y = `kWh`, label = paste(..eq.label.., ..rr.label.., ..adj.rr.label.., sep = "~~~~")), color = "#ff6600", label.y = 3) +
   stat_cor(aes(x = `Veekulu..l.`, y = `kWh`), color = "#ff6600", label.y = 2.5)
+if (!decimal_separator_period) {
+  options(OutDec = ",")
+}
 
 ```
 
@@ -703,13 +733,17 @@ librarian::shelf(c(
   "latex2exp"
 ))
 
-margin_of_V <- 2 * .001 / 2
+margin_of_V <- 1e-3 / 2 * 2 * 1e2
 margin_of_W <- .1 / 2
 
-ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Veekulu..l.`, y = `kWh`)) +
-  geom_point(shape = 23, color = "#ff6600", fill = "#ff6600", size = 1) +
-  labs(x = TeX("$\\frac{\\textit{V}}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
-  geom_errorbarh(aes(xmin = `Veekulu..l.` - margin_of_V, xmax = `Veekulu..l.` + margin_of_V, y = `kWh`)) +
-  geom_errorbar(aes(x = `Veekulu..l.`, ymin = `kWh` - margin_of_W, ymax = `kWh` + margin_of_W))
+color_x <- "#008000"
+color_y <- "#ff6600"
+
+ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `veekulu_dal`, y = `kWh`)) +
+  geom_point(shape = 23, size = 1) +
+  labs(x = TeX("$\\frac{\\textit{V} \\times 10^2}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
+  geom_errorbarh(aes(xmin = `veekulu_dal` - margin_of_V, xmax = `veekulu_dal` + margin_of_V, y = `kWh`), color = color_x) +
+  geom_errorbar(aes(x = `veekulu_dal`, ymin = `kWh` - margin_of_W, ymax = `kWh` + margin_of_W), color = color_y) +
+  theme(axis.title.x = element_text(colour = color_x), axis.text.x = element_text(colour = color_x), axis.ticks.x = element_line(colour = color_x), axis.title.y = element_text(colour = color_y), axis.text.y = element_text(colour = color_y), axis.ticks.y = element_line(colour = color_y))
 
 ```

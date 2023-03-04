@@ -34,7 +34,7 @@ The project has the following mandatory files:
 
 i explain the purpose and content of each file.
 
-## *<name-of-project>.Rproj*
+## *project.Rproj*
 
 This is the project metadata file for RStudio Server.
 
@@ -271,6 +271,13 @@ bibliography: [references.bib]
 This is the reference to the [bibliography file](#book_bib).
 
 ```
+csl: apa.csl
+
+```
+
+This is the reference to the style of American Psychological Assotiation.
+
+```
 link-citations: yes
 
 ```
@@ -309,7 +316,12 @@ i want the result of running the source code to be printed into the same box ins
 
 i want the source code to be displayed.
 
-Further one in the same block of *knitr* options, there's hooking that creates line numbers for source code blocks as comments at the end of each line as described in `r render_with_emojis("(ref:riederer-122)")`. This hook is necessary as `attr.source = '.numberLines'` doesn't work for *bs4_book* and i don't like the layout of *gitbook* where that particular thing works.
+i want the code chunks to have line numbers displayed although it only works for print output:
+
+```{r eval = FALSE}
+  attr.source = '.numberLines'
+
+```
 
 Next, `librarian` is being loaded because i don't want to check manually if a particular package exists.
 
@@ -330,6 +342,8 @@ sudo apt install fonts-symbola
 
 ```
 
+It is important that all the parts of the same type look similar, so it is essential to use this function for all the external references outside presentations. we could use the font *Symbola* for everything however it does not support bold or italic text.
+
 There's also a set of commands for using units.
 
 ### Content
@@ -342,7 +356,7 @@ This file just includes the necessary ECMAScript script and can be used to inclu
 
 ## *js.js*
 
-This file contains ECMAScript script that must be included in the header of the webpage. The link for the Portable-Document-Format-(PDF)file must be changed here.
+This file contains ECMAScript script that must be included in the header of the webpage. The link for the Portable-Document-Format-(PDF)file must be changed here. In this file, the file names for the presentation(s) must be set if there are some presentations available.
 
 ## *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* []{#preamble_file}
 

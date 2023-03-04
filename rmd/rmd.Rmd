@@ -18,6 +18,13 @@ The caption for references must be unnumbered so i did with the corresponding co
 
 ````
 
+The latter result can be achieved using a shorter form:
+
+````{verbatim label = "caption-unnumbered", language = "markdown"}
+# References {-}
+
+````
+
 ## Paragraphs
 
 Paragraphs are separated by two line-breaks:
@@ -192,7 +199,7 @@ A link for a common target:
 
 ### External reference
 
-For having an external reference, i put its *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* block into *references.bib*. i seldom create it manually. Instead, i use the help of MyBib `r render_with_emojis(text = "((ref:MyBib))")` where i *Start a new project* for every project, *Add Citation*, *Download References* as *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*, copy the lastly added reference from the downloaded file into *references.bib* so that the items there are listed alphabetically. Another such helper is BibGuru `r render_with_emojis(text = "((ref:noauthor-nodate-tf))")`.
+For having an external reference, i put its *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* block into *references.bib*. i seldom create it manually. Instead, i use the help of MyBib `r render_with_emojis(text = "((ref:MyBib))")` where i *Start a new project* for every project, *Add Citation*, *Download References* as *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*, copy the lastly added reference from the downloaded file into *references.bib* so that the items there are listed alphabetically. Another such helper is BibGuru [@noauthor_undated_tf].
 
 As there's a problem to display emojis and they appear seldom then i only use the emoji-able font *Symbola* that can't italics nor bold only for strings that contain emojis. External references can contain them. This is why all the external references will be rendered using *Symbola*. For that, i created a function called `render_with_emojis` that can't handle references directly but over inner reference because of the corresponding *bookdown* restriction. Therefore, for every record in the list of external references, i also create an inner reference into the end of the file *references.Rmd* like this:
 
@@ -209,6 +216,24 @@ For inline referencing, wherever i want to have a reference to that reference re
 i use MyBib `r render_with_emojis("((ref:<identifier-of-inner-reference-in-snake-case>))")`.
 
 `r render_with_emojis("(ref:<identifier-of-inner-reference-in-snake-case>)")` automates creating references.
+
+````
+
+As for numeric referencing, the identifier is not textual, so we can use a short version for referencing whereas the identifier is the one in the BIB-file:
+
+````{verbatim label = "external-reference-short"}
+i use MyBib [@<identifier-of-inner-reference-in-snake-case>].
+
+@<identifier-of-inner-reference-in-snake-case> automates creating references.
+
+````
+
+If the exact location in the source is necessary to refer to then it can be added to the reference part in the short version by separating it from the identifier with a comma and preceding it with *p. * which is short for *page* or *pages*. One can also use the corresponding short in another language. For minutes in a video, the short could be *min*. The rule:
+
+````{verbatim label = "external-reference-short-with-location"}
+i use MyBib [@<identifier-of-inner-reference-in-snake-case>, p. <range>].
+
+@<identifier-of-inner-reference-in-snake-case>, p. <range> automates creating references.
 
 ````
 

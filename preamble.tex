@@ -43,5 +43,17 @@
 \usepackage{elements}
 \usepackage{modiagram}
 \usepackage{chemfig}
-\usepackage{fdsymbol}
+\usepackage{fdsymbol} % for nequal
 \usepackage{circuitikz}
+
+\pretolerance 16384
+
+\usepackage{gensymb} % \celsius
+
+\usepackage{siunitx}
+\sisetup{
+  input-decimal-markers = {.,},
+  output-decimal-marker = {,},
+  separate-uncertainty,
+  separate-uncertainty-units = repeat
+}

@@ -21,6 +21,7 @@ mainfont: DejaVu Serif # for displaying both Chinese symbols and emojis
 CJKmainfont: Droid Sans Fallback
 
 bibliography: [references.bib]
+csl: apa.csl
 link-citations: yes
 
 lof: yes
@@ -32,21 +33,12 @@ lot: yes
 # example chunk options set globally
 knitr::opts_chunk$set(
   collapse = TRUE,
-  echo = TRUE
+  echo = TRUE,
+  attr.source = '.numberLines'
 )
 
-local({
-  hook_source <- knitr::knit_hooks$get('source')
-  knitr::knit_hooks$set(source = function(x, options) {
-    x <- xfun::split_lines(x)
-    n <- nchar(x, 'width')
-    i <- seq_along(x)  # line numbers
-    n <- n + nchar(i)
-    s <- knitr:::v_spaces(max(n) - n)
-    x <- paste(x, s, '  # ', i, sep = '', collapse = '\n')
-    hook_source(x, options)
-  })
-})
+options(OutDec = ".")
+decimal_separator_period = TRUE # for stat_regline_equation and stat_cor
 
 if (!require("librarian")) {
   install.packages("librarian", dependencies = TRUE)
@@ -110,7 +102,7 @@ print_table <- function(table, caption, digits = 2, additional_header = NULL, fo
       table,
       bootstrap_options = c("striped", "bordered", "condensed", "responsive", "hover"),
       latex_options = c("striped", "repeat_header"),
-      # repeat_header_text = paste(caption, "$\\textit{(Jätkub...)}$"),
+      repeat_header_text = paste(caption, "$\\textit{(Continued...)}$"),
       repeat_header_method = "replace",
       repeat_header_continued = TRUE # "Tabel järgneb järgmisel leheküljel..."
     ))
@@ -174,10 +166,17 @@ render_font <- function(text, to_italic = TRUE) {
 #' This function renders the given text having emojis correctly because it uses a font that supports them. That font can't display anything in bold nor italic.
 #' 
 #' @param text the given text that contains emojis
+#' @param escape Do we need to double-escape because we call the function from a table generation function?
 #' 
 #' @returns the input text with the emoji font
-render_with_emojis <- function(text) {
-  return(paste("\\fontspec{Symbola}", text, "\\fontspec{DejaVu Serif}{}", sep = ""))
+render_with_emojis <- function(text, escape = FALSE) {
+  
+  if (escape) {
+    return(paste("\\\\fontspec{Symbola}", text, "\\\\fontspec{DejaVu Serif}{}", sep = ""))
+  } else {
+    return(paste("\\fontspec{Symbola}", text, "\\fontspec{DejaVu Serif}{}", sep = ""))
+  }
+
 }
 
 #' This function renders a reference to a page as it cannot be used in the web output.
@@ -215,7 +214,7 @@ render_color <- function(color, text) {
 
 ```
 
-# Introduction
+# Introduction {-}
 
 Once upon a time, a student asked me to help him in R. i had no experience with R, however i gave it a chance. i installed RStudio Server. Months passed after my first use until i needed it for my stuff. i was studying statistics in a university and our teacher wanted us to create our solutions using a spreadsheet program. i saw that using R, i could learn more useful stuff and moved on RStudio Server. i learnt to create output using *bookdown* which is a library that can be used for creating websites or e-books while including calculations and graphs. As *bookdown* has a steap learning curve, i want to elaborate it here. Template strings are marked with angle brackets.
 
@@ -231,7 +230,7 @@ Currently, *bookdown* supports all of them.
 
 we can see the workflow of from the written markdown to the ready output on the figure \@ref(fig:workflow).
 
-```{r label = "workflow", fig.cap = paste("The workflow from the written markdown to the ready output using *bookdown*", render_with_emojis(text = "((ref:riederer-122))"), ".", sep = "")}
+```{r label = "workflow", fig.cap = paste("The workflow from the written markdown to the ready output using *bookdown*", render_with_emojis(text = "((ref:riederer-21))"), ".", sep = "")}
 include_external_graphics("rmd/workflow.png")
 
 ```

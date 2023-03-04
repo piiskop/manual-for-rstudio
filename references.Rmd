@@ -19,6 +19,8 @@
 
 (ref:adorn-totals) @adorn_totals
 
+(ref:bureau-1974-the) @bureau_1974_the
+
 (ref:cell-spec) @cell_spec
 
 (ref:create) @create
@@ -28,6 +30,8 @@
 (ref:footnote) @footnote
 
 (ref:ggplot2) @ggplot2
+
+(ref:haynes-2014-crc) @haynes_2014_crc
 
 (ref:inserting) @inserting
 
@@ -43,17 +47,15 @@
 
 (ref:markdown) @markdown
 
-(ref:noauthor-undated-tf) @noauthor_undated-tf
-
 (ref:options) @options
+
+(ref:pubchem-copper) @pubchem_copper
 
 (ref:r) @r
 
 (ref:r-language) @r_language
 
 (ref:r-linebreak-in-title) @r_linebreak_in_title
-
-(ref:riederer-122) @riederer_122
 
 (ref:riederer-21) @riederer_21
 
