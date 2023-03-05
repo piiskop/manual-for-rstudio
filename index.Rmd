@@ -1,14 +1,12 @@
 --- 
 site: bookdown::bookdown_site
 
-author: "peacecop kalmer:"
 colorlinks: TRUE
-date: "`r Sys.Date()`"
 description: "This is the manual for creating content using RStudio Server."
 lang: en
-title: |
-    Manual for creating content using  
-    RStudio Server
+include-before:
+    - \input{title-page.tex}
+title: "`r if (knitr::is_latex_output()) { '' } else { 'Manual for creating content<br/>using<br/>RStudio Server' }`"
 
 documentclass: book
 papersize: a4
@@ -21,7 +19,7 @@ mainfont: DejaVu Serif # for displaying both Chinese symbols and emojis
 CJKmainfont: Droid Sans Fallback
 
 bibliography: [references.bib]
-csl: apa.csl
+csl: apa-numeric-superscript-brackets.csl
 link-citations: yes
 
 lof: yes
@@ -230,7 +228,7 @@ Currently, *bookdown* supports all of them.
 
 we can see the workflow of from the written markdown to the ready output on the figure \@ref(fig:workflow).
 
-```{r label = "workflow", fig.cap = paste("The workflow from the written markdown to the ready output using *bookdown*", render_with_emojis(text = "((ref:riederer-21))"), ".", sep = "")}
+```{r label = "workflow", fig.cap = "The workflow from the written markdown to the ready output using *bookdown* [@riederer_21]."}
 include_external_graphics("rmd/workflow.png")
 
 ```

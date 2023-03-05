@@ -24,7 +24,7 @@ print(2)
 
 ### Datatype
 
-For figuring out the datatype `r render_with_emojis(text = "((ref:zach-2021-how))")`:
+For figuring out the datatype [@zach_2021_how]:
 
 ```{r label = "datatype"}
 class(2)
@@ -110,7 +110,7 @@ str(string_of_time_as_time)
 
 ```
 
-`r render_with_emojis("((ref:lubridate))")`.
+[@lubridate].
 
 ### Parts of time
 
@@ -232,7 +232,7 @@ coloured_cell <- cell_spec(data_frame[, 2], color = "red")
 
 ```
 
-`r coloured_cell` `r render_with_emojis("((ref:cell-spec))")`
+[@cell_spec].
 
 ### Editing the content
 
@@ -242,7 +242,7 @@ mutate(data_frame, "array 2" = "mutated")
 
 ```
 
-`r render_with_emojis("((ref:create))")`.
+[@create].
 
 ### Size
 
@@ -270,7 +270,7 @@ print(data_frame$`array 2`)
 
 ```
 
-`r render_with_emojis("((ref:r-language))")`.
+[@r_language].
 
 ### Subsetting
 
@@ -284,7 +284,7 @@ print(head(washing_cycles_with_full_records))
 
 ```
 
-`r render_with_emojis("((ref:subset))")`.
+[@subset].
 
 This was how to remove incomplete records by manually setting the columns that contain empty records. There is a move convenient method to do that without specifying columns:
 
@@ -293,7 +293,7 @@ washing_cycles_with_full_records <- washing_cycles[complete.cases(washing_cycles
 
 ```
 
-`r render_with_emojis("((ref:r-language))")`.
+[@r_language].
 
 i only want to see the data in the column `Kava`:
 
@@ -336,7 +336,7 @@ desc(subset(head(washing_cycles_with_full_records), select = `Kava`))
 
 ```
 
-`r render_with_emojis("((ref:dplyr), p. 7, 21)")`.
+[@dplyr, p. 7, 21].
 
 Sorting values in ascending order according to the program:
 
@@ -353,7 +353,7 @@ adorn_totals(dat = head(subset(x = washing_cycles_with_full_records, select = c(
 
 ```
 
-`r render_with_emojis("((ref:adorn-totals))")`.
+[@adorn_totals].
 
 ## Functions
 
@@ -416,7 +416,7 @@ print(sum) # printing out the value of sum
 
 Strings can be written using either apostrophes or quotation marks.
 
-For substituting something inside a string, `gsub` can be used `r render_with_emojis("((ref:r))")`:
+For substituting something inside a string, `gsub` can be used [@r]:
 
 ```{r label = "gsub"}
 gsub("_", "\\_", array, fixed = TRUE)
@@ -444,7 +444,7 @@ print_table(
 
 ```
 
-If i want to apply a function to all the values inside a data frame, i use `sapply` `r render_with_emojis(text = "((ref:lathiya-2022-sapply))")`:
+If i want to apply a function to all the values inside a data frame, i use `sapply` [@lathiya_2022_sapply]:
 
 ```{r label = "sapply"}
 sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE))
@@ -477,7 +477,7 @@ print_table(
 
 ```
 
-`r render_with_emojis("((ref:dplyr), p. 38 to 42)")`.
+[@dplyr, p. 38 to 42].
 
 Inside the table, backslashes must be escaped.
 
@@ -490,7 +490,7 @@ print_table(
 
 ```
 
-It's also possible for the table to have an additional header whose columns span over multiple columns in the first header `r render_with_emojis(text = "((ref:add-header-above))")`:
+It's also possible for the table to have an additional header whose columns span over multiple columns in the first header [@add_header_above]:
 
 ```{r label = "table-with-additional-header"}
 print_table(
@@ -558,7 +558,7 @@ print_table(
 
 ```
 
-`threeparttable` must be set to `TRUE` for just in case the footnote is too long for the width of the paper `r render_with_emojis(text = "((ref:footnote))")`.
+`threeparttable` must be set to `TRUE` for just in case the footnote is too long for the width of the paper [@footnote].
 
 By default, i feed one-dimensional arrays to data frame and the values of these arrays will be displayed from to to down. If i want them to be displayed from left to right, i have to transform the table:
 
@@ -608,7 +608,7 @@ log(exp(1))
 An example of plotting data is putting data points to the plot - visible on the figure \@ref(fig:ggplot) on the page `r render_pageref(reference = "fig:ggplot")`. The packages:
 
 `ggplot2`
-: for plotting `r render_with_emojis("((ref:ggplot2))")`
+: for plotting [@ggplot2]
 
 `latex2exp`
 : for using `r render_nonmath_LaTeX_string_universal("\\LaTeX")` strings in labels

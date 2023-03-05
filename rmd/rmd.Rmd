@@ -72,7 +72,7 @@ ssh-keygen
 
 i keep an empty line at the end of the code block content because if i want to use a keyboard shortcut for commenting out it only works if the last line is empty.
 
-If the language is `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` or `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` then the language must not only be in lowercase but have a preceding `=` `r render_with_emojis("((ref:riederer-611))")`:
+If the language is `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` or `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` then the language must not only be in lowercase but have a preceding `=` [@riederer_611]:
 
 ````{verbatim, lang = "latex"}
 ```{=latex eval = FALSE}
@@ -100,7 +100,7 @@ If i want to show a code-block without rendering it, i use a `verbatim` block as
 
 `````
 
-For `verbatim` to work, it has to have at least one more backtick than the outermost inner block `r render_with_emojis("((ref:riederer-56))")`.
+For `verbatim` to work, it has to have at least one more backtick than the outermost inner block [@riederer_56].
 
 ### Inline
 
@@ -124,7 +124,7 @@ For quoting, i use `>` at the beginning of each line of the quote.
 
 > \<the quoted text\>
 
-It's also possible to do a multi-line quote by adding two spaces at the end of each line which means a line break `r render_with_emojis("((ref:markdown))")`:
+It's also possible to do a multi-line quote by adding two spaces at the end of each line which means a line break [@markdown]:
 
 ```{verbatim label = "multi-line-quote", language = "markdown"}
 > <first line of the quote>  
@@ -199,9 +199,9 @@ A link for a common target:
 
 ### External reference
 
-For having an external reference, i put its *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* block into *references.bib*. i seldom create it manually. Instead, i use the help of MyBib `r render_with_emojis(text = "((ref:MyBib))")` where i *Start a new project* for every project, *Add Citation*, *Download References* as *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*, copy the lastly added reference from the downloaded file into *references.bib* so that the items there are listed alphabetically. Another such helper is BibGuru [@noauthor_undated_tf].
+For having an external reference, i put its *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* block into *references.bib*. i seldom create it manually. Instead, i use the help of MyBib [@a1970_] where i *Start a new project* for every project, *Add Citation*, *Download References* as *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*, copy the lastly added reference from the downloaded file into *references.bib* so that the items there are listed alphabetically. Another such helper is BibGuru [@noauthor_undated_tf].
 
-As there's a problem to display emojis and they appear seldom then i only use the emoji-able font *Symbola* that can't italics nor bold only for strings that contain emojis. External references can contain them. This is why all the external references will be rendered using *Symbola*. For that, i created a function called `render_with_emojis` that can't handle references directly but over inner reference because of the corresponding *bookdown* restriction. Therefore, for every record in the list of external references, i also create an inner reference into the end of the file *references.Rmd* like this:
+As there's a problem to display emojis and they appear seldom then i only use the emoji-able font *Symbola* that can't italics nor bold only for strings that contain emojis. External references can contain them. This is why all the external references will be rendered using *Symbola*. For that, i created a function called `render_with_emojis` that can't handle references directly but over inner reference because of the corresponding *bookdown* restriction. Therefore, for every record in the list of external references, i also created an inner reference into the end of the file *references.Rmd* like this:
 
 ```{verbatim label = "example-of-inner-reference-for-external-reference"}
 (ref:<identifier-of-inner-reference-in-snake-case>) @<identifier-of-external-reference-as-is>
@@ -210,7 +210,7 @@ As there's a problem to display emojis and they appear seldom then i only use th
 
 The identifier of the inner reference isn't allowed to contain underscores. Between every inner reference, at least one empty line must be.
 
-For inline referencing, wherever i want to have a reference to that reference record i call `render_with_emojis` and feed it with a value for `text` as the identifier of the internal reference in parenthesis if the reference is direct and in double parenthesis if indirect:
+For inline referencing, wherever i wanted to have a reference to that reference record i called `render_with_emojis` and fed it with a value for `text` as the identifier of the internal reference in parenthesis if the reference is direct and in double parenthesis if indirect:
 
 ````{verbatim label = "external-reference"}
 i use MyBib `r render_with_emojis("((ref:<identifier-of-inner-reference-in-snake-case>))")`.
@@ -219,7 +219,7 @@ i use MyBib `r render_with_emojis("((ref:<identifier-of-inner-reference-in-snake
 
 ````
 
-As for numeric referencing, the identifier is not textual, so we can use a short version for referencing whereas the identifier is the one in the BIB-file:
+As i am using numeric referencing now, the identifier is not textual, so i use the short version for referencing whereas the identifier is the one in the BIB-file as `render_with_emojis` does not do the job in this case:
 
 ````{verbatim label = "external-reference-short"}
 i use MyBib [@<identifier-of-inner-reference-in-snake-case>].
@@ -284,7 +284,7 @@ include_external_graphics("rmd/workflow.png")
 
 ```
 
-If i want to include an external reference inside the figure caption, i have to use the function `render_with_emojis` inside the caption:
+If i want to include an external reference inside the figure caption, i had to use the function `render_with_emojis` inside the caption:
 
 ````{verbatim}
 
@@ -294,6 +294,8 @@ include_external_graphics("rmd/workflow.png")
 ```
 
 ````
+
+This is also obsolete because of numeric referencing.
 
 ```{r label = "workflow-example-with-external-reference", fig.cap = paste("The workflow from the written markdown to the ready output using *bookdown*", render_with_emojis("((ref:riederer-21))"), ".", sep = "")}
 include_external_graphics("rmd/workflow.png")
