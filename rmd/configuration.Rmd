@@ -184,6 +184,13 @@ colorlinks: TRUE
 i want that the user sees what part of the text is a link.
 
 ```
+author: "<the name of the author>"
+
+```
+
+The author's name will be displayed in the footer of the web output.
+
+```
 description: "<description of the project>"
 
 ```

@@ -2,6 +2,7 @@
 site: bookdown::bookdown_site
 
 colorlinks: TRUE
+author: "peacecop kalmer:"
 description: "This is the manual for creating content using RStudio Server."
 lang: en
 include-before:

@@ -374,6 +374,13 @@ Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ k
 
 Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
 
+```{verbatim label = "hour"}
+Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.
+
+```
+
+Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.
+
 ```{verbatim label = "K"}
 Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.
 
