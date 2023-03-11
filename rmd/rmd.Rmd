@@ -346,7 +346,7 @@ Taken from the table \@ref(tab:base-2) there are four combinations altogether po
 For figures, i created a wrapper function `include_external_graphics()` for `knitr`'s `include_graphics()` because natively, `include_graphics()` doesn't support all the necessary file types: 
 
 ````{verbatim label = "including-external-graphics"}
-```{r label = "<label of figure>", fig.cap = "<caption of figure>"}
+```{r label = "<label of figure>", echo=FALSE, fig.cap = "<caption of figure>"}
 include_external_graphics("<path-to-image-file>")
 
 ```

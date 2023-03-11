@@ -66,6 +66,15 @@ delete_merged_file: true
 During building, all the included Rmd files will be merged into one Rmd file that will be used for generating `r render_nonmath_LaTeX_string_universal("\\TeX{}")` file. That merged Rmd file is usually unnecessary, so i let RStudio Server delete it automatically.
 
 ```
+language:
+  label:
+    fig: 'Joonis '
+
+```
+
+If the language is Estonian then for web output the word *Figure* below each figure must be translated manually.
+
+```
 rmd_files: [
   "index.Rmd",
   <<rmd/...,>>
