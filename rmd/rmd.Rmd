@@ -47,6 +47,15 @@ Text can be turned to italics using asterisks around it:
 
 *\<text in italics\>*
 
+## Superscript
+
+```{verbatim label = "rmd-superscript", language = "rmarkdown"}
+2^2^
+  
+```
+
+2^2^
+
 ## Color
 
 ```{verbatim label = "render-color", language = "r"}
@@ -242,6 +251,95 @@ For example:
 A surprising piece of data is this [@haynes_2014_crc(p. 6)].
 
 [@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
+
+## Tables
+
+```{verbatim label = "table-left-alignment", language = "rmarkdown"}
+Võrdlen tabelis \@ref(tab:base-10-base-1) kümnendsüsteemi arve ühendsüsteemi arvudega.
+
+| Baas 10 | Baas 1 |
+|---------|--------|
+| 1       | 1      |
+| 2       | 11     |
+| 3       | 111    |
+| 4       | 1111   |
+
+: (\#tab:base-10-base-1) Kümnendsüsteemi ja ühendsüsteemi arvud
+
+```
+
+Võrdlen tabelis \@ref(tab:base-10-base-1) kümnendsüsteemi arve ühendsüsteemi arvudega.
+
+| Baas 10 | Baas 1 |
+|---------|--------|
+| 1       | 1      |
+| 2       | 11     |
+| 3       | 111    |
+| 4       | 1111   |
+
+: (\#tab:base-10-base-1) Kümnendsüsteemi ja ühendsüsteemi arvud.
+
+```{verbatim label = "table-right-alignment", language = "rmarkdown"}
+Kolmendsüsteemis on kasutuses kolm võimalikku erinevat numbrit, nt 0, 1 ja 2. Võrdlen tabelis \@ref(tab:bases-10-2-3) eri baaside arve.
+
+| Baas 10 | Baas 2 | Baas 3 |
+|--------:|-------:|-------:|
+|       0 |      0 |      0 |
+|       1 |      1 |      1 |
+|       2 |     10 |      2 |
+|       3 |     11 |     10 |
+|       4 |    100 |     11 |
+|       5 |    101 |     12 |
+|       6 |    110 |     20 |
+|       7 |    111 |     21 |
+|       8 |   1000 |     22 |
+|       9 |   1001 |    100 |
+
+: (\#tab:bases-10-2-3)Kümnend-, kahend- ja kolmendsüsteemi arvud
+
+```
+
+Kolmendsüsteemis on kasutuses kolm võimalikku erinevat numbrit, nt 0, 1 ja 2. Võrdlen tabelis \@ref(tab:bases-10-2-3) eri baaside arve.
+
+| Baas 10 | Baas 2 | Baas 3 |
+|--------:|-------:|-------:|
+|       0 |      0 |      0 |
+|       1 |      1 |      1 |
+|       2 |     10 |      2 |
+|       3 |     11 |     10 |
+|       4 |    100 |     11 |
+|       5 |    101 |     12 |
+|       6 |    110 |     20 |
+|       7 |    111 |     21 |
+|       8 |   1000 |     22 |
+|       9 |   1001 |    100 |
+
+: (\#tab:bases-10-2-3)Kümnend-, kahend- ja kolmendsüsteemi arvud.
+
+```{verbatim label = "table-middle-aligntment", language = "rmarkdown"}
+| Second bit | First bit |
+|:----------:|:---------:|
+|     0      |     0     |
+|     0      |     1     |
+|     1      |     0     |
+|     1      |     1     |
+
+: (\#tab:base-2)For representing a larger number, more bits on the left are needed. 0 and 1 can still be displayed using two bits while the second bit having 0-s. Once the first bit is full the second bit starts with 1 and the first bit starts over
+
+Taken from the table \@ref(tab:base-2) there are four combinations altogether possible using two bits.
+
+```
+
+Taken from the table \@ref(tab:base-2) there are four combinations altogether possible using two bits.
+
+| Second bit | First bit |
+|:----------:|:---------:|
+|     0      |     0     |
+|     0      |     1     |
+|     1      |     0     |
+|     1      |     1     |
+
+: (\#tab:base-2)For representing a larger number, more bits on the left are needed. 0 and 1 can still be displayed using two bits while the second bit having 0-s. Once the first bit is full the second bit starts with 1 and the first bit starts over
 
 ## Figures
 
