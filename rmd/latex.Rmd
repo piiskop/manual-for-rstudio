@@ -332,6 +332,13 @@ $\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
 
 $\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
 
+```{verbatim label = "numproduct"}
+Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.
+
+```
+
+Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.
+
 ```{verbatim label = "degree"}
 $$\qty{120}{\degree}$$
 
