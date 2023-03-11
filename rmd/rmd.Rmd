@@ -231,11 +231,17 @@ i use MyBib [@<identifier-of-inner-reference-in-snake-case>].
 If the exact location in the source is necessary to refer to then it can be added to the reference part in the short version by separating it from the identifier with a comma and preceding it with *p. * which is short for *page* or *pages*. One can also use the corresponding short in another language. For minutes in a video, the short could be *min*. The rule:
 
 ````{verbatim label = "external-reference-short-with-location"}
-i use MyBib [@<identifier-of-inner-reference-in-snake-case>, p. <range>].
+i use MyBib [@<identifier-of-inner-reference-in-snake-case>(p. <range>)].
 
-@<identifier-of-inner-reference-in-snake-case>, p. <range> automates creating references.
+@<identifier-of-inner-reference-in-snake-case>(p. <range>) automates creating references.
 
 ````
+
+For example:
+
+A surprising piece of data is this [@haynes_2014_crc(p. 6)].
+
+[@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
 
 ## Figures
 

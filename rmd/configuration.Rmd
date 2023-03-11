@@ -360,6 +360,18 @@ This file contains ECMAScript script that must be included in the header of the 
 
 This file contains \LaTeX inclusions for PDF output that doesn't exist in [*default.latex*](#default_latex).
 
+The decimal separator can be specified in `output-decimal-marker`:
+
+```{verbatim language = "latex"}
+\sisetup{
+  input-decimal-markers = {.,},
+  output-decimal-marker = {.},
+  separate-uncertainty,
+  separate-uncertainty-units = repeat
+}
+
+```
+
 ## *references.Rmd*
 
 This file is meant for containing the list of references.

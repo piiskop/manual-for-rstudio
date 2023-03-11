@@ -370,6 +370,18 @@ sum <- add(first = 123, second = 456, digits = 1)
 
 ```
 
+## Square root
+
+A square root can be calculated using the function `sqrt()`:
+
+```{r label = "sqrt"}
+input_for_square_root <- 4
+square_root <- sqrt(input_for_square_root)
+
+```
+
+The square root of $\num{`r as.character(input_for_square_root)`}$ is $\num{`r as.character(square_root)`}$.
+
 ## Derivation
 
 ```{r label = "derivative"}

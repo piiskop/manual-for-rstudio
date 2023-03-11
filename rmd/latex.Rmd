@@ -339,12 +339,26 @@ $$\qty{120}{\degree}$$
 
 $$\qty{120}{\degree}.$$
 
+```{verbatim label = "cm"}
+$$\qty{40.5}{\cm}.$$
+
+```
+
+$$\qty{40.5}{\cm}.$$
+
 ```{verbatim label = "ml"}
 $$\qty{1}{\ml}.$$
 
 ```
 
 $$\qty{1}{\ml}.$$
+
+```{verbatim label = "Hz"}
+$$\qty{14417}{\Hz}.$$
+
+```
+
+$$\qty{14417}{\Hz}.$$
 
 ```{verbatim label = "min"}
 Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
