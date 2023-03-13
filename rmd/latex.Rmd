@@ -549,6 +549,26 @@ $$\Delta, \epsilon, \eta, \nu.$$
 
 ## Text
 
+### Non-breaking space
+
+Without a non-breaking space:
+
+```{verbatim label = "nobreakingspace-without", language = "latex"}
+Joonistan Lewise skeemi, millele on märgitud ainult elektronid, mitte elemendi sümbol.
+
+```
+
+Joonistan Lewise skeemi, millele on märgitud ainult elektronid, mitte elemendi sümbol.
+
+With a non-breaking space [@latex]:
+
+```{verbatim label = "nobreakingspace-with", language = "latex"}
+Joonistan Lewise skeemi, millele on märgitud ainult elektronid, mitte elemendi\nobreakspace{}sümbol.
+
+```
+
+Joonistan Lewise skeemi, millele on märgitud ainult elektronid, mitte elemendi\nobreakspace{}sümbol.
+
 ### Colour
 
 ```{verbatim label = "textcolor", language = "latex"}
