@@ -212,12 +212,9 @@ A reference:
 
 ## List of references at the end
 
-```
-[<The name of the presentation>](index.html)
-
-```
-
 ````
+[<The name of the main site>](/)
+
 ## External references
 
 ```{=tex}

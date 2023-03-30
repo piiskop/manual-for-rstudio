@@ -2,28 +2,20 @@
 
 ## Page Orientation
 
-````{verbatim label = "landscape"}
-```{=tex}
+```{verbatim label = "landscape"}
 \begin{landscape}
-```
 
 Here is anything that needs to be displayed in landscape mode.
 
-```{=tex}
 \end{landscape}
+
 ```
 
-````
-
-```{=tex}
 \begin{landscape}
-```
 
 Here is anything that needs to be displayed in the landscape mode.
 
-```{=tex}
 \end{landscape}
-```
 
 ## List of tables and figures  
   
@@ -58,11 +50,10 @@ This only works for the print output as there are no pages on a webpage.
 `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")`  
   
 ## Spacing  
-  
-(ref:a2022-l-p-181) @a2022_l, p. 181
-  
+
+### Space after macro
+
 Using a macro without braces at the end removes the possible spacing from after it in PDF [@a2022_l, p. 181]:  
-  
   
 ````{verbatim label = "latex-macro-spacing"}  
 `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` <text after space>  
@@ -75,6 +66,37 @@ Using a macro without braces at the end removes the possible spacing from after 
     
 `r render_nonmath_LaTeX_string_universal("\\LaTeX")` \<text after space>  
   
+### Horizontal fill
+
+For a horizontal fill, `hfill` can be used [@how]:
+
+```{verbatim label = "hfill", language = "tex"}
+Harku
+\hfill
+2022-2023
+
+```
+
+Harku
+\hfill
+2022-2023
+  
+### Vertical fill
+
+For a vertical fill, `vfill` can be used:
+
+```{verbatim label = "vfill", language = "tex"}
+Harku
+\vfill
+2022-2023
+
+```
+
+\newpage
+Harku
+\vfill
+2022-2023
+
 ## Columns  
   
 If i want the following text to be in two columns i write:  
@@ -108,13 +130,10 @@ i'm just writing some text that will be placed in one column because it can cont
   
 After the following command, no hyphenation takes place:  
   
-````{verbatim label = "hyphenpenalty", language = "latex"}  
-```{=latex}  
+```{verbatim label = "hyphenpenalty", language = "latex"}  
 \hyphenpenalty=10000  
   
 ```  
-  
-````  
   
 ## Chinese characters  
   
@@ -541,7 +560,7 @@ $$p \ll .05.$$
 ### Greek letters
 
 ```{verbatim label = "eta", language = "latex"}
-\\Delta, \\epsilon, \\eta, \\nu.
+$$\Delta, \epsilon, \eta, \nu.$$
 
 ```
 
@@ -823,7 +842,22 @@ Current diagrams are only shown in the print form. For a current diagram, i need
 
 ```
 
-````{verbatim label = "circuitikz", language = "latex"}
+```{verbatim label = "circuitikz", language = "latex"}
+
+\begin{figure}
+\begin{circuitikz}[european]
+	\draw
+	(0, 0)	to[dcvsource, l = $E$, v_ = $r$] (0, 2)
+			to[ammeter] (2, 2)
+			to[vR, l = $R$, *-*] (2, 0) -- (0, 0);
+	\draw
+		(2, 2)	to[voltmeter] (4, 2) -- (4, 0) -- (2, 0)
+	;
+\end{circuitikz}
+  \caption{Skeem, mille järgi toimetasime.} \label{fig:schema} 
+\end{figure}
+
+```
 
 ```{=latex}
 \begin{figure}
@@ -841,20 +875,26 @@ Current diagrams are only shown in the print form. For a current diagram, i need
 
 ```
 
-````
+## New page
 
-```{=latex}
-\begin{figure}
-\begin{circuitikz}[european]
-	\draw
-	(0, 0)	to[dcvsource, l = $E$, v_ = $r$] (0, 2)
-			to[ammeter] (2, 2)
-			to[vR, l = $R$, *-*] (2, 0) -- (0, 0);
-	\draw
-		(2, 2)	to[voltmeter] (4, 2) -- (4, 0) -- (2, 0)
-	;
-\end{circuitikz}
-  \caption{Skeem, mille järgi toimetasime.} \label{fig:schema} 
-\end{figure}
+The following snippet is the code for a page break:
+
+```{verbatim label = "newpage", language = "latex"}
+\newpage
 
 ```
+
+\newpage
+
+If the new page must be empty then the following code snippet is useful:
+
+```{verbatim label = "empty-newpage", language = "latex"}
+\newpage
+\mbox{}
+\pagebreak
+
+```
+
+\newpage
+\mbox{}
+\pagebreak
