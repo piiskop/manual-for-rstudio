@@ -404,3 +404,12 @@ This file contains the styling for the web version that's not included by defaul
 
 This is the template for the title page and should be adopted according to the needs of the project.
 
+## Troubleshooting
+
+If shit hits the fan and there are overwhelming many conflicts to solve then it is easier to perform a hard reset[@marks_2020_how]:
+
+```{verbatim language = "sh"}
+git reset --hard <identifier of the commit>
+git push -f
+
+```
