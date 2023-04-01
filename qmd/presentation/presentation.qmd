@@ -2,6 +2,7 @@
 author:
   - name: 'peacecop kalmer:'
 bibliography: presentation.bib
+csl: ../../apa-numeric-superscript-brackets.csl
 title: |
     | Individual experiences with
     | chlorine dioxide solution
@@ -28,7 +29,14 @@ format:
 
 - does not link between files,
 - every presentation is separate,
-- look so much better than *bookdown*-presentations.
+- looks so much better than *bookdown*-presentations.
+
+What version of *Quarto* do I have[@how]?
+
+```
+quarto check
+
+```
 
 ## Setup
 
