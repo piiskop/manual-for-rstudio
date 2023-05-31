@@ -15,7 +15,7 @@ RStudio Server doesn't rename the project metadata file *\*.Rproj* automatically
 For automation the [user-based actions after the user has an account](#user-based-actions-after-adding-user), i created a script that should be run if the manual set-up is too overwhelming:
 
 ```{bash eval = FALSE}
-sudo ~/rstudio-projects/create-project.sh <subdomain>
+sudo ~/rstudio-projects/create-project.sh --project <subdomain> --user <user>
 
 ```
 
@@ -87,6 +87,7 @@ sed -i $sed_for_renaming_project $path_to_bookdown_yml
 
 sed -i "/\"rmd\//d" $path_to_bookdown_yml
 rm $folder_of_project/rmd/*
+rm $folder_of_project/washing-cycles.csv
 
 path_to_output_yml="$folder_of_project/_output.yml"
 sed -i "s/piiskop/$user/" $path_to_output_yml

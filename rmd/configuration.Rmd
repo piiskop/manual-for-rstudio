@@ -413,3 +413,10 @@ git reset --hard <identifier of the commit>
 git push -f
 
 ```
+
+More shit can hit the fan, especially if tha ability of using RStudio fails totally[@unresponsive]. I am not sure why that happened to me twice already but probably because of an interrupted build process. Once I relogged in I could not use anything on that tab. RStudio's tab ate read-only memory up to \num{11} GB and crashed. That happened every time. Last time, the solution was to suspend all the sessions:
+
+```{verbatim language = "sh"}
+sudo rstudio-server suspend-all
+
+```

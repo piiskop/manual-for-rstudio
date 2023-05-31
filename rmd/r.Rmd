@@ -332,7 +332,7 @@ Displaying the indices of the descending sorted values of a vector:
 
 ```{r label = "sorting"}
 librarian::shelf("dplyr")
-desc(subset(head(washing_cycles_with_full_records), select = `Kava`))
+desc(as.matrix(subset(head(washing_cycles_with_full_records), select = `Kava`)))
 
 ```
 

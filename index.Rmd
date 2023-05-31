@@ -28,6 +28,22 @@ lot: yes
 
 ---
 
+```{r, include=FALSE}
+local({
+  hook_source <- knitr::knit_hooks$get('source')
+  knitr::knit_hooks$set(source = function(x, options) {
+    x <- xfun::split_lines(x)
+    n <- nchar(x, 'width')
+    i <- seq_along(x)  # line numbers
+    n <- n + nchar(i)
+    s <- strrep(' ', max(n) - n)
+    x <- paste(x, s, '  # ', i, sep = '', collapse = '\n')
+    hook_source(x, options)
+  })
+})
+
+```
+
 ```{r setup, echo=FALSE, message=FALSE}
 # example chunk options set globally
 knitr::opts_chunk$set(
