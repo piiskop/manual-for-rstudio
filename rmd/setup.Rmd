@@ -15,13 +15,14 @@ RStudio Server doesn't rename the project metadata file *\*.Rproj* automatically
 For automation the [user-based actions after the user has an account](#user-based-actions-after-adding-user), i created a script that should be run if the manual set-up is too overwhelming:
 
 ```{bash eval = FALSE}
-sudo ~/rstudio-projects/create-project.sh --project <subdomain> --user <user>
+~/rstudio-projects/create-project.sh --project <subdomain> --user <user>
 
 ```
 
-This is the content of that file written in Shell Command Language [@introduction] using @bakker_2022_named:
+This is the content of that file written in BouShell Command Language [@a2023_bash] using @bakker_2022_named:
 
-```{sh eval = FALSE}
+```{bash eval = FALSE}
+#!/bin/bash
 programname=$0
 
 function usage {
