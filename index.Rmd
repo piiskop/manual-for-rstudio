@@ -17,7 +17,7 @@ linestretch: 1.5
 
 fontsize: 12pt
 mainfont: DejaVu Serif # for displaying both Chinese symbols and emojis
-CJKmainfont: Droid Sans Fallback
+CJKmainfont: Source Han Serif # Droid Sans Fallback
 
 bibliography: [references.bib]
 csl: apa-numeric-superscript-brackets.csl

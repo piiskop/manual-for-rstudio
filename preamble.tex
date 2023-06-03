@@ -57,3 +57,15 @@
   separate-uncertainty,
   separate-uncertainty-units = repeat
 }
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\LARGE\bfseries}{\chaptertitlename\ \thechapter}{18pt}{\LARGE}
+\titleformat{\section}
+{\normalfont\fontsize{16}{18}\bfseries}{\thesection}{1em}{}
+
+\usepackage{pdflscape}
+
+\setlength{\columnsep}{32pt}
+
+\counterwithout{figure}{chapter}
