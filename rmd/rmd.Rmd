@@ -208,6 +208,8 @@ A link for a common target:
 
 ### External reference
 
+#### Preparation and common use cases
+
 For having an external reference, i put its *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`* block into *references.bib*. i seldom create it manually. Instead, i use the help of MyBib [@a1970_] where i *Start a new project* for every project, *Add Citation*, *Download References* as *Bib`r render_nonmath_LaTeX_string_universal("\\TeX{}")`*, copy the lastly added reference from the downloaded file into *references.bib* so that the items there are listed alphabetically. Another such helper is BibGuru [@noauthor_undated_tf].
 
 As there's a problem to display emojis and they appear seldom then i only use the emoji-able font *Symbola* that can't italics nor bold only for strings that contain emojis. External references can contain them. This is why all the external references will be rendered using *Symbola*. For that, i created a function called `render_with_emojis` that can't handle references directly but over inner reference because of the corresponding *bookdown* restriction. Therefore, for every record in the list of external references, i also created an inner reference into the end of the file *references.Rmd* like this:
@@ -251,6 +253,30 @@ For example:
 A surprising piece of data is this [@haynes_2014_crc(p. 6)].
 
 [@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
+
+#### Reference in the caption
+
+Referencing in the caption works just fine if the figure is upright. If the figure is at a different angle the whole caption must be written out as a reference before[@xie_22]: 
+
+````{verbatim label = "external-reference-in-figure-caption"}
+Joonisel \@ref(fig:cities) leheküljel `r render_pageref(reference = "fig:cities")` on näidatud gravitatsioonist põhjustatud kiirendus eri piirkondades Maal.
+
+(ref:caption-for-cities) Gravitatsioonist põhjustatud kiirendus eri Maa paigus[@elert_2019_glenn].
+
+```{r label = "cities", echo = FALSE, fig.cap = "(ref:caption-for-cities)", echo = FALSE, out.extra="angle = 90", out.width=".92\\textheight"}
+include_external_graphics("rmd/g.png")
+
+```
+
+````
+Joonisel \@ref(fig:cities) leheküljel `r render_pageref(reference = "fig:cities")` on näidatud gravitatsioonist põhjustatud kiirendus eri piirkondades Maal.
+
+(ref:caption-for-cities) Gravitatsioonist põhjustatud kiirendus eri Maa paigus[@elert_2019_glenn].
+
+```{r label = "cities", echo = FALSE, fig.cap = "(ref:caption-for-cities)", echo = FALSE, out.extra="angle = 90", out.width=".92\\textheight"}
+include_external_graphics("rmd/g.png")
+
+```
 
 ## Tables
 

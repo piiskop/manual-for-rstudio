@@ -5,7 +5,7 @@
 ```{verbatim label = "landscape"}
 \begin{landscape}
 
-Here is anything that needs to be displayed in landscape mode.
+Here is anything but figures that needs to be displayed in landscape mode.
 
 \end{landscape}
 
@@ -13,7 +13,7 @@ Here is anything that needs to be displayed in landscape mode.
 
 \begin{landscape}
 
-Here is anything that needs to be displayed in the landscape mode.
+Here is anything but figures that needs to be displayed in the landscape mode.
 
 \end{landscape}
 
