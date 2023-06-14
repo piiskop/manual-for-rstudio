@@ -93,6 +93,8 @@ This file is used because in *index.Rmd*, the value for `site` is `bookdown::boo
 
 Inside the file *\_output.yml*, the output types can be set. i only use two of them: a web format `bs4_book` and a print format `pdf_book`.
 
+\onecolumn
+
 ### `bookdown::bs4_book`
 
 The following settings are for `bookdown::bs4_book`:
@@ -115,6 +117,8 @@ repo: https://github.com/<username-in-github>/<name-of-project>
 ```
 
 The repository will be linked in three places. In the left column, there's the link for the main page of the repository. In the right column, there are two links regarding to the repo. The upper one refers the repo page of the current page and the lower link leads to the repo page where the current page can be edited. In GitHub, discussions can take place.
+
+\twocolumn
 
 ### `bookdown::pdf_book`
 
@@ -171,6 +175,8 @@ This is the default \LaTeX template downloaded from @macfarlane_2022_pandoc.
 ### Introduction
 
 This file must contain the site generator information in the metadata section and can contain other metadata there. In addition, it serves as the holder of common functions and commands and contains an introduction as if the number of Rmd files and first-level headings don't match, a warning will be given.
+
+\onecolumn
 
 ### Metadata
 
@@ -311,6 +317,8 @@ lot: yes
 ```
 
 i want the list of tables to be displayed not the logo of the Polish airlines company that we can see on the background as Kim Wilde was delivering a concert in Sopot in 1988 [@kim].
+
+\twocolumn
 
 ### *knitr*[]{#knitr}
 

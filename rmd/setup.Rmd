@@ -10,6 +10,8 @@ In RStudio Server, i created the new project: *File* -> *New Project…* -> *Ver
 
 RStudio Server doesn't rename the project metadata file *\*.Rproj* automatically. i did the rename manually and reopened the project: *File* -> *Open Project…*.
 
+\onecolumn
+
 ## Automated actions
 
 For automation the [user-based actions after the user has an account](#user-based-actions-after-adding-user), i created a script that should be run if the manual set-up is too overwhelming:
@@ -196,3 +198,5 @@ i need to update the repository Uniform Resource Locator (URL) in *\_output.yml*
 repo: https://github.com/<username-in-github>/<name-of-project>
 
 ```
+
+\twocolumn

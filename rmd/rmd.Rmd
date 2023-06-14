@@ -206,6 +206,8 @@ A link for a common target:
 
 ````
 
+\onecolumn
+
 ### External reference
 
 #### Preparation and common use cases
@@ -433,6 +435,8 @@ include_external_graphics("rmd/workflow.png")
 ```
 
 Here, the function `paste` comes handy. `paste` glues strings together that can be fed into that function. The last parameter is `sep` which can be used to set the separator between the strings. Currently, i told the function to use an empty string as a separator.
+
+\twocolumn
 
 ## Equations
 

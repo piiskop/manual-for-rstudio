@@ -182,10 +182,12 @@ print(data_frame)
 
 ```
 
-### Adding column
+### Adding column[@zach_2021_how_to_use_cbind_in_R]
 
 ```{r label = "cbind"}
-cbind(data_frame, array_2)
+data_frame_with_array_2 <- cbind(data_frame, array_2)
+
+print(data_frame_with_array_2)
 
 ```
 
@@ -272,6 +274,8 @@ print(data_frame$`array 2`)
 
 [@r_language].
 
+\onecolumn
+
 ### Subsetting
 
 As `washing_cycles` also contains records with missing data i want them removed:
@@ -354,6 +358,31 @@ adorn_totals(dat = head(subset(x = washing_cycles_with_full_records, select = c(
 ```
 
 [@adorn_totals].
+
+\twocolumn
+
+### Mean
+
+Mean row-wise can be calculated using `rowMeans()`[@zach_2021_how_to_use_rowMeans_function_in_R].
+
+```{r label = "rowMeans"}
+m_prime_0 <- .0562
+m_prime <- c(m_prime_0, .1062, .1562, .2062, .2462)
+t_1 <- c(7.508, 4.452, 3.434, 2.978, 2.752)
+t_2 <- c(7.775, 4.515, 3.434, 2.978, 2.752)
+t_3 <- c(7.685, 4.47, 3.603, 2.992, 2.732)
+
+data_frame_of_mass_time <- data.frame(
+  seq(1:length(m_prime)),
+  m_prime,
+  t_1,
+  t_2,
+  t_3
+)
+
+rowMeans(x = data_frame_of_mass_time[, c(3:5)])
+
+```
 
 ## Functions
 
@@ -443,6 +472,8 @@ Here, in order to preserve a backslash, it has to be escaped as otherwise, it es
 ifelse(is.na(NA), "Not Available", "Available")
 
 ```
+
+\onecolumn
 
 ## Table
 
@@ -596,6 +627,8 @@ print_table(
 
 ```
 
+\twocolumn
+
 ## Exponents and logarithms
 
 $$e^1$$
@@ -612,6 +645,7 @@ log(exp(1))
 
 ```
 
+\onecolumn
 
 ## Plotting
 
@@ -710,12 +744,12 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Algus`, y = `
 
 ### Regression and correlation
 
-The figure \@ref(fig:stat-regline-cor) on the page `r render_pageref(reference = "fig:stat-regline-cor")` represents the correlation between the water and electricity consumption between `r min_time` and `r max_time`. The plot displays the correlation coefficient. There are also the data about the regression. Both labels have been positioned vertically.
+The figure \@ref(fig:stat-regline-cor) on the page `r render_pageref(reference = "fig:stat-regline-cor")` represents the correlation between the water and electricity consumption between `r min_time` and `r max_time`. The plot displays the smooth regression line[@stat_poly_line] and the correlation coefficient. There are also the data about the regression. Both labels have been positioned vertically.
 
 ```{r label = "stat-regline-cor", fig.cap=paste("Correlation between the water and electricity consumption between", min_time, "and", max_time, ".")}
-
 librarian::shelf(c(
   "ggplot2",
+  "ggpmisc", #for stat_poly_line
   "ggpubr", # for stat_regline_equation
   "latex2exp"
 ))
@@ -726,11 +760,23 @@ if (!decimal_separator_period) { # for stat_regline_equation and stat_cor
 ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Veekulu..l.`, y = `kWh`)) +
   geom_point(shape = 23, color = "#ff6600", fill = "#ff6600", size = 3) +
   labs(x = TeX("$\\frac{\\textit{V}}{m^3}$"), y = TeX("$\\frac{\\textit{W}}{kWh}$")) +
-  stat_regline_equation(mapping = aes(x = `Veekulu..l.`, y = `kWh`, label = paste(..eq.label.., ..rr.label.., ..adj.rr.label.., sep = "~~~~")), color = "#ff6600", label.y = 3) +
+  stat_poly_line() +
+  stat_regline_equation(mapping = aes(x = `Veekulu..l.`, y = `kWh`, label = paste(after_stat(eq.label), after_stat(rr.label), after_stat(adj.rr.label), sep = "~~~~")), color = "#ff6600", label.y = 3) +
   stat_cor(aes(x = `Veekulu..l.`, y = `kWh`), color = "#ff6600", label.y = 2.5)
 if (!decimal_separator_period) {
   options(OutDec = ",")
 }
+
+```
+
+In order to get the values of the result of a correlation analysis, one can use `cor`[@zach_2022_how_to_use_cor_to_calculate_correlation_coefficients_in_R].
+
+```{r label = "cor"}
+cor(
+  washing_cycles_with_full_records$`Veekulu..l.`,
+  washing_cycles_with_full_records$`kWh`,
+  method = 'pearson'
+)
 
 ```
 
@@ -759,3 +805,5 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `veekulu_dal`,
   theme(axis.title.x = element_text(colour = color_x), axis.text.x = element_text(colour = color_x), axis.ticks.x = element_line(colour = color_x), axis.title.y = element_text(colour = color_y), axis.text.y = element_text(colour = color_y), axis.ticks.y = element_line(colour = color_y))
 
 ```
+
+\twocolumn
