@@ -806,4 +806,45 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `veekulu_dal`,
 
 ```
 
+## Regression model[@lm]
+
+```{r label = "lm"}
+g_Tallinn <- 9.82
+h <- .362
+m_prime_0 <- .0562
+r <- 2.0925e-3
+m_prime <- c(m_prime_0, .1062, .1562, .2062, .2462)
+t_1 <- c(7.508, 4.452, 3.434, 2.978, 2.752)
+t_2 <- c(7.775, 4.515, 3.434, 2.978, 2.752)
+t_3 <- c(7.685, 4.47, 3.603, 2.992, 2.732)
+
+data_frame_of_mass_time <- data.frame(
+  seq(1:length(m_prime)),
+  m_prime,
+  t_1,
+  t_2,
+  t_3
+)
+
+mean_t <- rowMeans(data_frame_of_mass_time[, c(3:5)])
+data_frame_of_mass_time_with_mean_t <- cbind(data_frame_of_mass_time, mean_t)
+angular_acceleration <- 2 * h / (r * mean_t^2)
+data_frame_of_mass_time_with_angular_acceleration <- cbind(data_frame_of_mass_time_with_mean_t, angular_acceleration)
+torque <- m_prime * r * (g_Tallinn - r * angular_acceleration)
+data_frame_of_mass_time_with_torque <- cbind(data_frame_of_mass_time_with_angular_acceleration, torque)
+formula = torque ~ angular_acceleration
+model = lm(formula = formula, data = data_frame_of_mass_time_with_torque)
+
+b <- model$coefficients[1]
+k <- model$coefficients[2]
+
+```
+
+```{verbatim label = "result-of-lm", language = "markdown"}
+Regressioonisirge tõus on \qty{`r as.character(signif(x = k, digits = 3))`}{\kg\m\squared} ja see näitab inertsimomenti. Vabaliige on \qty{`r as.character(signif(x = b, digits = 3))`}{\N\m} ja see näitab hõõrdejõu momenti.
+
+```
+
+Regressioonisirge tõus on \qty{`r as.character(signif(x = k, digits = 3))`}{\kg\m\squared} ja see näitab inertsimomenti. Vabaliige on \qty{`r as.character(signif(x = b, digits = 3))`}{\N\m} ja see näitab hõõrdejõu momenti.
+
 \twocolumn
