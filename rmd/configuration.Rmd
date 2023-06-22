@@ -206,7 +206,7 @@ lang: <two-letter lowercase language code>
 
 ```
 
-Language is important for hyphenation.
+Language is important for hyphenation. A known bug is that the word *mõistmisel* will be hyphenated incorrectly[@hyphenation].
 
 ```
 include-before:
