@@ -143,6 +143,8 @@ After the following command, no hyphenation takes place:
 
 \onecolumn
 
+[]{#chinese-characters}
+
 ## Chinese characters  
   
 In order to display Chinese characters an appropriate [main](#mainfont)  and mono font must be set in *preamble.`r render_nonmath_LaTeX_string_universal("\\TeX")`*. @the_2016_which lists suitable fonts, for example:  
@@ -154,14 +156,14 @@ In order to display Chinese characters an appropriate [main](#mainfont)  and mon
   
 That font wasn't available in my system, so i installed it:  
   
-```{bash eval = FALSE}  
+```{bash label = "fonts-noto-cjk", eval = FALSE}  
 sudo apt install fonts-noto-cjk  
   
 ```  
   
 After that, i was looking for Chinese fonts:  
 
-```{bash eval = FALSE}  
+```{bash label = "fc-list", eval = FALSE}  
 fc-list :lang=zh  
   
 ```  
@@ -583,6 +585,20 @@ $$\Delta, \epsilon, \eta, \nu.$$
 ```
 
 $$\Delta, \epsilon, \eta, \nu.$$
+
+### Matrices
+
+Avaldisena \@ref(eq:triple-vector-product) leheküljel `r render_pageref(reference = "eq:triple-vector-product")` on esitatud kolme vektori ristkorrutis[@haynes_2014_crc(lk A-7)], [@matrices].
+
+\begin{align}
+\vec{V_1} \times (\vec{V_2} \times \vec{V_3}) = \vec{V_1} \times
+\begin{vmatrix}
+\vec{i}&\vec{j}&\vec{k}\\
+V_{2; x}&V_{2; y}&V_{2; z}\\
+V_{3; x}&V_{3; y}&V_{3; z}
+\end{vmatrix}
+(\#eq:triple-vector-product)
+\end{align}
 
 ## Text
 

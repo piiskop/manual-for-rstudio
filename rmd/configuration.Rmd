@@ -273,15 +273,7 @@ CJKmainfont: Droid Sans Fallback
 
 ```
 
-`CJKmainfont` has to be set in order to show Chinese characters. i found the suitable font using:
-
-````{verbatim label = "fc-list", language = "bash"}
-```{bash}
-fc_list :lang=zh
-
-```
-
-````
+`CJKmainfont` has to be set in order to show [Chinese characters](#chinese-characters).
 
 ```
 bibliography: [references.bib]
@@ -324,14 +316,14 @@ i want the list of tables to be displayed not the logo of the Polish airlines co
 
 *knitr* on R'i teek, mis teeb Rmd failist md faili [@with]. i've made the following setting for that:
 
-```{r eval=FALSE}
+```{r label = "collapse", eval=FALSE}
   collapse = TRUE
 
 ```
 
 i want the result of running the source code to be printed into the same box instead of a separate box after the source code box [@options].
 
-```{r eval = FALSE}
+```{r label = "echo", eval = FALSE}
   echo = TRUE
 
 ```
@@ -340,7 +332,7 @@ i want the source code to be displayed.
 
 i want the code chunks to have line numbers displayed although it only works for print output:
 
-```{r eval = FALSE}
+```{r label = "attr.source", eval = FALSE}
   attr.source = '.numberLines'
 
 ```
@@ -386,7 +378,7 @@ This file contains \LaTeX inclusions for PDF output that doesn't exist in [*defa
 
 The decimal separator can be specified in `output-decimal-marker`:
 
-```{verbatim language = "latex"}
+```{verbatim label = "sisetup", language = "latex"}
 \sisetup{
   input-decimal-markers = {.,},
   output-decimal-marker = {.},
@@ -416,7 +408,7 @@ This is the template for the title page and should be adopted according to the n
 
 If shit hits the fan and there are overwhelming many conflicts to solve then it is easier to perform a hard reset[@marks_2020_how]:
 
-```{verbatim language = "sh"}
+```{verbatim label = "git", language = "sh"}
 git reset --hard <identifier of the commit>
 git push -f
 
@@ -424,7 +416,7 @@ git push -f
 
 More shit can hit the fan, especially if tha ability of using RStudio fails totally[@unresponsive]. I am not sure why that happened to me twice already but probably because of an interrupted build process. Once I relogged in I could not use anything on that tab. RStudio's tab ate read-only memory up to \num{11} GB and crashed. That happened every time. Last time, the solution was to suspend all the sessions[@noauthor_undated-bx]:
 
-```{verbatim language = "sh"}
+```{verbatim label = "suspend-all", language = "sh"}
 sudo rstudio-server suspend-all
 
 ```

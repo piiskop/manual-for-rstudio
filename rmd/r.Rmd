@@ -299,7 +299,7 @@ washing_cycles_with_full_records <- washing_cycles[complete.cases(washing_cycles
 
 [@r_language].
 
-i only want to see the data in the column `Kava`:
+I only want to see the data in the column `Kava`:
 
 ```{r label = "subset-column"}
 program_in_washing_cycles <- subset(washing_cycles_with_full_records, select = `Kava`)
@@ -308,14 +308,24 @@ print(head(program_in_washing_cycles))
 
 ```
 
-i only want to see cycles from the rows 2 to 4 in the second column:
+I only want to see cycles from the rows 2 to 4 in the second column:
 
 ```{r label = "subset-limited-cycles"}
 print(washing_cycles_with_full_records[2:4, 2])
 
 ```
 
-i only want to see hot cycles:
+I want the last 216 rows to be removed:
+
+```{r label = "subset-removing-rows"}
+number_of_rows_in_washing_cycles_with_full_records <- nrow(washing_cycles_with_full_records)
+data_frame_of_washing_cycles_with_full_records_without_last_records <- washing_cycles_with_full_records[
+  -c((number_of_rows_in_washing_cycles_with_full_records - 215):number_of_rows_in_washing_cycles_with_full_records), ]
+print(data_frame_of_washing_cycles_with_full_records_without_last_records)
+
+```
+
+I only want to see hot cycles:
 
 ```{r label = "subset-hot-cycles"}
 hot_cycles <- subset(washing_cycles_with_full_records, `Temperatuur` > 40)
@@ -323,7 +333,7 @@ print(hot_cycles)
 
 ```
 
-i only want to see the indices of the cycles at the temperature of $313.15 \times \mathrm{K}$:
+I only want to see the indices of the cycles at the temperature of $313.15 \times \mathrm{K}$:
 
 ```{r label = "subset-cycles-at-40"}
 which(washing_cycles_with_full_records[3] == 40)
@@ -366,21 +376,17 @@ adorn_totals(dat = head(subset(x = washing_cycles_with_full_records, select = c(
 Mean row-wise can be calculated using `rowMeans()`[@zach_2021_how_to_use_rowMeans_function_in_R].
 
 ```{r label = "rowMeans"}
-m_prime_0 <- .0562
-m_prime <- c(m_prime_0, .1062, .1562, .2062, .2462)
 t_1 <- c(7.508, 4.452, 3.434, 2.978, 2.752)
 t_2 <- c(7.775, 4.515, 3.434, 2.978, 2.752)
 t_3 <- c(7.685, 4.47, 3.603, 2.992, 2.732)
 
 data_frame_of_mass_time <- data.frame(
-  seq(1:length(m_prime)),
-  m_prime,
   t_1,
   t_2,
   t_3
 )
 
-rowMeans(x = data_frame_of_mass_time[, c(3:5)])
+rowMeans(x = data_frame_of_mass_time[, c(1:3)])
 
 ```
 
@@ -398,6 +404,8 @@ add(first = 123, second = 456) # using the default value 2 for digits
 sum <- add(first = 123, second = 456, digits = 1)
 
 ```
+
+It is not possible to assign an argument with the same name as the parameter[@promise]. In the example above, the value for `first` could not be `first` although there might be an external variable `first`, id est `first = first` is not allowed. I have to use different names.
 
 ## Square root
 
@@ -457,6 +465,8 @@ print(sum) # printing out the value of sum
 
 Strings can be written using either apostrophes or quotation marks.
 
+[]{#gsub}
+
 For substituting something inside a string, `gsub` can be used [@r]:
 
 ```{r label = "gsub"}
@@ -464,7 +474,7 @@ gsub("_", "\\_", array, fixed = TRUE)
 
 ```
 
-Here, in order to preserve a backslash, it has to be escaped as otherwise, it escapes the underscore. If i'd turn off `fixed`, the function would work like with regular expressions.
+Here, in order to preserve a backslash, it has to be escaped as otherwise, it escapes the underscore. If I would turn off `fixed`, the function would work like with regular expressions.
 
 ## Branching
 
@@ -477,9 +487,36 @@ ifelse(is.na(NA), "Not Available", "Available")
 
 ## Table
 
-A table that isn't just in R code but designed and all can be created using `kable` and `kableExtra`. i also build a wrapper function `print_table` for that purpose so that i don't have to rewrite some general things from table to table. i have to pay attention that there can't be any underscores inside the table unless they are part of an eqation. My sample table is table \@ref(tab:table).
+### A user-friendly look
+
+A table that is not just in R code but designed and all can be created using `kable` and `kableExtra`. I have built a wrapper function `print_table` for that purpose so that I do not have to rewrite some general things from table to table. An example table is \@ref(tab:table) on the page `r render_pageref(reference = "tab:table")`.
 
 ```{r label = "table"}
+omega <- c(932.0058, 827.2861, 733.0383, 628.3185, 523.5988, 418.8790, 314.1593)
+omega_P <- c(0.03966657, 0.04155546, 0.05073632, 0.05411874, 0.05817764, 0.03878509, 0.01811760)
+
+data_frame_of_precession <- data.frame(
+  omega,
+  omega_P
+)
+
+colnames(data_frame_of_precession) <- c(
+  "$\\frac{\\omega}{\\unit{\\per\\s}}$",
+  "$\\frac{\\omega_\\text{P}}{\\unit{\\per\\s}}$"
+)
+
+print_table(
+  table = data_frame_of_precession,
+  caption = "Pretsessiooni nurkkiiruse sõltuvus güroskoobi nurkkiirusest."
+)
+
+```
+
+### Untolerated symbols
+
+I have to pay attention that there can't be any underscores inside the table unless they are part of an equation. They can be escaped using [`gsub`](#gsub) and the result is shown as the table \@ref(tab:table-with-escaped-underscores) on the page `r render_pageref(reference = "tab:table-with-escaped-underscores")`.
+
+```{r label = "table-with-escaped-underscores"}
 print_table(
   table = sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE)),
   caption = "Caption."
@@ -487,15 +524,11 @@ print_table(
 
 ```
 
-If i want to apply a function to all the values inside a data frame, i use `sapply` [@lathiya_2022_sapply]:
+Inside the table, backslashes must be escaped.
 
-```{r label = "sapply"}
-sapply(data_frame, function(value) gsub("_", "\\_", value, fixed = TRUE))
+### Number of digits after comma
 
-```
-
-
-Tables \@ref(tab:table-with-digits-default) and \@ref(tab:table-with-digits-nondefault) are for comparing the number of digits after comma. The table \@ref(tab:table-with-digits-default) has the default number of digits and the table \@ref(tab:table-with-digits-nondefault) has another number of digits in every number after comma.
+Tables \@ref(tab:table-with-digits-default) on the page `r render_pageref(reference = "tab:table-with-digits-default")` and \@ref(tab:table-with-digits-nondefault) on the page `r render_pageref(reference = "tab:table-with-digits-nondefault")` are for comparing the number of digits after comma. The table \@ref(tab:table-with-digits-default) has the default number of digits and the table \@ref(tab:table-with-digits-nondefault) has another number of digits in every number after comma.
 
 ```{r label = "table-with-digits-default"}
 water_report <- head(subset(x = washing_cycles_with_full_records, select = c(`Algus`, `Veenäit.enne`, `Veenäit.pärast`)))
@@ -522,8 +555,6 @@ print_table(
 
 [@dplyr, p. 38 to 42].
 
-Inside the table, backslashes must be escaped.
-
 ```{r label = "table-with-digits-nondefault"}
 print_table(
   table = water_report,
@@ -533,7 +564,9 @@ print_table(
 
 ```
 
-It's also possible for the table to have an additional header whose columns span over multiple columns in the first header [@add_header_above]:
+### Additional header
+
+It's also possible for the table to have an additional header whose columns span over multiple columns in the first header [@add_header_above] (the table \@ref(tab:table-with-additional-header) on the page `r render_pageref(reference = "tab:table-with-additional-header")`):
 
 ```{r label = "table-with-additional-header"}
 print_table(
@@ -544,7 +577,9 @@ print_table(
 
 ```
 
-It's possible to change the look of a row:
+### Look
+
+It's possible to change the look of a row (the table \@ref(tab:table-with-row-specification) on the page `r render_pageref(reference = "tab:table-with-row-specification")`):
 
 ```{r label = "table-with-row-specification"}
 print_table(
@@ -557,7 +592,7 @@ print_table(
 
 Here, `%>%` means piping.
 
-And it's possible to change the look of a column:
+And it's possible to change the look of a column (the table \@ref(tab:table-with-column-specification) on the page `r render_pageref(reference = "tab:table-with-column-specification")`):
 
 ```{r label = "table-with-column-specification"}
 print_table(
@@ -568,7 +603,9 @@ print_table(
 
 ```
 
-And what if the table is too wide:
+### Landscape
+
+If the table is too wide to fit the portrait format, it can be displayed in the landscape mode (the table \@ref(tab:table-with-landscape) on the page `r render_pageref(reference = "tab:table-with-landscape")`):
 
 ```{r label = "table-with-landscape"}
 print_table(
@@ -579,7 +616,9 @@ print_table(
 
 ```
 
-Linked footnotes don't work with `kable`. Footnotes can be created like this:
+### Footnotes
+
+Linked footnotes don't work with `kable`. Footnotes can be created like this (the table \@ref(tab:footnotes) on the page `r render_pageref(reference = "tab:footnotes")`):
 
 ```{r label = "footnotes"}
 
@@ -603,7 +642,9 @@ print_table(
 
 `threeparttable` must be set to `TRUE` for just in case the footnote is too long for the width of the paper [@footnote].
 
-By default, i feed one-dimensional arrays to data frame and the values of these arrays will be displayed from to to down. If i want them to be displayed from left to right, i have to transform the table:
+### Transposing
+
+By default, I feed one-dimensional arrays to data frame and the values of these arrays will be displayed from top to down. If I want them to be displayed from left to right, I have to transform the table (the table \@ref(tab:t) on the page `r render_pageref(reference = "tab:t")`):
 
 ```{r label = "t"}
 
@@ -738,7 +779,25 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `Algus`, y = `
   labs(x = "Algus", y = TeX("$\\frac{\\textit{V} \\times 10^2}{m^3}$")) +
   geom_point(mapping = aes(x = `Algus`, y = `kWh`), color = "#ff6600", fill = "#ff6600", shape = 24, size = 3)  +
   scale_y_continuous(sec.axis = sec_axis(~., name = TeX("\\frac{\\textit{W}}{kWh}"))) +
-  theme(axis.title.y = element_text(colour = "#008000"), axis.text.y = element_text(colour = "#008000"), axis.ticks.y = element_line(colour = "#008000"), axis.title.y.right = element_text(colour = "#ff6600"), axis.ticks.y.right = element_line(colour = "#ff6600"), axis.text.y.right = element_text(colour = "#ff6600"))
+  theme(
+    axis.title.y = element_text(colour = "#008000"),
+    axis.text.y = element_text(colour = "#008000"),
+    axis.ticks.y = element_line(colour = "#008000"),
+    axis.title.y.right = element_text(colour = "#ff6600"),
+    axis.ticks.y.right = element_line(colour = "#ff6600"),
+    axis.text.y.right = element_text(colour = "#ff6600")
+  )
+
+```
+
+### Trend line
+
+On the figure \@ref(fig:geom-smooth) on the page `r render_pageref(reference = "fig:geom-smooth")`.
+
+```{r label = "geom-smooth", fig.cap="Graph with a trend line."}
+ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `Pöördeid.min`)) + geom_point(shape = 23, color = "#008000", fill = "#ff6600", size = 3) +
+  labs(x = TeX("$\\frac{\\textit{t}}{\\degree C}$"), y = TeX("$\\frac{\\textit{f}}{min}$")) +
+  geom_smooth()
 
 ```
 
@@ -769,14 +828,35 @@ if (!decimal_separator_period) {
 
 ```
 
-In order to get the values of the result of a correlation analysis, one can use `cor`[@zach_2022_how_to_use_cor_to_calculate_correlation_coefficients_in_R].
+It is possible to use different kind of trend lines as seen on the figure \@ref(fig:stat-poly-line) on the page `r render_pageref(reference = "fig:stat-poly-line")`:
 
-```{r label = "cor"}
-cor(
-  washing_cycles_with_full_records$`Veekulu..l.`,
-  washing_cycles_with_full_records$`kWh`,
-  method = 'pearson'
+```{r label = "stat-poly-line", fig.cap="Polynomial trend line with the degree \\num{2}."}
+omega <- c(932.0058, 827.2861, 733.0383, 628.3185, 523.5988)
+h <- c(303.44868, 239.08893, 187.71603, 137.91380,  95.77349)
+
+data_frame_of_precession_with_height_without_outliers <- data.frame(
+  omega,
+  h
 )
+
+color_of_height <- "#ff00ff"
+color_x <- "#008000"
+
+ggplot(
+  data <- data_frame_of_precession_with_height_without_outliers,
+  mapping <- aes(x = omega, y = h)
+) +
+  geom_point(shape = 23, size = 1) +
+  labs(x = TeX("$\\frac{\\omega}{\\frac{1}{s}}$"), y = TeX("$\\frac{h}{m}$")) +
+  theme(
+    axis.title.x = element_text(colour = color_x),
+    axis.text.x = element_text(colour = color_x),
+    axis.ticks.x = element_line(colour = color_x),
+    axis.title.y = element_text(colour = color_of_height),
+    axis.text.y = element_text(colour = color_of_height),
+    axis.ticks.y = element_line(colour = color_of_height)
+  ) +
+  stat_poly_line(formula = y ~ poly(x, 2))
 
 ```
 
@@ -809,31 +889,10 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `veekulu_dal`,
 ## Regression model[@lm]
 
 ```{r label = "lm"}
-g_Tallinn <- 9.82
-h <- .362
-m_prime_0 <- .0562
-r <- 2.0925e-3
-m_prime <- c(m_prime_0, .1062, .1562, .2062, .2462)
-t_1 <- c(7.508, 4.452, 3.434, 2.978, 2.752)
-t_2 <- c(7.775, 4.515, 3.434, 2.978, 2.752)
-t_3 <- c(7.685, 4.47, 3.603, 2.992, 2.732)
-
-data_frame_of_mass_time <- data.frame(
-  seq(1:length(m_prime)),
-  m_prime,
-  t_1,
-  t_2,
-  t_3
-)
-
-mean_t <- rowMeans(data_frame_of_mass_time[, c(3:5)])
-data_frame_of_mass_time_with_mean_t <- cbind(data_frame_of_mass_time, mean_t)
-angular_acceleration <- 2 * h / (r * mean_t^2)
-data_frame_of_mass_time_with_angular_acceleration <- cbind(data_frame_of_mass_time_with_mean_t, angular_acceleration)
-torque <- m_prime * r * (g_Tallinn - r * angular_acceleration)
-data_frame_of_mass_time_with_torque <- cbind(data_frame_of_mass_time_with_angular_acceleration, torque)
+angular_acceleration <- c(5.902952, 17.246897, 28.401369, 38.892302, 45.907424)
+torque <- c(0.001153365, 0.002174215, 0.003190228, 0.004201956, 0.005009516)
 formula = torque ~ angular_acceleration
-model = lm(formula = formula, data = data_frame_of_mass_time_with_torque)
+model = lm(formula = formula)
 
 b <- model$coefficients[1]
 k <- model$coefficients[2]
@@ -846,5 +905,84 @@ Regressioonisirge tõus on \qty{`r as.character(signif(x = k, digits = 3))`}{\kg
 ```
 
 Regressioonisirge tõus on \qty{`r as.character(signif(x = k, digits = 3))`}{\kg\m\squared} ja see näitab inertsimomenti. Vabaliige on \qty{`r as.character(signif(x = b, digits = 3))`}{\N\m} ja see näitab hõõrdejõu momenti.
+
+## Correlation
+
+In order to get the values of the result of a correlation analysis, one can use `cor`[@zach_2022_how_to_use_cor_to_calculate_correlation_coefficients_in_R].
+
+```{r label = "cor"}
+cor(
+  washing_cycles_with_full_records$`Veekulu..l.`,
+  washing_cycles_with_full_records$`kWh`,
+  method = 'pearson'
+)
+
+```
+
+## Linearizing
+
+Lasen joonestada pretsessiooninurkkiiruse sõltuvuse graafiku rootori osakeste nurkkiirusest (joonis \@ref(fig:angular-speed) leheküljel `r render_pageref(reference = "fig:angular-speed")`).
+
+```{r label = "angular-speed", fig.cap = "Pretsessiooninurkkiiruse sõltuvus rootori osakeste nurkkiirusest."}
+librarian::shelf(c(
+  "ggplot2",
+  "latex2exp"
+))
+
+color_x <- "#008000"
+color_y <- "#ff6600"                                                                                                                         
+
+number_of_rows_in_data_frame_of_precession <- nrow(data_frame_of_precession)
+data_frame_of_precession_without_outliers <- data_frame_of_precession[-c((number_of_rows_in_data_frame_of_precession - 1):number_of_rows_in_data_frame_of_precession), ]
+
+ggplot(
+  data <- data_frame_of_precession_without_outliers,
+  mapping <- aes(x = `$\\frac{\\omega}{\\unit{\\per\\s}}$`, y = `$\\frac{\\omega_\\text{P}}{\\unit{\\per\\s}}$`)
+) +
+  geom_point(shape = 23, size = 1) +
+  labs(x = TeX("$\\frac{\\omega}{\\frac{1}{s}}$"), y = TeX("$\\frac{\\omega_P}{\\frac{1}{s}}$")) +
+  theme(
+    axis.title.x = element_text(colour = color_x),
+    axis.text.x = element_text(colour = color_x),
+    axis.ticks.x = element_line(colour = color_x),
+    axis.title.y = element_text(colour = color_y),
+    axis.text.y = element_text(colour = color_y),
+    axis.ticks.y = element_line(colour = color_y)
+  )
+
+```
+
+Teooria seosega \@ref(eq:angular-velocity-of-precession-by-angular-moment) leheküljel `r render_pageref(reference = "eq:angular-velocity-of-precession-by-angular-moment")` ennustab pöördvõrdelist sõltuvust.
+
+\begin{align}
+\omega_\text{P} = \frac{((\overrightarrow{r_\text{balancer; final}} - \overrightarrow{r_\text{balancer; initial}}))  \times \overrightarrow{F_\text{balancer}}}{I \cdot \vec{\omega}}.
+(\#eq:angular-velocity-of-precession-by-angular-moment)
+\end{align}
+
+Joonisel \@ref(fig:angular-speed) leheküljel `r render_pageref(reference = "fig:angular-speed")` olev graafik lineariseeritud kujul[@a2019_how] on esitatud joonisel \@ref(fig:linearized-angular-speed) leheküljel `r render_pageref(reference = "fig:linearized-angular-speed")`.
+
+```{r label = "linearized-angular-speed", fig.cap="Lineariseeritud nurkkiiruste graafik. Propelleri nurkkiiruse asemel on esitatud selle pöördväärtus, mis näitab, mitu sekundit ühe radiaani läbimine kestis."}
+data_frame_of_precession_without_outliers_linearized <- mutate(.data = data_frame_of_precession_without_outliers, linearized_omega = 1 / `$\\frac{\\omega}{\\unit{\\per\\s}}$`, .keep = "unused", .after = `$\\frac{\\omega}{\\unit{\\per\\s}}$`)
+colnames(data_frame_of_precession_without_outliers_linearized) <- c(
+  "$\\frac{\\frac{1}{\\omega}}{\\unit{\\s}}$",
+  "$\\frac{\\omega_\\text{P}}{\\unit{\\per\\s}}$"
+)
+
+ggplot(
+  data <- data_frame_of_precession_without_outliers_linearized,
+  mapping <- aes(x = `$\\frac{\\frac{1}{\\omega}}{\\unit{\\s}}$`, y = `$\\frac{\\omega_\\text{P}}{\\unit{\\per\\s}}$`)
+) +
+  geom_point(shape = 23, size = 1) +
+  labs(x = TeX("$\\frac{\\frac{1}{\\omega}}{s}$"), y = TeX("$\\frac{\\omega_P}{\\frac{1}{s}}$")) +
+  theme(
+    axis.title.x = element_text(colour = color_x),
+    axis.text.x = element_text(colour = color_x),
+    axis.ticks.x = element_line(colour = color_x),
+    axis.title.y = element_text(colour = color_y),
+    axis.text.y = element_text(colour = color_y),
+    axis.ticks.y = element_line(colour = color_y)
+  )
+
+```
 
 \twocolumn

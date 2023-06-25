@@ -28,7 +28,7 @@ lot: yes
 
 ---
 
-```{r, include=FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 local({
   hook_source <- knitr::knit_hooks$get('source')
   knitr::knit_hooks$set(source = function(x, options) {
@@ -42,10 +42,6 @@ local({
   })
 })
 
-```
-
-```{r setup, echo=FALSE, message=FALSE}
-# example chunk options set globally
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,

@@ -16,14 +16,14 @@ RStudio Server doesn't rename the project metadata file *\*.Rproj* automatically
 
 For automation the [user-based actions after the user has an account](#user-based-actions-after-adding-user), i created a script that should be run if the manual set-up is too overwhelming:
 
-```{bash eval = FALSE}
+```{bash label = "create-project", eval = FALSE}
 ~/rstudio-projects/create-project.sh --project <subdomain> --user <user>
 
 ```
 
 This is the content of that file written in BouShell Command Language [@a2023_bash] using @bakker_2022_named:
 
-```{bash eval = FALSE}
+```{bash label = "bash", eval = FALSE}
 #!/bin/bash
 programname=$0
 
@@ -116,7 +116,7 @@ The following actions must be performed for every editor of the repository.
 
 For a new user:
 
-```{bash eval = FALSE}
+```{bash label = "adduser", eval = FALSE}
 sudo adduser <username>
 
 ```
@@ -127,7 +127,7 @@ If instead of `adduser` the command `useradd` would be used then the password an
 
 In order to push into the remote repository i need to create a key that can be used to unlock the lock to the repository in GitHub. i let to generate the key:
 
-```{bash eval = FALSE}
+```{bash label = "ssh-keygen", eval = FALSE}
 ssh-keygen
 
 ```

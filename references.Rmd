@@ -39,8 +39,6 @@
 
 <!-- (ref:kim) @kim -->
 
-<!-- (ref:lathiya-2022-sapply) @lathiya_2022_sapply -->
-
 <!-- (ref:lubridate) @lubridate -->
 
 <!-- (ref:macfarlane-2022-pandoc) @macfarlane_2022_pandoc -->
