@@ -182,11 +182,13 @@ If a character must be escaped then a backslash can be used right in front of it
 
 *\**
 
-The following characters must be escaped:
+The following additional characters must be escaped:
 
 1. *\_*,
 
-2. *\@*.
+2. *\@*,
+
+3. *\&*.
 
 ## Referencing
 
