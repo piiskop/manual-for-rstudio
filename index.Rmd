@@ -68,7 +68,7 @@ include_external_graphics = function(path) {
     if ("svg" == xfun::file_ext(path)) {
       system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
     } else {
-      system(paste('gm convert ', path, ' ', output), intern = FALSE, ignore.stdout = FALSE, ignore.stderr = FALSE, wait = TRUE)
+      system(paste('gm convert ', path, ' ', output), intern = FALSE, ignore.stdout = FALSE, ignore.stderr = FALSE, wait = TRUE) # graphicsmagick
     }
     
   } else {

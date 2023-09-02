@@ -24,23 +24,24 @@ For automation the [user-based actions after the user has an account](#user-base
 This is the content of that file written in BouShell Command Language [@a2023_bash] using @bakker_2022_named:
 
 ```{bash label = "bash", eval = FALSE}
-#!/bin/bash
+#!/bin/bash                                                                                                                                                                                   
 programname=$0
 
-function usage {
+usage() {
     echo ""
     echo "This program automates creating a new RStudio Server project."
     echo ""
-    echo "usage: $programname --project string --user string"
+    echo "usage: $programname --project string --user string[ --existing]"
     echo ""
     echo "  --project string   name of the project"
     echo "                          (example: loodusteaduste-klubi)"
     echo "  --user string            the user in GitHub"
     echo "                          (example: Tome-Kit)"
+    echo "  --existing         Is it an old project instead of a brand-new one?"
     echo ""
 }
 
-function die {
+die() {
     printf "Script failed: %s\n\n" "$1"
     exit 1
 }
@@ -52,7 +53,7 @@ while [ $# -gt 0 ]; do
     elif [[ $1 == "--"* ]]; then
         v="${1/--/}"
         declare "$v"="$2"
-        shift
+	shift
     fi
     shift
 done
@@ -67,43 +68,47 @@ fi
 
 folder_of_project="/home/kalmer/rstudio-projects/$project"
 git clone https://github.com/$user/$project $folder_of_project
-ssh-keygen -N '' -f ~/.ssh/$project -q
 
-tee ~/.ssh/github.com/$project > /dev/null <<EOF                                                                                                                                                                                                                                
-Host github.com-$project                                                                                                                                                                                                                                                        
-     HostName github.com                                                                                                                                                                                                                                                        
-     User git                                                                                                                                                                                                                                                                   
-     IdentityFile ~/.ssh/$project                                                                                                                                                                                                                                               
-EOF                                                                                                                                                                                                                                                                             
+tee ~/.ssh/github.com/$project > /dev/null <<EOF
+Host github.com-$project
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/$project
+EOF
 
 configuration_file_for_git="$folder_of_project/.git/config"
 sed -i "s/https:\/\//git@/" $configuration_file_for_git
 sed -i "s/github.com\//github.com-$project:/" $configuration_file_for_git
 
-## Configuration of the content                                                                                                                                                                                                                                                 
-name_of_original_project="manual-for-rstudio"
-sed_for_renaming_project="s/$name_of_original_project/$project/"
+if [[ ! -z $existing ]]; then
+    ssh-keygen -N '' -f ~/.ssh/$project -q
 
-path_to_bookdown_yml="$folder_of_project/_bookdown.yml"
+    ## Configuration of the content
+    
+    name_of_original_project="manual-for-rstudio"
+    sed_for_renaming_project="s/$name_of_original_project/$project/"
 
-sed -i $sed_for_renaming_project $path_to_bookdown_yml
+    path_to_bookdown_yml="$folder_of_project/_bookdown.yml"
+    echo $sed_for_renaming_project
+    sed -i $sed_for_renaming_project $path_to_bookdown_yml
 
-sed -i "/\"rmd\//d" $path_to_bookdown_yml
-rm $folder_of_project/rmd/*
-rm $folder_of_project/washing-cycles.csv
+    sed -i "/\"rmd\//d" $path_to_bookdown_yml
+    rm $folder_of_project/rmd/*
+    rm $folder_of_project/washing-cycles.csv
 
-path_to_output_yml="$folder_of_project/_output.yml"
-sed -i "s/piiskop/$user/" $path_to_output_yml
-sed -i $sed_for_renaming_project $path_to_output_yml
+    path_to_output_yml="$folder_of_project/_output.yml"
+    sed -i "s/piiskop/$user/" $path_to_output_yml
+    sed -i $sed_for_renaming_project $path_to_output_yml
 
-sed -i $sed_for_renaming_project $folder_of_project/js.js
+    sed -i $sed_for_renaming_project $folder_of_project/js.js
+fi
 
-## Web output                                                                                                                                                                                                                                                                   
+## Web output
 
-configuration_file="/etc/nginx/sites-available/$project.tennis24.ee"
-sudo cp /etc/nginx/sites-available/manual-for-rstudio.tennis24.ee $configuration_file
+configuration_file="/etc/nginx/sites-available/$project.ons.ee"
+sudo cp /etc/nginx/sites-available/manual-for-rstudio.ons.ee $configuration_file
 sudo sed -i "s/manual-for-rstudio/$project/g" $configuration_file
-sudo ln -s $configuration_file "/etc/nginx/sites-enabled/$project.tennis24.ee"
+sudo ln -s $configuration_file "/etc/nginx/sites-enabled/$project.ons.ee"
 sudo systemctl reload nginx
 
 ```

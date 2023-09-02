@@ -805,6 +805,13 @@ ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `PÃ¶Ã
 
 The figure \@ref(fig:stat-regline-cor) on the page `r render_pageref(reference = "fig:stat-regline-cor")` represents the correlation between the water and electricity consumption between `r min_time` and `r max_time`. The plot displays the smooth regression line[@stat_poly_line] and the correlation coefficient. There are also the data about the regression. Both labels have been positioned vertically.
 
+For `ggpubr`, the dependency `nloptr` must be installed directly in *Ubuntu*[@unable]:
+
+```{bash label = "nloptr", eval = FALSE}
+sudo apt-get install libnlopt-dev
+
+```
+
 ```{r label = "stat-regline-cor", fig.cap=paste("Correlation between the water and electricity consumption between", min_time, "and", max_time, ".")}
 librarian::shelf(c(
   "ggplot2",
