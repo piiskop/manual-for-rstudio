@@ -646,6 +646,15 @@ $$\huge{\text{Augusti psühhomeetriga}}$$
 
 ### Chemical symbols
 
+For using the package *mhchem*, it has to be installed[@latex_mhchem]:
+
+```{bash label = "mhchem", eval = FALSE}
+sudo apt install texlive-science
+
+```
+
+After that, *mchem* can be used:
+
 ```{verbatim label = "ce"}
 `r if (knitr::is_html_output()) { "\\require{mhchem}" }`\ce{N_2}
 

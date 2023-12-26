@@ -78,6 +78,8 @@ seq(0, 14, 2)
 
 ```{r label = "round"}
 round(123.456, digits = 1)
+round(122.5)
+round(123.5)
 
 ```
 
@@ -92,6 +94,53 @@ number_with_significant_digits <- signif(x = number, digits = 4)
 print(number_with_significant_digits)
 
 ```
+
+#### Prefixes
+
+For formatting with prefixes, one can use the function *format_SI*[@format_si] from the package *BAAQMD/strtools*[@baaqmdstrtools]:
+
+```{r label="format_SI"}
+number <- c(1234.56, 0.123456)
+librarian::shelf(c(
+  "strtools"
+))
+format_SI(number)
+format_SI(number, fixed=TRUE)
+format_SI(number, engineering=TRUE)
+format_SI(number, digits=2)
+
+```
+
+#### Powers and units
+
+For using powers and units, there is the package *formatdown*[@layton_2023_formatdown]:
+
+```{r label="formatdown"}
+librarian::shelf(c(
+  "formatdown"
+))
+numbers <- c(123.456, 2e-6, 5e8, 0.23)
+format_power_numbers <- format_power(numbers)
+format_power_numbers_digits <- format_power(numbers, digits = 2)
+format_power_numbers_sci <- format_power(numbers, format="sci")
+format_power_numbers_omit <- format_power(numbers, omit_power = c(-6, -6))
+format_power_numbers_set <- format_power(numbers, set_power = 5)
+units(numbers) <- "kg m-3"
+format_units_numbers <- format_units(x=numbers, unit="g l-1")
+
+```
+
+`r format_power_numbers`
+
+`r format_power_numbers_digits`
+
+`r format_power_numbers_sci`
+
+`r format_power_numbers_omit`
+
+`r format_power_numbers_set`
+
+`r format_units_numbers`
 
 ## Time
 
@@ -665,6 +714,55 @@ print_table(
   caption = "Table with rows and columns exchanged.",
   do_i_transpose = TRUE
 )
+
+```
+
+### Coloring according to values
+
+It is possible to automatically show the values growing by different colors using the function *spec_color* of *kableExtra* as seen in the table \@ref(tab:spec-color) leheküljel `r render_pageref(reference="tab:spec-color")`.
+
+(ref:solubility) Kilogrammi ühendi lahustuvus vees kilogrammi vee kohta[@haynes_2014_crc, lk 4-43-4-114]. If the value of the solubility is unknown then the solubility is marked as follows: slightly soluble: \qty{1}{\kg\per\kg}, soluble: \qty{0.1}{\kg\per\kg}, very soluble: \qty{0.01}{\kg\per\kg}.
+
+```{r label="spec-color"}
+Li <- c(
+  4.5e-1, # acetate
+  1.81, # bromide
+  1.30e-2 # carbonate
+)
+
+Na <- c(
+  5.04e-1, # acetate
+  9.46e-1, # bromide
+  3.07e-2 # carbonate
+)
+
+K <- c(
+  2.69, # acetate
+  6.78e-1, # bromide
+  1.11 # carbonate
+)
+
+solubility <- data.frame(
+  Li,
+  Na,
+  K
+)
+
+colnames(solubility) <- c(
+  "\\ce{Li+}",
+  "\\ce{Na+}",
+  "\\ce{K+}"
+)
+rownames(solubility) <- c(
+  "\\ce{[CH3CO2]-}",
+  "\\ce{Br-}",
+  "\\ce{[CO3]^2-}"
+)
+librarian::shelf(c(
+  "dplyr"
+))
+solubility <- mutate_all(.tbl=solubility, ~cell_spec(.x, color=spec_color(.x), font_size = spec_font_size(.x)))
+print_table(table=solubility, caption="(ref:solubility)")
 
 ```
 
