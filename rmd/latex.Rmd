@@ -724,7 +724,7 @@ $$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\c
 Aldehüüd on redutseerija ja redutseerib komplekseeritud vask(II)iooni
 vask(I)oksiidiks:
 
-$$\ce{2Cu^2+}_\text{complexed}\ce{+2OH- + 2e- -> Cu2O + H2O}.$$
+$$\ce{2Cu^2+}_\text{complexed}\ce{+2[OH]- + 2e- -> Cu2O + H2O}.$$
 
 ```
 
@@ -987,3 +987,29 @@ If the new page must be empty then the following code snippet is useful:
 \newpage
 \mbox{}
 \pagebreak
+
+## Blanks
+
+For scaffolding, one needs to have these rows in *preamble.tex*[@fill]:
+
+```{verbatim label="blank-in-preamble"}
+% for fill-in-the-gaps-tests
+\newlength{\blankwidth}
+\newcommand{\blank}[1]{%
+	\ifmmode\settowidth{\blankwidth}{\ensuremath{{#1}{#1}{#1}}}%
+	\else\settowidth{\blankwidth}{{#1}{#1}{#1}}%
+	\fi
+	\makebox[\blankwidth]{\dotfill}}
+
+```
+
+Then, you can use `blank`:
+
+```{verbatim label="example-of-blank", language="tex"}
+Täna on 2023-12-12 ja mina olen \blank{10. Trubilko, Vladislav}.
+
+```
+
+The output looks like:
+
+Täna on 2023-12-12 ja mina olen \blank{10. Trubilko, Vladislav}.
