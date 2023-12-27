@@ -112,7 +112,7 @@ print_table <- function(table, caption, digits = 2, additional_header = NULL, fo
     table <- (kable_styling(
       table,
       bootstrap_options = c("striped", "bordered", "condensed", "responsive", "hover"),
-      latex_options = c("striped", "repeat_header"),
+      latex_options = c("condensed", "striped", "repeat_header"),
       repeat_header_text = paste(caption, "$\\textit{(Continued...)}$"),
       repeat_header_method = "replace",
       repeat_header_continued = TRUE # "Tabel järgneb järgmisel leheküljel..."

@@ -130,9 +130,51 @@ If i want the following text to be in one column, i write:
   
 i'm just writing some text that will be placed in one column because it can contain a figure or equation that doesn't fit in a narrower column.
 
+This way, the columns are not balanced. If I want balanced columns, I have to use the package *multicol*[@multiple]:
+
+```{verbatim label="multicols", language="tex"}
+     
+\begin{multicols}{2}
+- titaandioksiid: \ce{TiO2};
+
+- ränitetrakloriid: \ce{SiCl4};
+
+- süsinikdisulfiid: \ce{CS2};
+
+- vääveltetrafluoriid: \ce{SF4};
+
+- liitiumsulfiid: \ce{Li2S};
+
+- antimonpentafluoriid: \ce{SbF5};
+
+- dilämmastikpentooksiid: \ce{N2O5};
+
+- joodheptafluoriid: \ce{IF7}.
+\end{multicols}
+
+```
+
+\begin{multicols}{2}
+- titaandioksiid: \ce{TiO2};
+
+- ränitetrakloriid: \ce{SiCl4};
+
+- süsinikdisulfiid: \ce{CS2};
+
+- vääveltetrafluoriid: \ce{SF4};
+
+- liitiumsulfiid: \ce{Li2S};
+
+- antimonpentafluoriid: \ce{SbF5};
+
+- dilämmastikpentooksiid: \ce{N2O5};
+
+- joodheptafluoriid: \ce{IF7}.
+\end{multicols}
+
 \twocolumn
 
-## Preventing hyphenation  
+## No hyphenation  
   
 After the following command, no hyphenation takes place:  
   
