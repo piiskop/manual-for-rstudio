@@ -1,6 +1,8 @@
 # LaTeX
 
-## Page Orientation
+## Layout
+
+### Page Orientation
 
 ```{verbatim label = "landscape"}
 \begin{landscape}
@@ -16,6 +18,22 @@ Here is anything but figures that needs to be displayed in landscape mode.
 Here is anything but figures that needs to be displayed in the landscape mode.
 
 \end{landscape}
+
+### Justifying text
+
+(ref:explanation-on-raggedright-preamble) By default, the text is justified on both edges. For a better readability, we can use left-justifying by telling the specific commands in \textit{preamble.tex} as shown in the listing \@ref(lst:raggedright-preamble) on the page `r render_pageref(reference="lst:raggedright-preamble")`[@kottwitz_latex, lk 62].
+
+\begin{multicols}{2}
+(ref:explanation-on-raggedright-preamble)
+
+\columnbreak
+
+\begin{lstlisting}[label=lst:raggedright-preamble, language=TeX, caption=An example of how to left-justify elements on the page.]
+\usepackage{ragged2e}
+\RaggedRight
+
+\end{lstlisting}
+\end{multicols}
 
 ## List of tables and figures  
   
@@ -128,9 +146,19 @@ If i want the following text to be in one column, i write:
 \onecolumn  
 ```  
   
-i'm just writing some text that will be placed in one column because it can contain a figure or equation that doesn't fit in a narrower column.
+I am just writing some text that will be placed in one column because it can contain a figure or equation that does not fit in a narrower column.
 
-This way, the columns are not balanced. If I want balanced columns, I have to use the package *multicol*[@multiple]:
+(ref:explanation-non-balanced) This way, the columns are not balanced. If I want balanced columns, I have to use the package `multicol`[@multiple] by referencing it in *preamble.tex* as seen in the listing \@ref(lst:multicol-preamble) on the page `r render_pageref(reference="lst:multicol-preamble")`.
+
+\begin{multicols}{2}
+(ref:explanation-non-balanced)
+
+\begin{lstlisting}[label=lst:multicol-preamble, language=TeX, caption=An example of how to reference the package \texttt{multicol} and configure its use.]
+\usepackage{multicol}
+\setlength{\columnseprule}{1pt}
+
+\end{lstlisting}
+\end{multicols}
 
 ```{verbatim label="multicols", language="tex"}
      
@@ -154,6 +182,8 @@ This way, the columns are not balanced. If I want balanced columns, I have to us
 
 ```
 
+\pagebreak
+
 \begin{multicols}{2}
 - titaandioksiid: \ce{TiO2};
 
@@ -172,7 +202,56 @@ This way, the columns are not balanced. If I want balanced columns, I have to us
 - joodheptafluoriid: \ce{IF7}.
 \end{multicols}
 
-\twocolumn
+(ref:explanation-columnbreak) It is possible to influence where the column breakes and throught that it is also possible to move the contents onto the next page as seen in the listing \@ref(lst:columnbreak) on the page `r render_pageref(reference="lst:columnbreak")`.
+
+\begin{multicols}{2}
+(ref:explanation-columnbreak)
+
+\begin{lstlisting}[label=lst:columnbreak, language=TeX, caption=An example with the column break.]
+\begin{multicols}{2}
+- titaandioksiid: \ce{TiO2};
+
+- ränitetrakloriid: \ce{SiCl4};
+
+- süsinikdisulfiid: \ce{CS2};
+
+- vääveltetrafluoriid: \ce{SF4};
+
+\vfill\null
+\columnbreak
+
+- liitiumsulfiid: \ce{Li2S};
+
+- antimonpentafluoriid: \ce{SbF5};
+
+- dilämmastikpentooksiid: \ce{N2O5};
+
+- joodheptafluoriid: \ce{IF7}.
+\end{multicols}
+
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+- titaandioksiid: \ce{TiO2};
+
+- ränitetrakloriid: \ce{SiCl4};
+
+- süsinikdisulfiid: \ce{CS2};
+
+\vfill\null
+\columnbreak
+
+- vääveltetrafluoriid: \ce{SF4};
+
+- liitiumsulfiid: \ce{Li2S};
+
+- antimonpentafluoriid: \ce{SbF5};
+
+- dilämmastikpentooksiid: \ce{N2O5};
+
+- joodheptafluoriid: \ce{IF7}.
+\end{multicols}
 
 ## No hyphenation  
   
@@ -358,7 +437,7 @@ It's reasonable to align all the tables:
 
 ```{verbatim label = "align"}
 \begin{align}
-\frac{R_{sisemine}}{(R + R_{sisemine})^2} &= 0, R \nequal R_{sisemine} (\#eq:extrema-of-eta-R-initial)\\ 
+\frac{R_{sisemine}}{(R + R_{sisemine})^2} &= 0, R \nequal R_{sisemine} (\#eq:extrema-of-eta-R-initial)\leavevmode\\ 
 R_{sisemine} &= 0
 (\#eq:extrema-of-eta-R)
 \end{align}
@@ -367,7 +446,7 @@ R_{sisemine} &= 0
 
 ```{=latex}
 \begin{align}
-\frac{R_{sisemine}}{(R + R_{sisemine})^2} &= 0, R \nequal R_{sisemine} (\#eq:extrema-of-eta-R-initial)\\ 
+\frac{R_{sisemine}}{(R + R_{sisemine})^2} &= 0, R \nequal R_{sisemine} (\#eq:extrema-of-eta-R-initial)\leavevmode\\ 
 R_{sisemine} &= 0
 (\#eq:extrema-of-eta-R)
 \end{align}
@@ -635,8 +714,8 @@ Avaldisena \@ref(eq:triple-vector-product) leheküljel `r render_pageref(referen
 \begin{align}
 \vec{V_1} \times (\vec{V_2} \times \vec{V_3}) = \vec{V_1} \times
 \begin{vmatrix}
-\vec{i}&\vec{j}&\vec{k}\\
-V_{2; x}&V_{2; y}&V_{2; z}\\
+\vec{i}&\vec{j}&\vec{k}\leavevmode\\
+V_{2; x}&V_{2; y}&V_{2; z}\leavevmode\\
 V_{3; x}&V_{3; y}&V_{3; z}
 \end{vmatrix}
 (\#eq:triple-vector-product)
@@ -684,6 +763,137 @@ $$\huge{\text{Augusti psühhomeetriga}}$$
 
 $$\huge{\text{Augusti psühhomeetriga}}$$
 
+### Typewriter
+
+(ref:explanations-for-texttt) Inline code can be written using `\texttt` as seen in the code block \@ref(lst:texttt) on the page `r render_pageref(reference="lst:texttt")`[@a2022_l, lk 23].
+
+(ref:explanations-for-texttt)
+
+\begin{multicols}{2}
+\begin{lstlisting}[label=lst:texttt, language=TeX, caption=An example of how to display inline code.]
+An example of how to reference the package \texttt{multicol} and configure its use.
+
+\end{lstlisting}
+
+An example of how to reference the package \texttt{multicol} and configure its use.
+
+\end{multicols}
+
+\pagebreak
+
+### Code blocks
+
+(ref:explanation-for-listings-preamble) Code blocks can be written using the package `listings`[@hoffmann_the] that can be configured in *preamble.tex* as seen in the listing \@ref(lst:listings-preamble) on the page `r render_pageref(reference="lst:listings-preamble")`.
+
+(ref:explanation-for-listings-preamble)
+
+\begin{lstlisting}[label=lst:listings-preamble, language=TeX, caption=An example of how to reference the package \texttt{listings} and configure its use.]
+\usepackage{listings}
+\lstloadlanguages{TeX}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=true,                
+  showstringspaces=true,
+  showtabs=true,                  
+  tabsize=2
+}
+\lstset{style=mystyle}
+
+\end{lstlisting}
+
+\newpage
+
+(ref:explanation-for-code-blocks) An example with `listings` is shown in the listing \@ref(lst:lstlisting) on the page `r render_pageref(reference="lst:lstlisting")`.
+
+(ref:explanation-for-code-blocks)
+
+\begin{multicols}{2}
+\begin{TeXlstlisting}{An example for a code listing.}{lst:lstlisting}
+\begin{lstlisting}[label=lst:itemize, language=TeX, caption=An example of a code listing of a list with checkboxes.]
+Märgista omadus, kui see on keemiline:
+
+\begin{itemize}
+	\item[\faSquareO] hõbedast esemed tuhmuvad;
+	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	  olemasolust;
+	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+\end{itemize}
+\end{lstlisting}
+\end{TeXlstlisting}
+
+\begin{lstlisting}[label=lst:itemize, language=TeX, caption=An example of a code listing of a list with checkboxes.]
+Märgista omadus, kui see on keemiline:
+
+\begin{itemize}
+	\item[\faSquareO] hõbedast esemed tuhmuvad;
+	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	  olemasolust;
+	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+\end{itemize}
+\end{lstlisting}
+
+\end{multicols}
+
+(ref:explanation-on-example-of-new-environment-for-lstlisting) The latter example has been created by nesting `lstlisting` inside a new environment created extra for that as it is not possible to show `\begin{lstlisting}` inside another `\begin{lstlisting}`. The new environment must be created in *preamble.tex* as seen in the listing \@ref(lst:example-of-new-environment-for-lstlisting) on the page `r render_pageref(reference="lst:example-of-new-environment-for-lstlisting")`[@latex].
+
+(ref:explanation-on-lstlisting-inside-TeXlstlisting) The usage of this new environment can be seen in the listing \@ref(lst:example-of-lstlisting-inside-TeXlstlisting) on the page `r render_pageref(reference="lst:example-of-lstlisting-inside-TeXlstlisting")`.
+
+\begin{multicols}{2}
+
+(ref:explanation-on-example-of-new-environment-for-lstlisting)
+
+\columnbreak
+
+\begin{lstlisting}[label=lst:example-of-new-environment-for-lstlisting, language=TeX, caption=An example of how to create a new environment for \texttt{lstlisting}.]
+\lstnewenvironment{TeXlstlisting}[2]{
+	\lstset{
+		caption=#1,
+		label=#2,
+		language=[LaTeX]TeX
+	}
+}{}
+\end{lstlisting}
+\end{multicols}
+\pagebreak
+(ref:explanation-on-lstlisting-inside-TeXlstlisting)
+\begin{lstlisting}[label=lst:example-of-lstlisting-inside-TeXlstlisting, language=TeX, caption=An example of how to use \texttt{TeXlstlisting}.]
+\begin{TeXlstlisting}{An example for a code listing.}{lst:lstlisting}
+...
+\end{TeXlstlisting}
+\end{lstlisting}
+
+### Line breaks
+
+An example of how to force a line break is shown in the listing \@ref(lst:example-of-linebreak) on the page `r render_pageref(reference="lst:example-of-linebreak")`[@kottwitz_latex, lk 271].
+
+\begin{multicols}{2}
+
+\begin{lstlisting}[label=lst:example-of-linebreak, language=TeX, caption=An example of how to break lines.]
+\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\leavevmode\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}
+\end{lstlisting}
+
+\columnbreak
+
+\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\leavevmode\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}
+\end{multicols}
+
 ## Chemistry
 
 ### Chemical symbols
@@ -711,14 +921,22 @@ Puidu ja arheoloogiliste proovide dateerimiseks kasutatakse $\ce{^{14}C}$'d, mil
 
 Puidu ja arheoloogiliste proovide dateerimiseks kasutatakse $\ce{^{14}C}$'d, mille poolestusaeg on 5715 a.
 
+The use with an arrow is shown in the equation
+
 ```{verbatim label = "ce_with_arrow"}
-$$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\\
-\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}$$
+\begin{align}
+\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\leavevmode\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}
+(\#eq:ce-with-arrow)
+\end{align}
 
 ```
 
-$$\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\\
-\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}$$
+\begin{align}
+\color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\leavevmode\\
+\color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}
+(\#eq:ce-with-arrow)
+\end{align}
 
 ```{verbatim label = "ce_with_superscript_subscript"}
 Aldehüüd on redutseerija ja redutseerib komplekseeritud vask(II)iooni
@@ -988,6 +1206,8 @@ If the new page must be empty then the following code snippet is useful:
 \mbox{}
 \pagebreak
 
+\onecolumn
+
 ## Blanks
 
 For scaffolding, one needs to have these rows in *preamble.tex*[@fill]:
@@ -1013,3 +1233,38 @@ Täna on 2023-12-12 ja mina olen \blank{10. Trubilko, Vladislav}.
 The output looks like:
 
 Täna on 2023-12-12 ja mina olen \blank{10. Trubilko, Vladislav}.
+
+## Lists
+
+(ref:explanation-for-itemize) For creating tasks for pupils, sometimes checkboxes are needed. For that, there is `itemize` with the package `fontawesome`[@roy_2019_itemize]. An example with `itemize` is shown in the listing \@ref(lst:itemize) on the page `r render_pageref(reference="lst:itemize")`.
+
+\begin{multicols}{2}
+(ref:explanation-for-itemize)
+\end{multicols}
+
+\newpage
+
+\begin{multicols}{2}
+\begin{lstlisting}[label=lst:itemize, language=TeX, caption=An Example for a list with checkboxes.]
+Märgista omadus, kui see on keemiline:
+
+\begin{itemize}
+	\item[\faSquareO] hõbedast esemed tuhmuvad;
+	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	  olemasolust;
+	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+\end{itemize}
+\end{lstlisting}
+
+\columnbreak
+
+Märgista omadus, kui see on keemiline:
+
+\begin{itemize}
+	\item[\faSquareO] hõbedast esemed tuhmuvad;
+	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	  olemasolust;
+	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+\end{itemize}
+
+\end{multicols}

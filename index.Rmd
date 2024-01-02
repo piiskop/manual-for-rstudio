@@ -12,7 +12,7 @@ title: "`r if (knitr::is_latex_output()) { '' } else { 'Manual for creating cont
 documentclass: book
 papersize: a4
 geometry: top=2cm, right=2cm, bottom=3cm, left=3cm
-classoption: twocolumn, twoside
+classoption: onecolumn, twoside
 linestretch: 1.5
 
 fontsize: 12pt
@@ -224,6 +224,8 @@ render_color <- function(color, text) {
 }
 
 ```
+
+\lstlistoflistings
 
 # Introduction {-}
 
