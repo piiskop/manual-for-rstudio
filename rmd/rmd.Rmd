@@ -388,3 +388,66 @@ The same equation inline: $\frac{t_\text{d}}{}$.
 ```
 
 The same equation inline: $\frac{t_\text{d}}{}$.
+
+\pagebreak
+
+## Lists
+
+In the example (@lists-with-holes), a comment between two list items ends the list and starts a new one[@lists]. This way, it is possible to create a non-continuous list.
+
+(@lists-with-holes) A list with holes:
+
+    ```{verbatim label = "ordered-list-out-of-order", language="markdown"}
+    7. Korrutage \qty{4,079e2}{\m} \qty{0,057e-1}{\m}'ga, võttes arvesse olulisi numbreid.
+    
+    <!-- -->
+    
+    9. Väikeste nurkade $u$ korral on $\mathrm{sin}(u)$ arvväärtus ligikaudu sama, mis $\mathrm{tan}(u)$ arvväärtus.
+    Leia suurim nurk, mille puhul siinus ja tangens langevad kokku kahe tüvenumbri piires.
+    
+    ```
+
+    7. Korrutage \qty{4,079e2}{\m} \qty{0,057e-1}{\m}'ga, võttes arvesse olulisi numbreid.
+
+    <!-- -->
+
+    9. Väikeste nurkade $u$ korral on $\mathrm{sin}(u)$ arvväärtus ligikaudu sama, mis $\mathrm{tan}(u)$ arvväärtus.
+    Leia suurim nurk, mille puhul siinus ja tangens langevad kokku kahe tüvenumbri piires.
+
+\pagebreak
+
+In the example (@lists-without-holes), the list is continuous no matter what identifier is in front of the second item.
+
+(@lists-without-holes) A continuous list:
+
+    ```{verbatim label = "ordered-list-in-order", language="markdown"}
+    7. Korrutage \qty{4,079e2}{\m} \qty{0,057e-1}{\m}'ga, võttes arvesse olulisi numbreid.
+    
+    9. Väikeste nurkade $u$ korral on $\mathrm{sin}(u)$ arvväärtus ligikaudu sama, mis $\mathrm{tan}(u)$ arvväärtus.
+    Leia suurim nurk, mille puhul siinus ja tangens langevad kokku kahe tüvenumbri piires.
+    
+    ```
+    
+    7. Korrutage \qty{4,079e2}{\m} \qty{0,057e-1}{\m}'ga, võttes arvesse olulisi numbreid.
+    
+    9. Väikeste nurkade $u$ korral on $\mathrm{sin}(u)$ arvväärtus ligikaudu sama, mis $\mathrm{tan}(u)$ arvväärtus.
+    Leia suurim nurk, mille puhul siinus ja tangens langevad kokku kahe tüvenumbri piires.
+
+\pagebreak
+
+## Examples
+
+Examples can be made as seen in the example (@examples)[@lists].
+
+(@examples) An example of an example:
+
+    ```{verbatim label="examples", language="markdown"}
+    In the example (@examples-example), it is possible to see an example.
+    
+    (@examples-example) This is an example.
+    
+    ```
+    
+    In the example (@examples-example), it is possible to see an example.
+    
+    (@examples-example) This is an example.
