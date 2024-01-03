@@ -11,9 +11,9 @@ output-file: presentation.html
 format:
   revealjs:
     # chalkboard: true
-    incremental: true
+    incremental: false
     multiplex:
-      url: 'http://manual-for-rstudio.tennis24.ee:1948/'
+      url: 'http://manual-for-rstudio.ons.ee:1948/'
       secret: "16759825730498538629"
       socketId: "f3edf0ff0d09982e"
     # revealjs-plugins:
@@ -254,7 +254,99 @@ A reference:
 
 -   no explanations
 
-[Manual for RStudio Server](/)
+## Quantities
+
+- Comma without braces causes a space is not inside braces a space would be added[@a2022_l, lk 146; @a2019_how] (@quantities-incorrect).
+
+    (@quantities-incorrect) An example of incorrect punctuation:
+    
+      :::: {layout="[ 60, 40 ]"}
+      
+      ::: {#quantities-1}
+  
+      ```
+      $$30,0^{\circ} \ne 30^{\circ}$$
+      
+      ```
+      
+      :::
+
+      ::: {#quantities-2}
+      
+      $$30,0^{\circ} \ne 30^{\circ}$$
+      
+      :::
+      
+      ::::
+
+- Comma with braces causes no space (@quantities-correct).
+
+    (@quantities-correct) An example of correct punctuation:
+
+      :::: {layout="[ 60, 40 ]"}
+      
+      ::: {#quantities-3}
+  
+      ```
+      $$30{,}0^{\circ} \ne 30^{\circ}$$
+      
+      ```
+      :::
+
+      ::: {#quantities-4}
+      
+      $$30{,}0^{\circ} \ne 30^{\circ}$$
+      :::
+      
+      ::::
+
+## Columns
+
+Column layout (@columns)[@quarto-block-layout].
+
+(@columns) An example of column layout:
+
+:::: {layout="[50, 50]"}
+
+::: {#columns-1}
+
+```
+:::: {layout="[ 60, 40 ]"}
+
+::: {#columns-3}
+first column
+
+:::
+
+::: {#columns-4}
+second column
+
+:::
+
+::::
+
+```
+
+:::
+
+::: {#columns-2}
+:::: {layout="[ 60, 40 ]"}
+
+::: {#columns-3}
+first column
+
+:::
+
+::: {#columns-4}
+second column
+
+:::
+
+::::
+
+:::
+
+::::
 
 ## External references
 
@@ -263,3 +355,5 @@ A reference:
 \fontspec{Symbola}
 
 ```
+
+[Manual for RStudio Server](/)

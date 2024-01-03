@@ -437,6 +437,11 @@ In the example (@lists-without-holes), the list is continuous no matter what ide
 
 ## Examples
 
+\begin{lstlisting}[label=lst:joppenpuhh, language=TeX, caption=An example of how to display inline code.]
+An example of how to reference the package \texttt{multicol} and configure its use.
+
+\end{lstlisting}
+
 Examples can be made as seen in the example (@examples)[@lists].
 
 (@examples) An example of an example:
