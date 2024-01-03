@@ -660,8 +660,6 @@ $$\partial{H}$$
 
 ```
 
-\twocolumn
-
 ### Underbrace
 
 ```{verbatim label = "underbrace", language = "latex"}
@@ -720,6 +718,18 @@ V_{3; x}&V_{3; y}&V_{3; z}
 \end{vmatrix}
 (\#eq:triple-vector-product)
 \end{align}
+
+### Proportionality
+
+The symbol for proportionality is $\propto$ and it can be used as shown in the listing \@ref(lst:proportionality) on the page `r render_pageref(reference="lst:proportionality")`[@a2022_l, lk 151].
+
+\begin{multicols}{2}
+\begin{lstlisting}[label=lst:proportionality, caption=Is proportional to., language=TeX]
+$F_\mathrm{D} \propto v^2$
+\end{lstlisting}
+
+$F_\mathrm{D} \propto v^2$
+\end{multicols}
 
 ## Text
 
