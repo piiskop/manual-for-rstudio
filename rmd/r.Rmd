@@ -1068,6 +1068,51 @@ ggplot(data = illuminance_data_frame, mapping = aes(x = `illuminance`, y = 0)) +
 
 ```
 
+### Accuracy
+
+Joonisel \@ref(fig:ruler-uncertainties-without-accuracy) leheküljel `r render_pageref(reference = "fig:ruler-uncertainties-without-accuracy")` on esitatud mõõdetud keskväärtus koos mõõtemääramatusega graafiliselt.
+
+```{r label = "ruler-uncertainties-without-accuracy", fig.cap="Kahe kontrollpunkti omavaheline kaugus mõõtemääramatusega."}
+librarian::shelf(c(
+  "ggplot2",
+  "latex2exp"
+))
+
+color_x <- "#008000"
+ruler_smallest_unit <- .5
+ruler_relation = 4000 / 400
+ruler_smallest_unit_actual <- ruler_smallest_unit * ruler_relation 
+ruler_x <- 42
+ruler_x_actual <- ruler_x * ruler_relation
+ruler_data_frame <- data.frame(ruler_x_actual)
+
+plot <- ggplot(data = ruler_data_frame, mapping = aes(x = `ruler_x_actual`, y = 0)) +
+  geom_point(shape = 23, size = 1) +
+  labs(x = TeX("$\\frac{\\textit{q}}{m}$")) +
+  geom_errorbarh(aes(xmin = `ruler_x_actual` - ruler_smallest_unit_actual, xmax = `ruler_x_actual` + ruler_smallest_unit_actual), color = color_x) +
+  theme(
+    axis.title.x = element_text(colour = color_x),
+    axis.text.x = element_text(colour = color_x),
+    axis.ticks.x = element_line(colour = color_x),
+    axis.title.y=element_blank(), 
+    axis.text.y=element_blank(), 
+    axis.ticks.y=element_blank()
+  )
+
+plot
+
+```
+
+The figure \@ref(fig:ruler-uncertainties-with-accuracy) on the page `r render_pageref(reference="fig:ruler-uncertainties-with-accuracy")` shows how to specify the accuracy of the numbers on axis[@number].
+
+```{r label = "ruler-uncertainties-with-accuracy", fig.cap="With specified accuracy."}
+plot +
+  scale_x_continuous(
+    labels = scales::number_format(accuracy = 1)
+  )
+
+```
+
 ## Regression model[@lm]
 
 ```{r label = "lm"}
