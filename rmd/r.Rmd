@@ -991,6 +991,60 @@ ggplot(data = washing_cycles_with_full_records, mapping = aes(x = `veekulu_dal`,
 
 ```
 
+Joonisel \@ref(fig:illuminance-uncertainties) leheküljel `r render_pageref(reference = "fig:illuminance-uncertainties")` on esitatud valgustugevuse mõõtmise tulemused keskväärtuse ja mõõtemääramatustega: mustaga on tähistatud A-, oranžiga B1-, roosaga B2-tüüpi ja rohelisega kogu mõõtemääramatus[@horizontal]. Sellelt jooniselt näeme, kui palju mingit tüüpi mõõtemääramatus antud juhul mõju avaldab.
+
+```{r label = "illuminance-uncertainties", fig.cap="Valgustugevus koos keskmise valgustugevuse ja mõõtemääramatustega."}
+librarian::shelf(c(
+  "ggplot2",
+  "latex2exp"
+))
+color_x <- "#008000"
+illuminance <- c(923, 905, 593, 587)
+illuminance_data_frame = data.frame(illuminance)
+illuminance_mean <- mean(illuminance)
+illuminance_se <- as.numeric(mean_se(illuminance)["ymax"] - illuminance_mean) 
+illuminance_size <- length(illuminance)
+illuminance_size_less_1 <- illuminance_size - 1
+librarian::shelf(c(
+  "distributions3"
+))
+studentTDistribution = StudentsT(df = illuminance_size_less_1)
+alpha <- 0.05
+probability_for_Student <- 1 - alpha / 2
+caliper_number_student = quantile(studentTDistribution, probability_for_Student)
+illuminance_uncertainty_A <- caliper_number_student * illuminance_se
+
+precision_ratio <- .05
+number_of_least_sigfig = 10
+student_inf <- quantile(StudentsT(df = Inf), probability_for_Student)
+illuminance_uncertainty_B_1 <- student_inf * (illuminance_mean * precision_ratio + number_of_least_sigfig) / 3
+
+illuminance_smallest_unit <- 1
+probability <- 1 - alpha
+
+illuminance_uncertainty_B_2 <- probability * illuminance_smallest_unit / 2
+
+illuminance_uncertainty <- sqrt(illuminance_uncertainty_A^2 + illuminance_uncertainty_B_1^2 + illuminance_uncertainty_B_2^2)
+
+ggplot(data = illuminance_data_frame, mapping = aes(x = `illuminance`, y = 0)) +
+  geom_point(shape = 23, size = 1) +
+  geom_point(aes(x = illuminance_mean, y = 0), shape = 23, size = 2, color = color_x) +
+  labs(x = TeX("$\\frac{\\textit{q}}{lx}$")) +
+  geom_errorbarh(aes(xmin = illuminance_mean - illuminance_uncertainty, xmax = illuminance_mean + illuminance_uncertainty), color = color_x) +
+  geom_errorbarh(aes(xmin = illuminance_mean - illuminance_uncertainty_A, xmax = illuminance_mean + illuminance_uncertainty_A), height = .1) +
+  geom_errorbarh(aes(xmin = illuminance_mean - illuminance_uncertainty_B_1, xmax = illuminance_mean + illuminance_uncertainty_B_1), color = "#ff6600", height = .2) +
+  geom_errorbarh(aes(xmin = illuminance_mean - illuminance_uncertainty_B_2, xmax = illuminance_mean + illuminance_uncertainty_B_2), color = "#ff66ff", height = .4) +
+  theme(
+    axis.title.x = element_text(colour = color_x),
+    axis.text.x = element_text(colour = color_x),
+    axis.ticks.x = element_line(colour = color_x),
+    axis.title.y=element_blank(), 
+    axis.text.y=element_blank(), 
+    axis.ticks.y=element_blank()
+  )
+
+```
+
 ## Regression model[@lm]
 
 ```{r label = "lm"}
