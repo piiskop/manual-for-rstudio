@@ -833,16 +833,39 @@ The parameters:
 `TeX`
 : the function for converting `r render_nonmath_LaTeX_string_universal("\\LaTeX")` strings in labels
 
-```{r label = "ggplot", fig.cap="Washing cycles."}
+```{r label = "ggplot", fig.cap="Washing cycles.", dev='cairo_pdf'}
 
 librarian::shelf(c(
+  "Cairo",
   "ggplot2",
   "latex2exp"
 ))
 
 ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `Pöördeid.min`)) + geom_point(shape = 23, color = "#008000", fill = "#ff6600", size = 3) +
-  labs(x = TeX("$\\frac{\\textit{t}}{\\degree C}$"), y = TeX("$\\frac{\\textit{f}}{min}$"))
+  labs(x = TeX("$\\frac{\\textit{t}}{^\\circ C}$"), y = TeX("$\\frac{\\textit{f}}{min}$"))
 
+```
+
+In order to use Unicode characters like the degree symbol, we need the library `Cairo` and the corresponding `dev`[@a2018_ggplot].
+
+\pagebreak
+
+### Additional data point
+
+A single additional data point can be added using `geom_point` (figure \@ref(fig:ggplot-additional-data-point) on the page `r render_pageref(reference = "fig:ggplot-additional-data-point")`)[@adding].
+
+```{r label="ggplot-additional-data-point", fig.cap="Additional data point.", dev='cairo_pdf'}
+
+librarian::shelf(c(
+  "Cairo",
+  "ggplot2",
+  "latex2exp"
+))
+
+ggplot(data = washing_cycles_with_full_records, aes(x = `Temperatuur`, y = `Pöördeid.min`)) +
+  geom_point(shape = 23, color = "#008000", fill = "#ff6600", size = 3) +
+  geom_point(aes(x = 75, y = 900), shape = 23, size = 3) +
+  labs(x = TeX("$\\frac{\\textit{t}}{^\\circ C}$"), y = TeX("$\\frac{\\textit{f}}{min}$"))
 ```
 
 ### Multiple graphs

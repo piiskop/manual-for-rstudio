@@ -321,9 +321,7 @@ That resulted with:
 /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK TC:style=Bold  
 /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc: Noto Sans CJK SC:style=Bold  
 
-where i chose `r render_font(text = "Noto Sans Mono CJK SC")` from the way as pointed out in @jdhao_2018_how.
-
-\twocolumn
+where i chose `render_font(text = "Noto Sans Mono CJK SC")` from, the way as pointed out in @jdhao_2018_how.
 
 ## Equations
 
