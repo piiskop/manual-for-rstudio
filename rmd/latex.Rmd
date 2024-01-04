@@ -731,6 +731,18 @@ $F_\mathrm{D} \propto v^2$
 $F_\mathrm{D} \propto v^2$
 \end{multicols}
 
+### Mean
+
+The command for the mean symbol is `\overline` and it can be used as shown in the listing \@ref(lst:mean) on the page `r render_pageref(reference="lst:mean")`[@a2022_l, lk 164].
+
+\begin{multicols}{2}
+\begin{lstlisting}[label=lst:mean, caption=Mean., language=TeX]
+$\overline{\frac{days}{year}}$
+\end{lstlisting}
+
+$\overline{\frac{days}{year}}$
+\end{multicols}
+
 ## Text
 
 ### Non-breaking space
