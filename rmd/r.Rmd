@@ -1103,12 +1103,12 @@ plot
 
 ```
 
-The figure \@ref(fig:ruler-uncertainties-with-accuracy) on the page `r render_pageref(reference="fig:ruler-uncertainties-with-accuracy")` shows how to specify the accuracy of the numbers on axis[@number].
+The figure \@ref(fig:ruler-uncertainties-with-accuracy) on the page `r render_pageref(reference="fig:ruler-uncertainties-with-accuracy")` shows how to specify the accuracy of the numbers on axis[@how].
 
 ```{r label = "ruler-uncertainties-with-accuracy", fig.cap="With specified accuracy."}
 plot +
   scale_x_continuous(
-    labels = scales::number_format(accuracy = 1)
+    labels = scales::label_number(accuracy = 1)
   )
 
 ```
