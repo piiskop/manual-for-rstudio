@@ -258,6 +258,17 @@ A surprising piece of data is this [@haynes_2014_crc(p. 6)].
 
 [@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
 
+#### Multiple references
+
+Multiple references can be used with a semicolon[@riederer_45]:
+
+```{verbatim label="multiple-references"}
+I use the help of bibliography generators [@a1970_; @noauthor_undated_tf].
+
+```
+
+I use the help of bibliography generators [@a1970_; @noauthor_undated_tf].
+
 #### Reference in the caption
 
 Referencing in the caption works just fine if the figure is upright. If the figure is at a different angle the whole caption must be written out as a reference before[@xie_22]: 
