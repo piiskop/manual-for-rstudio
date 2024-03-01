@@ -190,6 +190,47 @@ The following additional characters must be escaped:
 
 3. *\&*.
 
+\onecolumn
+
+## Non-breaking space
+
+In the example (@example-of-breaking-space), the name will be broken if it does not fit into the line.
+
+(@example-of-breaking-space)
+
+```{verbatim label="example-of-breaking-space"}
+The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
+
+```
+
+The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
+
+In the example (@example-of-non-breaking-space), the name will not be broken if it does not fit into the line using `&nbsp`[@how-whitespace-preserved].
+
+(@example-of-non-breaking-space)
+
+```{verbatim label="example-of-non-breaking-space"}
+The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
+
+```
+
+The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
+
+\pagebreak
+
+In the example (@example-of-non-breaking-space-backslash), the name will not be broken if it does not fit into the line using `\ `[@rmarkdown].
+
+(@example-of-non-breaking-space-backslash)
+
+```{verbatim label="example-of-non-breaking-space-backslash"}
+The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
+
+```
+
+The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
+
+Non-breaking spaces do not work with *multicols*.
+
 ## Referencing
 
 ### Common reference
@@ -462,3 +503,47 @@ Examples can be made as seen in the example (@examples)[@lists].
     In the example (@examples-example), it is possible to see an example.
     
     (@examples-example) This is an example.
+
+\pagebreak
+
+## Exercises[@xie_22]
+
+\multicolsbegin
+```{verbatim label="exercise", language="markdown"}
+::: {.exercise #dynamics-task-20240303-1 name="Kolme vektori suurus ja suund."}
+Tee kindlaks kolme vektori
+$$\overrightarrow{\bf{V}_1} = 4,0 \hat{\bf{i}} - 8,0 \hat{\bf{j}},$$
+$$\overrightarrow{\bf{V}_2} = \hat{\bf{i}} + \hat{\bf{j}} \text{ ja}$$
+$$\overrightarrow{\bf{V}_3} = -2,0 \hat{\bf{i}} + 4,0 \hat{\bf{j}}$$
+suurus ja suund!
+
+Tee kindlaks $\overrightarrow{\bf{V}_1} - \overrightarrow{\bf{V}_2} + \overrightarrow{\bf{V}_3}$.
+:::
+```
+
+\columnbreak
+
+::: {.exercise #dynamics-task-20240303-1 name="Kolme vektori suurus ja suund."}
+Tee kindlaks kolme vektori
+$$\overrightarrow{\bf{V}_1} = 4,0 \hat{\bf{i}} - 8,0 \hat{\bf{j}},$$
+$$\overrightarrow{\bf{V}_2} = \hat{\bf{i}} + \hat{\bf{j}} \text{ ja}$$
+$$\overrightarrow{\bf{V}_3} = -2,0 \hat{\bf{i}} + 4,0 \hat{\bf{j}}$$
+suurus ja suund!
+
+Tee kindlaks $\overrightarrow{\bf{V}_1} - \overrightarrow{\bf{V}_2} + \overrightarrow{\bf{V}_3}$.
+:::
+\multicolsend
+
+## Captions
+
+Captions of figures, exercises, examples etc can be changed by adding the specific translations into *\_bookdown.yml* (@caption-translations).
+
+(@caption-translations)
+
+```{verbatim label="caption-translations", language="YAML"}
+language:
+  label:
+    exr: 'Ülesanne '
+    fig: 'Joonis '
+
+```

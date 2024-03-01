@@ -253,6 +253,21 @@ I am just writing some text that will be placed in one column because it can con
 - joodheptafluoriid: \ce{IF7}.
 \end{multicols}
 
+`\begin{multicols}{2}` does not allow markdown's sharp symbol. In order to tolerate captions inside a multi-column environment, the command must be redefined and used as a command without any parameters (listing \@ref(lst:multicolsbegin) on the page `r render_pageref(reference="lst:multicolsbegin")`)[@cant].
+
+\multicolsbegin
+\begin{lstlisting}[label=lst:multicolsbegin, language=TeX, caption=An example of tolerating markdown in a multicolumn environment.]
+\multicolsbegin
+### Head
+\multicolsend
+\end{lstlisting}
+\multicolsbegin
+### Heading
+\multicolsend
+\multicolsend
+
+`multicols` does not show figures.
+
 ## No hyphenation  
   
 After the following command, no hyphenation takes place:  
