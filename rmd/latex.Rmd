@@ -1,5 +1,16 @@
 # LaTeX
 
+## Testing
+
+If the Portable Document Format file would not be produced and it is cumbersome to figure out the error based on the log file then one can use *pdflatex* for testing the intermediate TEX-file as shown in  (@testing)[@is].
+
+(@testing) Usage of *pdflatex*.
+
+    ```{verbatim label="testing", language="bash"}
+    pdflatex <name-of-file>.tex
+    
+    ```
+
 ## Layout
 
 ### Page Orientation
@@ -11,6 +22,15 @@ Here is anything but figures that needs to be displayed in landscape mode.
 
 \end{landscape}
 
+```
+```{r}
+librarian::shelf(c(
+  "formatdown"
+))
+numbers <- c(123.456, 2e-6, 5e8, 0.23)
+format_power_numbers <- format_power(numbers)
+format_power_numbers_digits <- format_power(numbers, format = "sci", digits = 2, omit_power=NULL)
+format_power_numbers_digits
 ```
 
 \begin{landscape}
