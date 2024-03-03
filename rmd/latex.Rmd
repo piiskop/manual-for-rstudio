@@ -358,6 +358,241 @@ That resulted with:
 
 where i chose `render_font(text = "Noto Sans Mono CJK SC")` from, the way as pointed out in @jdhao_2018_how.
 
+## Units
+
+For units, there's the package *siunitx* that only works for PDF output. As it does some automation i like to use it. It keeps the spacing between the scalar and its unit smaller than around it. However, there's no working implementation for *MathJax* that translates between `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` and HyperText Markup Language (HTML).
+
+\pagebreak
+
+The examples (@qty-@min) show how to use a quantity consisting out of a scalar and unit.
+
+\multicolsbegin
+
+(@qty) `\qty{5}{\percent} \ce{K2Cr2O7}`
+
+\columnbreak
+
+\qty{5}{\percent} \ce{K2Cr2O7}
+
+\multicolsend
+
+\multicolsbegin
+
+(@degree) `\qty{120}{\degree}`
+
+\columnbreak
+
+\qty{120}{\degree}
+
+\multicolsend
+
+\multicolsbegin
+
+(@cm) `\qty{40.5}{\cm}.`
+
+\columnbreak
+
+\qty{40.5}{\cm}.
+
+\multicolsend
+
+\multicolsbegin
+
+(@ml) `\qty{1}{\ml}.`
+
+\columnbreak
+
+\qty{1}{\ml}.
+
+\multicolsend
+
+\multicolsbegin
+
+(@Hz) `\qty{14417}{\Hz}.`
+
+\columnbreak
+
+\qty{14417}{\Hz}.
+
+\multicolsend
+
+\multicolsbegin
+
+(@K) `Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.`
+
+\columnbreak
+
+Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.
+
+\multicolsend
+
+\multicolsbegin
+
+(@g) `Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).`
+
+\columnbreak
+
+Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).
+
+\multicolsend
+
+\multicolsbegin
+
+(@min) `Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?`
+
+\columnbreak
+
+Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
+
+\multicolsend
+
+\pagebreak
+
+The example (@nm) shows additionally how to display just a scalar.
+
+\multicolsbegin
+
+(@nm) `Juhendis on esitatud, et selle aine molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on $\num{34300}$.`
+
+\columnbreak
+
+Juhendis on esitatud, et selle aine molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on $\num{34300}$.
+
+\multicolsend
+
+The example (@num) shows how to show the quantity the qualitative way.
+
+\multicolsbegin
+
+(@num) `\num{5}-\unit{\percent} \ce{CuSO4} lahust.`
+
+\columnbreak
+
+\num{5}-\unit{\percent} \ce{CuSO4} lahust.
+
+\multicolsend
+
+The example (@numproduct) shows how to use a numeric product as a measurement.
+
+\multicolsbegin
+
+(@numproduct) `Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.`
+
+\columnbreak
+
+Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.
+
+\multicolsend
+
+\pagebreak
+
+The examples (@hour-@qtyrange) show (additionally) how to use a quantity range.
+
+\multicolsbegin
+
+(@hour) `Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.`
+
+\columnbreak
+
+Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.
+
+\multicolsend
+
+\multicolsbegin
+
+(@qtyrange) `Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.`
+
+\columnbreak
+
+Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.
+
+\multicolsend
+
+Some units have subunits on different floors (examples (@per-@l)).
+
+\multicolsbegin
+
+(@per) `\unit{\mole\per\cubic\meter}.`
+
+(@mol) `\unit{\kg\per\mol}.`
+
+(@l) `õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.`
+
+\columnbreak
+
+\unit{\mole\per\cubic\meter}.
+
+\unit{\kg\per\mol}.
+
+õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.
+
+\multicolsend
+
+The example (@pm) additionally shows how to incorporate measurement uncertainty.
+
+\multicolsbegin
+
+(@pm) `$\qty{56,08 \pm 0,07}{\degreeCelsius}$.`
+
+\columnbreak
+
+$\qty{56,08 \pm 0,07}{\degreeCelsius}$.
+
+\multicolsend
+
+\pagebreak
+
+For including R's values for `qty`, they need to be converted into characters as shown in the example (@as-character).
+
+(@as-character) Valguse kiirus vaakumis[@bureau_1974_the, p. 127].
+
+    ```{r label = "speed-of-light"}
+    speed_of_light_in_vacuum <- 299792458
+
+    ```
+
+    ```{verbatim label = "R-for-qty", language = "latex"}
+    \begin{align}
+    c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
+    (\#eq:speed-of-light-in-vacuum)
+    \end{align}
+
+    ```
+
+```{=tex}
+\begin{align}
+c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
+(\#eq:speed-of-light-in-vacuum)
+\end{align}
+
+```
+
+Some quantities are not present in `siunitx`, for instance the short for year in Estonian - a.
+
+The example (@retain-explicit-decimal-marker-false) shows how the decimal point if the unit is \num{0} and it is the smallest unit is not retained[@is-possible-decimal-after-ones-place].
+
+\multicolsbegin
+
+(@retain-explicit-decimal-marker-false) Pean valmistama \qty{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
+
+\columnbreak
+
+Pean valmistama \qty{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
+
+\multicolsend
+
+The example (@retain-explicit-decimal-marker-true) shows how to retain the decimal point if the unit is \num{0} and it is the smallest unit.
+
+\multicolsbegin
+
+(@retain-explicit-decimal-marker-true) Pean valmistama \qty[retain-explicit-decimal-marker]{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
+
+\columnbreak
+
+Pean valmistama \qty[retain-explicit-decimal-marker]{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
+
+\multicolsend
+
 ## Equations
 
 ### Introduction
@@ -500,167 +735,6 @@ Referencing an equation is also visible in the equation \@ref(eq:extrema-of-eta-
 Empty lines aren't allowed.
 
 \onecolumn
-
-### Units
-
-For units, there's the package *siunitx* that only works for PDF output. As it does some automation i like to use it. It keeps the spacing between the scalar and its unit smaller than around it. However, there's no working implementation for *MathJax* that translates between `r render_nonmath_LaTeX_string_universal("\\LaTeX{}")` and HyperText Markup Language (HTML).
-
-```{verbatim label = "qty"}
-$\qty{5}{\percent}$ $\ce{K2Cr2O7}$
-
-```
-
-$\qty{5}{\percent}$ $\ce{K2Cr2O7}$.
-
-```{verbatim label = "num"}
-$\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
-
-```
-
-$\num{5}$-$\unit{\percent}$ $\ce{CuSO4}$ lahust.
-
-```{verbatim label = "numproduct"}
-Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.
-
-```
-
-Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.
-
-```{verbatim label = "degree"}
-$$\qty{120}{\degree}$$
-
-```
-
-$$\qty{120}{\degree}.$$
-
-```{verbatim label = "cm"}
-$$\qty{40.5}{\cm}.$$
-
-```
-
-$$\qty{40.5}{\cm}.$$
-
-```{verbatim label = "ml"}
-$$\qty{1}{\ml}.$$
-
-```
-
-$$\qty{1}{\ml}.$$
-
-```{verbatim label = "Hz"}
-$$\qty{14417}{\Hz}.$$
-
-```
-
-$$\qty{14417}{\Hz}.$$
-
-```{verbatim label = "min"}
-Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
-
-```
-
-Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?
-
-```{verbatim label = "hour"}
-Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.
-
-```
-
-Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.
-
-```{verbatim label = "K"}
-Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.
-
-```
-
-Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.
-
-```{verbatim label = "per"}
-$$\unit{\mole\per\cubic\meter}.$$
-
-```
-
-$$\unit{\mole\per\cubic\meter}.$$
-
-```{verbatim label = "mol"}
-$$\unit{\kg\per\mol}$$.
-```
-
-$$\unit{\kg\per\mol}$$.
-
-```{verbatim label = "nm"}
-Juhendis on esitatud, et selle aine
-molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on
-$\num{34300}$.
-
-```
-
-Juhendis on esitatud, et selle aine
-molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on
-$\num{34300}$.
-
-```{verbatim label = "l"}
-õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.
-
-```
-
-õpetaja siiski ütles, et ühik oli hoopis $\unit{\l\per\mol\per\cm}$.
-
-```{verbatim label = "g"}
-Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).
-```
-
-Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).
-
-```{verbatim label = "pm"}
-$\qty{56,08 \pm 0,07}{\degreeCelsius}$.
-
-```
-
-$\qty{56,08 \pm 0,07}{\degreeCelsius}$.
-
-```{verbatim label = "qtyrange"}
-Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.
-
-```
-
-Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.
-
-For including R's values for `qty`, they need to be converted into characters:
-
-Valguse kiirus vaakumis:
-
-```{r label = "speed-of-light"}
-speed_of_light_in_vacuum <- 299792458
-
-```
-
-```{verbatim label = "R-for-qty", language = "latex"}
-\begin{align}
-c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
-(\#eq:speed-of-light-in-vacuum)
-\end{align}
-
-```
-
-```{=tex}
-\begin{align}
-c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
-(\#eq:speed-of-light-in-vacuum)
-\end{align}
-
-```
-
-[@bureau_1974_the, p. 127].
-
-Some quantities are not present in `siunitx`, for instance the short for year in Estonian - a. If the number is an ordinal then in Estonian, there is a period after the scalar which the parser recognizes as the period for a list element. For that not happen, the period must be preceded by a backslash:
-
-```{verbatim label = "escaping-period"}
-1961\. a sätestati...
-
-```
-
-1961\. a sätestati...
 
 \twocolumn
 

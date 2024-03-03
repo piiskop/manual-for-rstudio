@@ -171,16 +171,21 @@ A quote with the author:
 
 `r librarian::shelf(c("tufte"));   tufte::quote_footer('--- Tõnu Laas')`
 
+\onecolumn
+
 ## Escaping
 
-If a character must be escaped then a backslash can be used right in front of it:
+If a character must be escaped then a backslash can be used right in front of it (example\ (@escaping-asterisk)).
 
-````markdown
+\multicolsbegin
+
+(@escaping-asterisk) `*\**`
+
+\columnbreak
+
 *\**
 
-````
-
-*\**
+\multicolsend
 
 The following additional characters must be escaped:
 
@@ -190,7 +195,17 @@ The following additional characters must be escaped:
 
 3. *\&*.
 
-\onecolumn
+If the number is an ordinal then in Estonian, there is a period after the scalar which the parser recognizes as the period for a list element. For that not happen, the period must be preceded by a backslash (example (@escaping-period)).
+
+\multicolsbegin
+
+(@escaping-period) `1961\. a sätestati...`
+
+\columnbreak
+
+1961\. a sätestati...
+
+\multicolsend
 
 ## Non-breaking space
 
