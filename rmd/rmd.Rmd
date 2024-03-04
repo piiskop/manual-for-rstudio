@@ -207,42 +207,44 @@ If the number is an ordinal then in Estonian, there is a period after the scalar
 
 \multicolsend
 
+\pagebreak
+
 ## Non-breaking space
 
 In the example (@example-of-breaking-space), the name will be broken if it does not fit into the line.
 
 (@example-of-breaking-space)
 
-```{verbatim label="example-of-breaking-space"}
-The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
+  ```{verbatim label="example-of-breaking-space"}
+  The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
+  
+  ```
 
-```
+  The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
 
-The name of one of my companies out of many is MTÜ Eesti Kõrgkoolitennise Liit.
+\pagebreak
 
 In the example (@example-of-non-breaking-space), the name will not be broken if it does not fit into the line using `&nbsp`[@how-whitespace-preserved].
 
 (@example-of-non-breaking-space)
 
-```{verbatim label="example-of-non-breaking-space"}
-The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
+  ```{verbatim label="example-of-non-breaking-space"}
+  The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
+  
+  ```
 
-```
-
-The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
-
-\pagebreak
+  The name of one of my companies out of many is MTÜ&nbsp;Eesti&nbsp;Kõrgkoolitennise&nbsp;Liit.
 
 In the example (@example-of-non-breaking-space-backslash), the name will not be broken if it does not fit into the line using `\ `[@rmarkdown].
 
 (@example-of-non-breaking-space-backslash)
 
-```{verbatim label="example-of-non-breaking-space-backslash"}
-The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
+  ```{verbatim label="example-of-non-breaking-space-backslash"}
+  The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
+  
+  ```
 
-```
-
-The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
+  The name of one of my companies out of many is MTÜ\ Eesti\ Kõrgkoolitennise\ Liit.
 
 Non-breaking spaces do not work with *multicols*.
 
@@ -312,7 +314,9 @@ For example:
 
 A surprising piece of data is this [@haynes_2014_crc(p. 6)].
 
-[@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
+*CRC Handbook of Chemistry and Physics, 95th Edition*[@haynes_2014_crc(p. 6)] represents some suprising pieces of data.
+
+We can use a comma instead of parentheses for the page range however that would confuse the reader as in the output commas a also used to separate multiple references.
 
 #### Multiple references
 

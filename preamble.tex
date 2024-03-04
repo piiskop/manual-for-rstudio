@@ -128,6 +128,7 @@
 \setlength{\columnseprule}{1pt}
 \newcommand{\multicolsbegin}{\begin{multicols}{2}}
 \newcommand{\multicolsend}{\end{multicols}}
+\usepackage{multicolrule}
 
 % for fill-in-the-gaps-tests
 \newlength{\blankwidth}
@@ -137,7 +138,10 @@
 	\fi
 	\makebox[\blankwidth]{\dotfill}}
 
-\usepackage{fontawesome} % for checkboxes
+\usepackage{fontawesome5} % for hand pointers
+\usepackage{wasysym} % for form elements
 
 \usepackage{ragged2e}
 \RaggedRight
+
+\raggedbottom % for hindering to spread paragraphs over the page (@kottwitz_2011_latex(p. 95))

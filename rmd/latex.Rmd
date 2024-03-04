@@ -41,7 +41,7 @@ Here is anything but figures that needs to be displayed in the landscape mode.
 
 ### Justifying text
 
-(ref:explanation-on-raggedright-preamble) By default, the text is justified on both edges. For a better readability, we can use left-justifying by telling the specific commands in \textit{preamble.tex} as shown in the listing \@ref(lst:raggedright-preamble) on the page `r render_pageref(reference="lst:raggedright-preamble")`[@kottwitz_latex, lk 62].
+(ref:explanation-on-raggedright-preamble) By default, the text is justified on both edges. For a better readability, we can use left-justifying by telling the specific commands in \textit{preamble.tex} as shown in the listing \@ref(lst:raggedright-preamble) on the page `r render_pageref(reference="lst:raggedright-preamble")`[@kottwitz_2011_latex, lk 62].
 
 \begin{multicols}{2}
 (ref:explanation-on-raggedright-preamble)
@@ -54,6 +54,19 @@ Here is anything but figures that needs to be displayed in the landscape mode.
 
 \end{lstlisting}
 \end{multicols}
+
+The example (@center) shows how to center items[@kottwitz_2011_latex, p. 64].
+
+\multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
+
+(@center) `\begin{center}centered item\end{center}`
+
+\columnbreak
+
+\begin{center}centered item\end{center}
+
+\multicolsend
 
 ## List of tables and figures  
   
@@ -273,20 +286,46 @@ I am just writing some text that will be placed in one column because it can con
 - joodheptafluoriid: \ce{IF7}.
 \end{multicols}
 
-`\begin{multicols}{2}` does not allow markdown's sharp symbol. In order to tolerate captions inside a multi-column environment, the command must be redefined and used as a command without any parameters (listing \@ref(lst:multicolsbegin) on the page `r render_pageref(reference="lst:multicolsbegin")`)[@cant].
+\newpage
+
+`\begin{multicols}{2}` does not allow markdown's sharp symbol. In order to tolerate captions inside a multi-column environment, the command must be redefined and used as a command without any parameters (example (@multicolsbegin) with the listing \@ref(lst:multicolsbegin) on the page `r render_pageref(reference="lst:multicolsbegin")`)[@cant].
+
+(@multicolsbegin)
 
 \multicolsbegin
+
 \begin{lstlisting}[label=lst:multicolsbegin, language=TeX, caption=An example of tolerating markdown in a multicolumn environment.]
 \multicolsbegin
 ### Head
 \multicolsend
 \end{lstlisting}
 \multicolsbegin
-### Heading
+### Head
 \multicolsend
 \multicolsend
 
 `multicols` does not show figures.
+
+The example (@multicolrule)  with the listing \@ref(lst:multicolrule) on the page `r render_pageref(reference="lst:multicolrule")` shows how to decorate the vertical line between the columns[@hagen_multicolrule(p. 7)].
+
+(@multicolrule)
+
+\multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
+
+\begin{lstlisting}[label=lst:multicolrule, language=TeX, caption=An example of decorating the rule.]
+\multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
+This is just a sample text.
+\multicolsend
+\end{lstlisting}
+\columnbreak
+
+\multicolsbegin
+This is just a sample text.
+\multicolsend
+
+\multicolsend
 
 ## No hyphenation  
   
@@ -367,6 +406,7 @@ For units, there's the package *siunitx* that only works for PDF output. As it d
 The examples (@qty-@min) show how to use a quantity consisting out of a scalar and unit.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@qty) `\qty{5}{\percent} \ce{K2Cr2O7}`
 
@@ -377,6 +417,7 @@ The examples (@qty-@min) show how to use a quantity consisting out of a scalar a
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@degree) `\qty{120}{\degree}`
 
@@ -387,6 +428,7 @@ The examples (@qty-@min) show how to use a quantity consisting out of a scalar a
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@cm) `\qty{40.5}{\cm}.`
 
@@ -397,6 +439,7 @@ The examples (@qty-@min) show how to use a quantity consisting out of a scalar a
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@ml) `\qty{1}{\ml}.`
 
@@ -407,6 +450,7 @@ The examples (@qty-@min) show how to use a quantity consisting out of a scalar a
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@Hz) `\qty{14417}{\Hz}.`
 
@@ -417,6 +461,7 @@ The examples (@qty-@min) show how to use a quantity consisting out of a scalar a
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@K) `Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alfaks, kui seda kuumutada kõrgemal temperatuuril kui $\qty{1273,15}{\K}$.`
 
@@ -427,6 +472,7 @@ Kuusnurkset alfat saab konverteerida mehhaaniliselt beetaks ja beeta taastub alf
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@g) `Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsatäis).`
 
@@ -437,6 +483,7 @@ Lisasime katseklaasi ~$\qty{0,05}{\g}$ lahustatavat ainet (spaatli/pipeti otsat�
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@min) `Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ kestel)?`
 
@@ -451,6 +498,7 @@ Miks katsetes 3.4 ja 3.5 lahuse värvus ei muutunud (vähemalt $\qty{1}{\min}$ k
 The example (@nm) shows additionally how to display just a scalar.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@nm) `Juhendis on esitatud, et selle aine molaarne ekstinktsioonitegur lainepikkuse $\qty{330}{\nm}$ juures on $\num{34300}$.`
 
@@ -463,6 +511,7 @@ Juhendis on esitatud, et selle aine molaarne ekstinktsioonitegur lainepikkuse $\
 The example (@num) shows how to show the quantity the qualitative way.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@num) `\num{5}-\unit{\percent} \ce{CuSO4} lahust.`
 
@@ -475,6 +524,7 @@ The example (@num) shows how to show the quantity the qualitative way.
 The example (@numproduct) shows how to use a numeric product as a measurement.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@numproduct) `Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *children-computers.jpg* omadusi. Näeme, et selle faili tihedus on $\numproduct{96 x 96}$ dpi ja mõõdud on $\numproduct{668 x 371}$ px.`
 
@@ -489,6 +539,7 @@ Minu näites tahan ma teada kataloogis *~/eclipse-workspace/test2* asuva faili *
 The examples (@hour-@qtyrange) show (additionally) how to use a quantity range.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@hour) `Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\unit{\hour}}$ ja tavaliselt tegutseme $\qty{1.5}{\hour}$ järjest tehes iga tund $\qtyrange{5}{15}{\min}$ silmadele ja mõistusele pause.`
 
@@ -499,6 +550,7 @@ Standardtasu, kui pole ahvatlevamat ettepanekut, on $\num{40} \frac{\epsilon}{\u
 \multicolsend
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@qtyrange) `Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\second}$ kestel roheliseks.`
 
@@ -511,6 +563,7 @@ Alkoholi olemasolu puhul muutub kroomisegu oranž värvus $\qtyrange{2}{3}{\seco
 Some units have subunits on different floors (examples (@per-@l)).
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@per) `\unit{\mole\per\cubic\meter}.`
 
@@ -531,6 +584,7 @@ Some units have subunits on different floors (examples (@per-@l)).
 The example (@pm) additionally shows how to incorporate measurement uncertainty.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@pm) `$\qty{56,08 \pm 0,07}{\degreeCelsius}$.`
 
@@ -559,6 +613,8 @@ For including R's values for `qty`, they need to be converted into characters as
 
     ```
 
+\begin{center}\color{gray}{\faHandPointDown}\end{center}
+
 ```{=tex}
 \begin{align}
 c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
@@ -567,11 +623,12 @@ c = \qty{`r as.character(speed_of_light_in_vacuum)`}{\m\per\s}
 
 ```
 
-Some quantities are not present in `siunitx`, for instance the short for year in Estonian - a.
+Some quantities are not present in `siunitx`, for instance the short for year in Estonian - "a".
 
 The example (@retain-explicit-decimal-marker-false) shows how the decimal point if the unit is \num{0} and it is the smallest unit is not retained[@is-possible-decimal-after-ones-place].
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@retain-explicit-decimal-marker-false) Pean valmistama \qty{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
 
@@ -584,6 +641,7 @@ Pean valmistama \qty{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsent
 The example (@retain-explicit-decimal-marker-true) shows how to retain the decimal point if the unit is \num{0} and it is the smallest unit.
 
 \multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
 (@retain-explicit-decimal-marker-true) Pean valmistama \qty[retain-explicit-decimal-marker]{510,}{\g} vesilahust, mis sisaldab \num{5,45} massiprotsenti \ce{K2NO3}.
 
@@ -957,10 +1015,10 @@ An example of how to reference the package \texttt{multicol} and configure its u
 Märgista omadus, kui see on keemiline:
 
 \begin{itemize}
-	\item[\faSquareO] hõbedast esemed tuhmuvad;
-	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	\item[\Square] hõbedast esemed tuhmuvad;
+	\item[\Square] rubiinide punane värvus on tingitud kroomiioonide
 	  olemasolust;
-	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+	\item[\Square] etanooli keemistemperatuur on 78°C.
 \end{itemize}
 \end{lstlisting}
 \end{TeXlstlisting}
@@ -969,10 +1027,10 @@ Märgista omadus, kui see on keemiline:
 Märgista omadus, kui see on keemiline:
 
 \begin{itemize}
-	\item[\faSquareO] hõbedast esemed tuhmuvad;
-	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	\item[\Square] hõbedast esemed tuhmuvad;
+	\item[\Square] rubiinide punane värvus on tingitud kroomiioonide
 	  olemasolust;
-	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+	\item[\Square] etanooli keemistemperatuur on 78°C.
 \end{itemize}
 \end{lstlisting}
 
@@ -1008,7 +1066,7 @@ Märgista omadus, kui see on keemiline:
 
 ### Line breaks
 
-An example of how to force a line break is shown in the listing \@ref(lst:example-of-linebreak) on the page `r render_pageref(reference="lst:example-of-linebreak")`[@kottwitz_latex, lk 271].
+An example of how to force a line break is shown in the listing \@ref(lst:example-of-linebreak) on the page `r render_pageref(reference="lst:example-of-linebreak")`[@kottwitz_2011_latex, lk 271].
 
 \begin{multicols}{2}
 
@@ -1022,6 +1080,25 @@ An example of how to force a line break is shown in the listing \@ref(lst:exampl
 \color{green}{5}\ce{Na}\color{green}{\ce{Cl}}\ce{O2} + \color{blue}{4}\ce{H}\color{blue}{\ce{Cl}} \ce{->}\leavevmode\\
 \color{blue}{\ce{4Cl}}\ce{O2} + \color{green}{5}\ce{Na}\color{green}{\ce{Cl}} + \ce{2H2O}
 \end{multicols}
+
+### Symbols
+
+The examples (@faHandPointRight-@faHandPointDown) show how to use some symbols as text[@noauthor_undated-jn(lk 186)]. The package *fontawesome5* is needed for them.
+
+\multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
+
+(@faHandPointRight) `\faHandPointRight`
+
+(@faHandPointDown) `\faHandPointDown`
+
+\columnbreak
+
+\faHandPointRight
+
+\faHandPointDown
+
+\multicolsend
 
 ## Chemistry
 
@@ -1363,37 +1440,41 @@ The output looks like:
 
 Täna on 2023-12-12 ja mina olen \blank{10. Trubilko, Vladislav}.
 
+\pagebreak
+
 ## Lists
 
-(ref:explanation-for-itemize) For creating tasks for pupils, sometimes checkboxes are needed. For that, there is `itemize` with the package `fontawesome`[@roy_2019_itemize]. An example with `itemize` is shown in the listing \@ref(lst:itemize) on the page `r render_pageref(reference="lst:itemize")`.
+(ref:explanation-for-itemize) For creating tasks for pupils, sometimes checkboxes are needed. For that, there is `itemize`[@roy_2019_itemize]. The example (@itemize) with `itemize` is shown in the listing \@ref(lst:itemize) on the page `r render_pageref(reference="lst:itemize")`. Form elements need the package *wasysym*[@noauthor_undated-jn(p. 187)].
 
 \begin{multicols}{2}
 (ref:explanation-for-itemize)
 \end{multicols}
 
-\newpage
+(@itemize)
 
-\begin{multicols}{2}
-\begin{lstlisting}[label=lst:itemize, language=TeX, caption=An Example for a list with checkboxes.]
-Märgista omadus, kui see on keemiline:
+\multicolsbegin
+\SetMCRule{custom-pattern={\faHandPointRight}{0pt}{0pt}, color=gray}
 
-\begin{itemize}
-	\item[\faSquareO] hõbedast esemed tuhmuvad;
-	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
-	  olemasolust;
-	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
-\end{itemize}
-\end{lstlisting}
+  \begin{lstlisting}[label=lst:itemize, language=TeX, caption=An Example for a list with checkboxes.]
+  Märgista omadus, kui see on keemiline:
+  
+  \begin{itemize}
+  	\item[\Square] hõbedast esemed tuhmuvad;
+  	\item[\Square] rubiinide punane värvus on tingitud kroomiioonide
+  	  olemasolust;
+  	\item[\Square] etanooli keemistemperatuur on 78°C.
+  \end{itemize}
+  \end{lstlisting}
 
 \columnbreak
 
 Märgista omadus, kui see on keemiline:
 
 \begin{itemize}
-	\item[\faSquareO] hõbedast esemed tuhmuvad;
-	\item[\faSquareO] rubiinide punane värvus on tingitud kroomiioonide
+	\item[\Square] hõbedast esemed tuhmuvad;
+	\item[\Square] rubiinide punane värvus on tingitud kroomiioonide
 	  olemasolust;
-	\item[\faSquareO] etanooli keemistemperatuur on 78°C.
+	\item[\Square] etanooli keemistemperatuur on 78°C.
 \end{itemize}
 
-\end{multicols}
+\multicolsend
