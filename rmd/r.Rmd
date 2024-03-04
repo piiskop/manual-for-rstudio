@@ -1388,3 +1388,30 @@ include_external_graphics("rmd/alused-ühendid-element.svg")
 ```
 
 As you see, there is no spacing between subfigures. I have not found a solution for that.
+
+## Quick-response code[@a2024_qr]
+
+The example (@qr-code) with the listing \@ref(lst:qr-code) on the page `r render_pageref(reference="lst:qr-code")` and the figure\@ref(fig:fig-qr-newton-iii-ekoolikott) on the page `r render_pageref(reference="fig:fig-qr-newton-iii-ekoolikott")` shows how to generate a quick-response code[@generate; @ekoolikottee].
+
+(@qr-code)
+
+  \begin{lstlisting}[label=lst:qr-code, language=R, caption=An example of how to generate a quick-response code.]
+
+  librarian::shelf(c(
+    "qrcode"
+  ))
+  code <- qr_code(x="https://e-koolikott.ee/et/oppematerjal/19850-2-1-Dunaamika/229902#229903-Newtoni-kolmas-seadus", ecl="H")
+  plot(code)
+
+  \end{lstlisting}
+  
+\begin{center}\faHandPointDown\end{center}
+
+```{r label="fig-qr-newton-iii-ekoolikott", echo=FALSE, fig.cap="Newtoni kolmas seadus - viide."}
+librarian::shelf(c(
+  "qrcode"
+))
+code <- qr_code(x="https://e-koolikott.ee/et/oppematerjal/19850-2-1-Dunaamika/229902#229903-Newtoni-kolmas-seadus", ecl="H")
+plot(code)
+
+```
