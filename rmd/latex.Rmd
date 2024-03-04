@@ -1100,6 +1100,10 @@ The examples (@faHandPointRight-@faHandPointDown) show how to use some symbols a
 
 \multicolsend
 
+### Superscript
+
+The example (@linebreak) with the listing \@ref(lst:listings-table-linebreak) on the page `r render_pageref(reference="lst:listings-table-linebreak")` shows how to use a superscript outside the math mode[@superscript].
+
 ## Chemistry
 
 ### Chemical symbols
