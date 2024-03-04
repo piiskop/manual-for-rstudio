@@ -766,7 +766,70 @@ print_table(table=solubility, caption="(ref:solubility)")
 
 ```
 
-\twocolumn
+\newpage
+
+### Line breaks
+
+The example (@linebreak) shows how to deal with line breaks inside a table[@best].
+
+(@linebreak)
+
+  \begin{lstlisting}[label=lst:listings-table-linebreak, language=R, caption=An example of how to have line breaks inside a table.]
+
+  intro_redox_reactions_25<- data.frame(
+    linebreak(c(
+      "\\blank{ränitetrakloriid}",
+      "\\blank{tinaoksiid}",
+      "\\blank{vanaadiumpentoksiid}",
+      "\\blank{booroksiid}"
+    ))
+  )
+
+  rownames(intro_redox_reactions_25) <- linebreak(c(
+    "\\blank{1}\\textbf{\\ce{Si\\textsuperscript{\\blank{4+}}}\\ce{Cl4(l)} +}\\blank{2} \\ce{H2(g)}\n \\ce{ ->}\\blank{1}\\ce{ Si(s) +}\\blank{2}\\ce{ HCl(g)}",
+    "\\blank{1}\\textbf{\\ce{Sn\\textsuperscript{\\blank{4+}}}\\ce{O2(s)} +}\\blank{1}\\ce{ C(s)}\n \\ce{ ->[\\qty{1,2e3}{\\degreeCelsius}]}\\blank{1}\\ce{ Sn(l) +}\\blank{1}\\ce{ CO2}",
+    "\\blank{1}\\textbf{\\ce{V2\\textsuperscript{\\blank{5+}}}\\ce{O5 (s)} +}\\blank{5}\\ce{ Ca (l)}\n \\ce{->[\\Delta]}\\blank{2}\\ce{ V (s) +}\\blank{5}\\ce{ CaO (s)}",
+    "\\blank{1}\\textbf{\\ce{B2\\textsuperscript{\\blank{3+}}}\\ce{O3(s)} +}\\blank{3}\\ce{ Mg(s)}\n \\ce{ ->}\\blank{2}\\ce{ B(s) +}\\blank{3}\\ce{ MgO(s)}"
+  ))
+
+  colnames(intro_redox_reactions_25) <- c(
+    "Nimetus"
+  )
+  
+  print_table(table = intro_redox_reactions_25, caption = "Oksüdatsiooniastme määramine ja võrrandi kujundamine.")
+
+  \end{lstlisting}
+
+\begin{landscape}
+
+\begin{center}\faHandPointDown\end{center}
+
+```{r label="intro-redox-reactions-25", echo=FALSE}
+intro_redox_reactions_25<- data.frame(
+  linebreak(c(
+    "\\blank{ränitetrakloriid}",
+    "\\blank{tinaoksiid}",
+    "\\blank{vanaadiumpentoksiid}",
+    "\\blank{booroksiid}"
+  ))
+)
+
+rownames(intro_redox_reactions_25) <- linebreak(c(
+  "\\blank{1}\\textbf{\\ce{Si\\textsuperscript{\\blank{4+}}}\\ce{Cl4(l)} +}\\blank{2} \\ce{H2(g)}\n \\ce{ ->}\\blank{1}\\ce{ Si(s) +}\\blank{2}\\ce{ HCl(g)}",
+  "\\blank{1}\\textbf{\\ce{Sn\\textsuperscript{\\blank{4+}}}\\ce{O2(s)} +}\\blank{1}\\ce{ C(s)}\n \\ce{ ->[\\qty{1,2e3}{\\degreeCelsius}]}\\blank{1}\\ce{ Sn(l) +}\\blank{1}\\ce{ CO2}",
+  "\\blank{1}\\textbf{\\ce{V2\\textsuperscript{\\blank{5+}}}\\ce{O5 (s)} +}\\blank{5}\\ce{ Ca (l)}\n \\ce{->[\\Delta]}\\blank{2}\\ce{ V (s) +}\\blank{5}\\ce{ CaO (s)}",
+  "\\blank{1}\\textbf{\\ce{B2\\textsuperscript{\\blank{3+}}}\\ce{O3(s)} +}\\blank{3}\\ce{ Mg(s)}\n \\ce{ ->}\\blank{2}\\ce{ B(s) +}\\blank{3}\\ce{ MgO(s)}"
+))
+
+colnames(intro_redox_reactions_25) <- c(
+  "Nimetus"
+)
+
+print_table(table = intro_redox_reactions_25, caption = "Oksüdatsiooniastme määramine ja võrrandi kujundamine.")
+
+```
+
+\end{landscape}
 
 ## Exponents and logarithms
 
