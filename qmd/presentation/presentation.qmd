@@ -10,18 +10,11 @@ title: |
 output-file: presentation.html
 format:
   revealjs:
-    # chalkboard: true
     incremental: false
     multiplex:
       url: 'http://manual-for-rstudio.ons.ee:1948/'
       secret: "16759825730498538629"
       socketId: "f3edf0ff0d09982e"
-    # revealjs-plugins:
-    #   - seminar
-    # attributes:
-    #   quarto-reveal:
-    #     data-seminar-remote: true
-    #     data-seminar-controls: true
 
 ---
 
@@ -347,6 +340,14 @@ second column
 :::
 
 ::::
+
+## Translations[@quarto]
+
+- for built-in strings
+
+- file *<2-letter language code>.yml*
+
+- as metadata: `language: <file name>`
 
 ## External references
 
