@@ -364,6 +364,8 @@ There's also a set of commands for using units.
 
 Finally, there can be entered the introductionary content.
 
+Commenting should take place according to the rules of roxygen2[@inline].
+
 ## *js.html*
 
 This file just includes the necessary ECMAScript script and can be used to include other ECMAScript scripts in the header of the webpage.

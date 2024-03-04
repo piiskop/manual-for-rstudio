@@ -83,7 +83,7 @@ include_external_graphics = function(path) {
 #' @param table the data frame or matrix
 #' @param caption the caption
 #' @param digits the number of significant digits
-#' @param additional_header the additional header
+#' @param additional_header the additional header ([add_header_above: Add a header row on top of current header](https://www.rdocumentation.org/packages/kableExtra/versions/1.3.4/topics/add_header_above))
 #' @param footnotes the array of footnotes
 #' @param do_i_transpose Do i transpose?
 #' 
