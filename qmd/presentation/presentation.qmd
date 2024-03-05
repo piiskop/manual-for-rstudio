@@ -429,6 +429,37 @@ include_external_graphics("f-orbitaalid.svg")
 
 ::::
 
+## Equation
+
+Equation (@equation)[@quarto-equations].
+
+(@equation) An example of an equation.
+
+:::: {layout="[50, 50]"}
+
+::: {#columns-1}
+
+    Keha kiirendus on võrdeline kehale mõjuva jõuga ja pöördvõrdeline keha massiga[@ekoolikottee] (@eq-newton-ii).
+    
+    $$
+    \vec{\bf{a}} = \frac{\vec{\bf{F}}}{m}
+    $${#eq-newton-ii}
+
+:::
+
+::: {#columns-2}
+
+
+Keha kiirendus on võrdeline kehale mõjuva jõuga ja pöördvõrdeline keha massiga[@ekoolikottee] (@eq-newton-ii).
+
+$$
+\vec{\bf{a}} = \frac{\vec{\bf{F}}}{m}
+$${#eq-newton-ii}
+
+:::
+
+::::
+
 ## External references
 
 ```{=tex}
