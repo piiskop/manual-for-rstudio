@@ -366,9 +366,19 @@ Finally, there can be entered the introductionary content.
 
 Commenting should take place according to the rules of roxygen2[@inline].
 
+## *favicon.ico*
+
+This is the custom browser icon file referenced in *js.html* as seen in the listing \@ref(lst:favicon) on the page `r render_pageref(reference="lst:favicon")`[@riederer_711].
+
+\begin{lstlisting}[label=lst:favicon, language=HTML, caption=An example of how to reference the custom browser icon file.]
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+\end{lstlisting}
+
 ## *js.html*
 
-This file just includes the necessary ECMAScript script and can be used to include other ECMAScript scripts in the header of the webpage.
+This file just includes the necessary ECMAScript script and can be used to include other ECMAScript scripts in the header of the webpage. It is basically a part of the metadata part of the web page.
 
 ## *js.js*
 
