@@ -20,6 +20,30 @@ format:
 
 ## *Quarto*
 
+```{r label="preamble"}
+#' This function displays external graphics by making the appropriate conversion aforehead.
+#' 
+#' @param path the path to the image file
+include_external_graphics = function(path) {
+
+  if (knitr::is_latex_output() && ("pdf" != xfun::file_ext(path))) {
+    output = xfun::with_ext(path, 'pdf')
+    
+    if ("svg" == xfun::file_ext(path)) {
+      system2('rsvg-convert', c('-f', 'pdf', '-a', '-o', shQuote(c(output, path))))
+    } else {
+      system(paste('gm convert ', path, ' ', output), intern = FALSE, ignore.stdout = FALSE, ignore.stderr = FALSE, wait = TRUE)
+    }
+    
+  } else {
+    output = path
+  }
+  
+  knitr::include_graphics(output)
+}
+
+```
+
 - does not link between files,
 - every presentation is separate,
 - looks so much better than *bookdown*-presentations.
@@ -348,6 +372,62 @@ second column
 - file *<2-letter language code>.yml*
 
 - as metadata: `language: <file name>`
+
+## Non-breaking hyphen off
+
+Non-breaking hyphen (@non-breaking-hyphen-false)[@insert].
+
+(@non-breaking-hyphen-false) An example of a breaking hyphen.
+
+:::: {layout="[50, 50]"}
+
+::: {#columns-1}
+
+    ``{r label="fig-f-orbitals-example-hyphen-off", eval=FALSE, fig.cap="Nende olemasolu on oluline d-ploki elementide omaduste mõistmiseks. Tumedam värv tähistab positiivset[@atkins_2010_chemical(lk 30)]."}
+    include_external_graphics("f-orbitaalid.svg")
+
+    ``
+
+:::
+
+::: {#columns-2}
+
+```{r label="fig-f-orbitals-hyphen-off", echo=FALSE, fig.cap="Nende olemasolu on oluline d-ploki elementide omaduste mõistmiseks. Tumedam värv tähistab positiivset[@atkins_2010_chemical(lk 30)]."}
+include_external_graphics("f-orbitaalid.svg")
+
+```
+
+:::
+
+::::
+
+## Non-breaking hyphen on
+
+Non-breaking hyphen (@non-breaking-hyphen-true)[@insert].
+
+(@non-breaking-hyphen-true) An example of a breaking hyphen.
+
+:::: {layout="[50, 50]"}
+
+::: {#columns-1}
+
+    ``{r label="fig-f-orbitals-example-hyphen-on", eval=FALSE, fig.cap="Nende olemasolu on oluline d\u2011ploki elementide omaduste mõistmiseks. Tumedam värv tähistab positiivset[@atkins_2010_chemical(lk 30)]."}
+    include_external_graphics("f-orbitaalid.svg")
+
+    ``
+
+:::
+
+::: {#columns-2}
+
+```{r label="fig-f-orbitals-hyphen-on", echo=FALSE, fig.cap="Nende olemasolu on oluline d\u2011ploki elementide omaduste mõistmiseks. Tumedam värv tähistab positiivset[@atkins_2010_chemical(lk 30)]."}
+include_external_graphics("f-orbitaalid.svg")
+
+```
+
+:::
+
+::::
 
 ## External references
 
