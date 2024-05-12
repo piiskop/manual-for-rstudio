@@ -730,12 +730,30 @@ $$m \cdot \vec{a}$$
 
 ### Fraction
 
-```{verbatim label = "frac"}
-\frac{m \cdot a}{A}
+(ref:explanations-for-fractions) `\frac` regulates the height of the expression, so that an inline expression has the height of the text line and a block expression has a higher height[@oetiker_the, lk 122]. `\tfrac` always renders the expression to have the height of the inline text. `\dfrac` always renders the expression to have a higher and better readable height. The examples can be seen in the code block \@ref(lst:fractions) on the page `r render_pageref(reference="lst:fractions")`.
 
-```
+(ref:explanations-for-fractions)
 
-$$\frac{m \cdot a}{A}$$
+\begin{multicols}{2}
+\begin{lstlisting}[label=lst:fractions, language=TeX, caption=An example of how to display fractions.]
+Rõhu valem muutumatu massi korral on $\frac{m \cdot a}{A}$ ehk $\dfrac{m \cdot a}{A}$ ehk $\tfrac{m \cdot a}{A}$.
+
+\begin{align}
+\frac{m \cdot a}{A}\leavevmode\\
+\dfrac{m \cdot a}{A}\leavevmode\\
+\tfrac{m \cdot a}{A}
+\end{align}
+\end{lstlisting}
+
+Rõhu valem muutumatu massi korral on $\frac{m \cdot a}{A}$ ehk $\dfrac{m \cdot a}{A}$ ehk $\tfrac{m \cdot a}{A}$.
+
+\begin{align}
+\frac{m \cdot a}{A}\leavevmode\\
+\dfrac{m \cdot a}{A}\leavevmode\\
+\tfrac{m \cdot a}{A}
+\end{align}
+
+\end{multicols}
 
 ### Functions
 
