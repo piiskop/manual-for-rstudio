@@ -327,6 +327,10 @@ This is just a sample text.
 
 \multicolsend
 
+It is not possible to have tables created by `print_table` in a multicolumn environment[@ctan]:
+
+> ! Package longtable Error: longtable not in 1-column mode.
+
 ## No hyphenation  
   
 After the following command, no hyphenation takes place:  
