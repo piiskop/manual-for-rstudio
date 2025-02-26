@@ -13,8 +13,8 @@ format:
     incremental: false
     multiplex:
       url: 'http://manual-for-rstudio.ons.ee:1948/'
-      secret: "16759825730498538629"
-      socketId: "f3edf0ff0d09982e"
+      secret: "1740588109190711135"
+      socketId: "da2aa167f09879639bbca4a82898300a"
 
 ---
 
