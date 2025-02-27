@@ -102,10 +102,8 @@ quarto check
     format:
   revealjs:
     multiplex:
-      url: 'http://manual-for-rstudio.tennis24.ee:1948/'
-      secret: "16759825730498538629"
-      socketId: "f3edf0ff0d09982e"
-      
+      url: 'http://ons.ee:1948/'
+
     ```
 
 2. Opening the main presentation HyperText Markup Language file for the audience.
