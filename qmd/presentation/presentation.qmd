@@ -12,9 +12,9 @@ format:
   revealjs:
     incremental: false
     multiplex:
-      url: 'http://manual-for-rstudio.ons.ee:1948/'
-      secret: "1740588109190711135"
-      socketId: "da2aa167f09879639bbca4a82898300a"
+      url: 'http://ons.ee:1948/'
+      # secret: "17406710676844837894"
+      # socketId: "b2c1b0bb926ff21a"
 
 ---
 
